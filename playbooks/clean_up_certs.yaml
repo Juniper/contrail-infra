@@ -1,0 +1,26 @@
+- hosts: 'puppetdb.opencontrail.org:!disabled'
+  tasks:
+  - name: shut down puppet agent and puppetdb
+    service:
+    args:
+      name: "{{ item }}"
+      state: stopped
+    with_items:
+      - puppet
+      - puppetdb
+  - name: clean-up all SSL certificates
+    file:
+    args:
+      dest: "{{ item }}"
+      state: absent
+    with_items:
+      - /var/lib/puppet/ssl/
+      - /etc/puppetdb/ssl/
+  - name: clean-up puppetdb certificate on master
+    command: puppet cert clean puppetdb.opencontrail.org
+    delegate_to: localhost
+    become: true
+    become_user: root
+  - name: run puppet agent once to generate certs and csr
+    command: puppet agent --test --onetime --no-daemonize
+    failed_when: false

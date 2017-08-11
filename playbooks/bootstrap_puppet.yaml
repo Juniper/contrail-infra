@@ -1,0 +1,112 @@
+# second phase of the bootstrap process, where puppetdb
+# is installed, and puppetmaster reconfigured to use puppetdb.
+#
+- hosts: '*'
+  serial: 1
+  gather_facts: false
+  tasks:
+    - name: ensure that we can login to servers
+      setup: {}
+# configure puppet environment for the master, and install all
+# puppet modules with r10k. FIXME: change the post-receive hook
+# to run r10k for us.
+- hosts: "puppetmaster:!disabled"
+  connection: local
+  tasks:
+  - name: quit puppet agent until we finish the bootstrap process
+    service:
+      # disable puppet until we finish puppetdb, it will be started
+      # when we apply catalog at the end.
+      name: puppet
+      state: stopped
+  - name: create skeleton r10k.yaml so that we can install modules
+    copy:
+      src: files/puppet/r10k.yaml
+      dest: /etc/r10k.yaml
+  - name: push checked out git repository to the location puppet expects
+    command: git push /var/lib/puppet/puppet.git {{ puppet_environment }}
+    become: true
+    become_user: puppet
+    register: git_push
+    changed_when: '"Writing objects" in git_push.stdout'
+  - debug:
+      var: git_push
+  - name: ensure that /var/cache/r10k/ exists with correct permissions
+    file:
+      dest: /var/cache/r10k/
+      state: directory
+      owner: puppet
+      group: puppet
+  - name: install puppet modules for the environment
+    command: r10k deploy environment --puppetfile --verbose
+    become: true
+    become_user: puppet
+    when: git_push.changed
+# install puppet on puppetdb host, and sign the generated SSL certificate
+# on puppet master.
+- hosts: "puppetdb:!disabled"
+  tasks:
+  - name: copy puppet install script to the remote host
+    copy:
+    args:
+      src: ../install_puppet.sh
+      dest: /root/install_puppet.sh
+      mode: 0750
+  - name: install puppet from puppetlabs repositories
+    command: /root/install_puppet.sh
+    args:
+      creates: /usr/bin/puppet
+  - name: stop puppet agent on puppetdb
+    service:
+    args:
+      name: puppet
+      state: stopped
+  - name: check if puppetdb certificate has been signed already
+    shell: puppet cert list --all | grep -q '+ "{{ puppetdb_host }}"'
+    delegate_to: localhost
+    failed_when: false
+    changed_when: false
+    register: signed
+  - name: run puppet agent once to generate certificate and csr
+    command: puppet agent --noop --no-daemonize --onetime
+    args:
+      creates: /var/lib/puppet/ssl/certificate_requests/{{ puppetdb_host}}.pem
+    when: signed.rc != 0
+    failed_when: false
+  - name: Get fingerprint of the certificate
+    command: puppet agent --fingerprint
+    changed_when: false
+    when: signed.rc != 0
+    register: fingerprint
+  - name: verify puppetdb fingerprint with what we were sent
+    shell: puppet cert list --all | awk '/{{ fingerprint.stdout.split(" ")[1] }}/ {print $1}'
+    when: signed.rc != 0
+    failed_when: puppetdb_hostname.stdout == ''
+    register: puppetdb_hostname
+    delegate_to: localhost
+    changed_when: false
+  - name: sign CSR sent by the puppetdb host
+    command: puppet cert sign {{ puppetdb_hostname.stdout }}
+    delegate_to: localhost
+    when: signed.rc != 0 
+  - name: ensure that puppet agent on puppetdb is stopped
+    service:
+      name: puppet
+      state: stopped
+  - name: enable puppet agent (it's disabled on installation)
+    command: puppet agent --enable
+    args:
+      removes: /var/lib/puppet/state/agent_disabled.lock
+# initial puppet run on puppetdb, installing puppetdb and its requirements
+- hosts: "puppetdb:!disabled"
+  roles:
+    - role: puppet
+      puppetmaster: "{{ puppetmaster_host }}"
+      puppet_environment: "{{ puppet_environment }}"
+# final puppetmaster run to configure it to use puppetdb to store data.
+- hosts: "puppetmaster:!disabled"
+  connection: local
+  roles:
+    - role: puppet
+      puppetmaster: "{{ puppetmaster_host }}"
+      puppet_environment: "{{ puppet_environment }}"

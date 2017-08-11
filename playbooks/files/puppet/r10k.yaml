@@ -1,0 +1,6 @@
+cachedir: /var/cache/r10k/
+
+sources:
+  puppet:
+    remote: /var/lib/puppet/puppet.git
+    basedir: /etc/puppet/environments/

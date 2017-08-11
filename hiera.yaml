@@ -1,0 +1,12 @@
+# bootstrap-specific hiera configuration
+---
+:backends:
+    - yaml
+:logger: console
+
+:hierarchy:
+  - "fqdn/%{::clientcert}"
+  - common
+
+:yaml:
+    :datadir: "hiera/"
