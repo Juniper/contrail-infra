@@ -1,6 +1,7 @@
 class opencontrail_ci::users {
   accounts::user { 'kklimonda':
     ensure        => present,
+    comment       => 'Krzysztof Klimonda',
     groups        => [ 'sudo' ],
     uid           => '1001',
     gid           => '1001',
