@@ -13,6 +13,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'jlukow':
     ensure        => present,
+    comment       => 'Jaroslaw Lukow',
     groups        => [ 'sudo' ],
     uid           => '1002',
     gid           => '1002',
@@ -24,6 +25,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'lukasz.lukasiewicz':
     ensure        => present,
+    comment       => 'Lukasz Lukasiewicz',
     groups        => [ 'sudo' ],
     uid           => '1003',
     gid           => '1003',
@@ -35,6 +37,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'prusak':
     ensure        => present,
+    comment       => 'Pawel Rusak',
     groups        => [ 'sudo' ],
     uid           => '1004',
     gid           => '1004',
@@ -46,6 +49,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'klash':
     ensure        => present,
+    comment       => 'Karl Klashinsky',
     groups        => [ 'sudo' ],
     uid           => '1005',
     gid           => '1005',
@@ -57,6 +61,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'vmahuli':
     ensure        => present,
+    comment       => 'Vinay Mahuli',
     groups        => [ 'sudo' ],
     uid           => '1006',
     gid           => '1006',
