@@ -12,6 +12,9 @@ class opencontrail_ci::users {
   }
 
   accounts::user { 'jlukow':
+    ensure        => absent,
+  }->
+  accounts::user { 'jluk':
     ensure        => present,
     comment       => 'Jaroslaw Lukow',
     groups        => [ 'sudo' ],
@@ -36,6 +39,9 @@ class opencontrail_ci::users {
   }
 
   accounts::user { 'prusak':
+    ensure        => absent,
+  }->
+  accounts::user { 'pjrusak':
     ensure        => present,
     comment       => 'Pawel Rusak',
     groups        => [ 'sudo' ],
