@@ -35,11 +35,11 @@ class opencontrail_ci::puppetmaster(
     require => User['puppet'],
   }
 
-  ssh_authorized_key { 'gerrit@review.opencontrail.org':
+  ssh_authorized_key { 'gerrit@review2.opencontrail.org':
     ensure  => present,
     user    => 'puppet',
     type    => 'ssh-rsa',
-    key     => 'AAAAB3NzaC1yc2EAAAADAQABAAABAQC8xYbz7ohnFJuo8pvaRmzzRazLAPzGTcwcq848iKx6W9OZWjHMKJ40TiMM4RyeWvjGP68aEkLA6Pgdrxlf1e2rmiIH5il+znLEHslnpA3FjWbRMx5HiXn4ZKmVvFU8uGmXPeevMbHM+YJdxkMjAdf9uV8pA4EmUcsdyxK9oLZFDWsvJEeZXz6Andc+wpYCNh3FNoRO0+lIhuFdzXhf2a9mVqV3TmkgUW4KojH03kEGzudsZ+9ZZuKOe2TevHA58atabSiKQfg7T2q1EmNObpcEacxFiVsmT8DgbkHjN+AftsFulUKPA9kzfSYmfAX238Ib4aSKcvpONPi/RKzh5ee3',
+    key     => hiera('gerrit_ssh_rsa_pubkey'),
     require => File["/var/lib/puppet/.ssh/"],
   }
 
