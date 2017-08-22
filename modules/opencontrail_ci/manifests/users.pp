@@ -1,4 +1,11 @@
 class opencontrail_ci::users {
+  # ensure that the ubuntu user is locked.
+  # XXX: we really should just delete the user, but that wreaks havoc with assumptions made
+  # by the bootstrap process.
+  accounts::user { 'ubuntu':
+    locked => true,
+  }
+
   accounts::user { 'kklimonda':
     ensure        => present,
     comment       => 'Krzysztof Klimonda',
