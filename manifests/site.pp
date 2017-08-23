@@ -14,6 +14,28 @@ node 'puppetdb2.opencontrail.org' {
   class { 'opencontrail_ci::puppetdb': }
 }
 
+node zl01.dev.opencontrail.org {
+  class { 'opencontrail_ci::server': }
+  class { 'opencontrail_ci::zuul_launcher':
+    gearman_server       => 'zuul2.opencontrail.org',
+    gerrit_server        => 'review2.opencontrail.org',
+    gerrit_user          => 'zuul',
+    gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey'),
+    zuul_ssh_private_key => hiera('zuul_ssh_private_key'),
+    project_config_repo  => 'https://github.com/kklimonda/contrail-project-config',
+    accept_nodes         => false,
+    nodes                => [
+      {
+        name             => 'ci-testnode',
+        host             => '148.251.5.87',
+        description      => '',
+        labels           => 'ci-oc-slave-healthcheck',
+      },
+    ]
+  }
+}
+
+
 node /^zl\d+\.opencontrail\.org$/ {
   class { 'opencontrail_ci::server': }
   class { 'opencontrail_ci::zuul_launcher':
