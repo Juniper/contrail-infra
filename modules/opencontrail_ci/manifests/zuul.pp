@@ -6,6 +6,11 @@ class opencontrail_ci::zuul(
     url => 'https://github.com/kklimonda/contrail-project-config',
   }
 
+  file { '/etc/init.d/zuul':
+    ensure => present,
+    noop   => true,
+  }
+
   exec { 'zuul-reload':
     command     => '/etc/init.d/zuul reload',
     require     => File['/etc/init.d/zuul'],
