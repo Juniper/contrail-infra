@@ -34,11 +34,7 @@ GEM
     puppet-lint (2.3.0)
     puppet-lint-absolute_classname-check (0.2.4)
       puppet-lint (>= 1.0, < 3.0)
-    puppet-lint-empty_string-check (0.2.2)
-      puppet-lint (>= 1.0, < 3.0)
     puppet-lint-leading_zero-check (0.1.1)
-      puppet-lint (>= 1.0, < 3.0)
-    puppet-lint-roles_and_profiles-check (0.1.1)
       puppet-lint (>= 1.0, < 3.0)
     puppet-lint-spaceship_operator_without_tag-check (0.1.1)
       puppet-lint (>= 1.0, < 3.0)
@@ -106,13 +102,12 @@ DEPENDENCIES
   puppet (= 3.8.7)!
   puppet-lint!
   puppet-lint-absolute_classname-check!
-  puppet-lint-empty_string-check!
   puppet-lint-leading_zero-check!
-  puppet-lint-roles_and_profiles-check!
   puppet-lint-spaceship_operator_without_tag-check!
   puppet-lint-undef_in_function-check!
   puppet-lint-unquoted_string-check!
   puppet-lint-variable_contains_upcase!
+  puppet-syntax!
   puppet_forge (~> 2.2)!
   puppetlabs_spec_helper!
   r10k (= 2.5.5)!

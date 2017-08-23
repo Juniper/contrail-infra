@@ -1,6 +1,7 @@
 source 'https://rubygems.org' do
     group :development, :test do
         gem 'puppet-lint'
+	gem 'puppet-syntax'
         gem 'puppetlabs_spec_helper'
         gem 'puppet-lint-unquoted_string-check'
         #gem 'puppet-lint-empty_string-check'
