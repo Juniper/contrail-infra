@@ -27,6 +27,15 @@ class opencontrail_ci::puppetmaster(
     require  => Package['puppet_forge'],
   }
 
+  # FIXME: Replace with package { 'eyaml': provider => 'puppetserver_gem' }
+  # after we upgrade to 4.x and can install module.
+  exec { 'puppetserver-eyaml':
+    path    => '/usr/sbin:/usr/bin:/sbin:/bin',
+    command => 'puppetserver gem install --no-rdoc --no-ri hiera-eyaml',
+    unless  => 'puppetserver gem list | grep -q "^hiera-eyaml"',
+    notify  => Service['puppetserver'],
+  }
+
   file { "/var/lib/puppet/.ssh/":
     ensure  => directory,
     owner   => 'puppet',
