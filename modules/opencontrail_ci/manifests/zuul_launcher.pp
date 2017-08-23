@@ -37,8 +37,8 @@ class opencontrail_ci::zuul_launcher(
 ) inherits opencontrail_ci::params {
 
   class { '::project_config':
-    url      => $project_config_repo,
-    base     => $project_config_base,
+    url      => $::project_config_repo,
+    base     => $::project_config_base,
     revision => $::environment,
   }
 
@@ -85,8 +85,8 @@ class opencontrail_ci::zuul_launcher(
     zuul_url                => $zuul_url,
     git_email               => $git_email,
     git_name                => $git_name,
-    revision                => $revision,
-    git_source_repo         => $git_source_repo,
+    revision                => $::revision,
+    git_source_repo         => $::git_source_repo,
     jenkins_jobs            => '/etc/jenkins_jobs/config',
     workspace_root          => $workspace_root,
     worker_private_key_file => $worker_private_key_file,
@@ -96,7 +96,7 @@ class opencontrail_ci::zuul_launcher(
     accept_nodes            => $accept_nodes,
   }
 
-  class { 'zuul::launcher':
+  class { '::zuul::launcher':
     ensure => running,
   }
 }

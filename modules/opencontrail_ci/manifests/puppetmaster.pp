@@ -13,7 +13,7 @@ class opencontrail_ci::puppetmaster(
     default => false,
   }
   $puppetdb_host = $puppetdb_enabled ? {
-    true    => $hosts['puppetdb'],
+    true    => $::hosts['puppetdb'],
     default => undef,
   }
 
@@ -36,7 +36,7 @@ class opencontrail_ci::puppetmaster(
     notify  => Service['puppetserver'],
   }
 
-  file { "/var/lib/puppet/.ssh/":
+  file { '/var/lib/puppet/.ssh/':
     ensure  => directory,
     owner   => 'puppet',
     group   => 'puppet',
@@ -49,7 +49,7 @@ class opencontrail_ci::puppetmaster(
     user    => 'puppet',
     type    => 'ssh-rsa',
     key     => hiera('gerrit_ssh_rsa_pubkey'),
-    require => File["/var/lib/puppet/.ssh/"],
+    require => File['/var/lib/puppet/.ssh/'],
   }
 
   file { '/var/lib/r10k':
@@ -77,7 +77,7 @@ class opencontrail_ci::puppetmaster(
   Class['::puppet::server'] -> Class['::puppet']
 
   class { '::hiera':
-    hierarchy => [
+    hierarchy     => [
       'fqdn/%{::clientcert}',
       'common',
     ],

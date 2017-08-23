@@ -3,7 +3,7 @@ class opencontrail_ci::zuul(
 ) inherits opencontrail_ci::params {
 
   class { '::project_config':
-    url      => $project_config_repo,
+    url      => $::project_config_repo,
     revision => $::environment,
   }
 
