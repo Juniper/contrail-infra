@@ -6,6 +6,7 @@ class opencontrail_ci::users {
     locked => true,
   }
 
+  # lint:ignore:140chars
   accounts::user { 'kklimonda':
     ensure        => present,
     comment       => 'Krzysztof Klimonda',
@@ -77,4 +78,5 @@ class opencontrail_ci::users {
       'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1Nx27hz2lUUC20DkwFDgPwh3KB5nAkCgKQakkB10da7Ty8ogcJ4DUOrGS9Gl7kdRAByzAgJ6c6kkzuxQv35qUgH6udljgTXIKzjt8gbvQz9udeLQiTxcAnqztqtb/XIEqNRXIQQwtxklxkcUvCAC4qIbd05s01Cr0kZ53+4o36dhN4z2UMFCgeuH9fqdUTUgSa6IlOwc9cjSaAreFrdnX230hzvIcN5LnX3+sp3X8q/xpwMvX5xze/5gXkd1GRQE4SymlGnFC4Et9ueV9H4gSNCARrx+JcicFVObj/A12/sehw2I+HwSdA2jbBOfPdbiYvHfYKtWHe7xBFzslf5pZ vmahuli@noded1',
     ]
   }
+  # lint:endignore
 }
