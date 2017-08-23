@@ -13,7 +13,7 @@ class opencontrail_ci::puppetmaster(
     default => false,
   }
   $puppetdb_host = $puppetdb_enabled ? {
-    true    => $::hosts['puppetdb'],
+    true    => $::opencontrail_ci::params::hosts['puppetdb'],
     default => undef,
   }
 
