@@ -1,4 +1,4 @@
-# == Class: openstack_ci::zuul_launcher
+# == Class: opencontrail_ci::zuul_launcher
 #
 class opencontrail_ci::zuul_launcher(
   $vhost_name = $::fqdn,
@@ -26,7 +26,7 @@ class opencontrail_ci::zuul_launcher(
   $statsd_host = '',
   $project_config_repo = '',
   $project_config_base = '',
-  $git_email = 'jenkins@openstack.org',
+  $git_email = 'zuul@opencontrail.org',
   $git_name = 'OpenContrail Zuul',
   $workspace_root = '/home/jenkins/workspace',
   $worker_private_key_file = '/var/lib/zuul/ssh/id_rsa',
