@@ -19,10 +19,18 @@
       # when we apply catalog at the end.
       name: puppet
       state: stopped
+  - name: Create /etc/puppetlabs/r10k/ hierarchy
+    file:
+      dest: /etc/puppetlabs/r10k/
+      ensure: directory
+      owner: puppet
+      group: puppet
+      mode: '0755'
+      recurse: true
   - name: create skeleton r10k.yaml so that we can install modules
     copy:
       src: files/puppet/r10k.yaml
-      dest: /etc/r10k.yaml
+      dest: /etc/puppetlabs/r10k/r10k.yaml
   - name: push checked out git repository to the location puppet expects
     command: git push /var/lib/puppet/puppet.git {{ puppet_environment }}
     become: true
