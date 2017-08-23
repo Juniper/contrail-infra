@@ -8,7 +8,7 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
 
   class { '::puppet':
     server                    => false,
-    puppetmaster              => $::hosts['puppetmaster'],
+    puppetmaster              => $hosts['puppetmaster'],
     agent_additional_settings => {
       stringify_facts => false,
     }

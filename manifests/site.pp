@@ -29,6 +29,7 @@ node 'zl01.dev.opencontrail.org' {
         host             => '148.251.5.87',
         description      => '',
         labels           => 'ci-oc-slave-healthcheck',
+        ansible_username => 'ubuntu',
       },
     ]
   }
