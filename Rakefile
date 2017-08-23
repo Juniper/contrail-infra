@@ -6,4 +6,5 @@ PuppetLint::RakeTask.new :lint do |config|
     config.pattern = ['manifests/*.pp', 'modules/opencontrail_ci/**/*.pp']
     config.fail_on_warnings = true
     config.log_format = "%{path}:%{line} [%{KIND}] %{message}"
+    config.disable_checks = ['documentation']
 end
