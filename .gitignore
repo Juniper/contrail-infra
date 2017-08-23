@@ -4,5 +4,6 @@
 # Ignore all modules other than opencontrail_ci, so that
 # we can check-out third-party code but not have it litter
 # our git.
+/vendor/
 /modules/*
 !/modules/opencontrail_ci/
