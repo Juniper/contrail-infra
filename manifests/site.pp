@@ -36,3 +36,7 @@ node /^zl\d+\.opencontrail\.org$/ {
     ]
   }
 }
+
+node 'zuul2.opencontrail.org' {
+  class { 'opencontrail_ci::zuul': }
+}
