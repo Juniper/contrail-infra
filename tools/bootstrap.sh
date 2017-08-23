@@ -14,10 +14,12 @@ fi
 # then run bootstrap playbook that handles the rest
 # of the process.
 
-SCRIPT_DIR=$(dirname $(readlink -f $0))
+BOOTSTRAP_DIR=$(dirname $(readlink -f $0))
+PROJECT_DIR=$(readlink -f $SCRIPT_DIR/../)
+MODULES_DIR=${PROJECT_DIR}/modules/
 
 if [ ! -x /usr/bin/puppet ]; then
-    bash install_puppet.sh
+    bash ${BOOTSTRAP_DIR}/install_puppet.sh
 fi
 # install gem and explicitly puppet_forge dependency (to fix conflicting
 # dependencies)
@@ -42,14 +44,17 @@ if [ ! -d /var/cache/r10k/ ]; then
     mkdir /var/cache/r10k/
     chown puppet:puppet /var/cache/r10k/
 fi
-chown :puppet modules/
+chown :puppet ${MODULES_DIR}
 chmod g+w modules
-sudo -u puppet r10k puppetfile install --verbose info
+sudo -u puppet r10k puppetfile install --verbose info \
+  --moduledir ${MODULES_DIR} --puppetfile ${PROJECT_DIR}/Puppetfile
 
 # initial puppet run to deploy puppet master, without puppetdb
 # integration. Both server and puppetmaster classes are applied,
 # to fullfill module dependencies.
-puppet apply --hiera_config hiera.yaml --modulepath ${SCRIPT_DIR}/modules/ -e "class { '::opencontrail_ci::server': } -> class { 'opencontrail_ci::puppetmaster': puppetdb_enabled => false }"
+puppet apply --hiera_config ${PROJECT_DIR}/hiera.yaml \
+  --modulepath ${SCRIPT_DIR}/modules/ \
+  -e "class { '::opencontrail_ci::server': } -> class { 'opencontrail_ci::puppetmaster': puppetdb_enabled => false }"
 
 # create /etc/ansible/hosts for bootstrap
 cat > /etc/ansible/hosts <<-EOF
@@ -61,4 +66,4 @@ EOF
 ansible-galaxy install -r roles.yaml --force
 # run ansible to finish the bootstrap process
 rm -rf $HOME/.ansible/
-sudo -u ubuntu ANSIBLE_SSH_PIPELINING=True ansible-playbook playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key /home/ubuntu/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]}"
+sudo -u ubuntu ANSIBLE_SSH_PIPELINING=True ansible-playbook ${PROJECT_DIR}/playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key /home/ubuntu/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]}"
