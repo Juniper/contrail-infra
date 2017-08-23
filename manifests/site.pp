@@ -14,7 +14,7 @@ node 'puppetdb2.opencontrail.org' {
   class { 'opencontrail_ci::puppetdb': }
 }
 
-node zl01.dev.opencontrail.org {
+node 'zl01.dev.opencontrail.org' {
   class { 'opencontrail_ci::server': }
   class { 'opencontrail_ci::zuul_launcher':
     gearman_server       => 'zuul2.opencontrail.org',
