@@ -1,0 +1,77 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    CFPropertyList (2.3.5)
+    diff-lcs (1.3)
+    facter (2.5.1-universal-darwin)
+      CFPropertyList (~> 2.2)
+    hiera (1.3.4)
+      json_pure
+    json_pure (2.1.0)
+    metaclass (0.0.4)
+    mocha (1.2.1)
+      metaclass (~> 0.0.1)
+    puppet (3.8.7)
+      facter (> 1.6, < 3)
+      hiera (~> 1.0)
+      json_pure
+    puppet-lint (2.3.0)
+    puppet-lint-absolute_classname-check (0.2.4)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-empty_string-check (0.2.2)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-leading_zero-check (0.1.1)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-roles_and_profiles-check (0.1.1)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-spaceship_operator_without_tag-check (0.1.1)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-undef_in_function-check (0.2.1)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-unquoted_string-check (0.3.0)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-lint-variable_contains_upcase (1.2.0)
+      puppet-lint (>= 1.0, < 3.0)
+    puppet-syntax (2.4.1)
+      rake
+    puppetlabs_spec_helper (2.3.2)
+      mocha (~> 1.0)
+      puppet-lint (~> 2.0)
+      puppet-syntax (~> 2.0)
+      rspec-puppet (~> 2.0)
+    rake (12.0.0)
+    rspec (3.6.0)
+      rspec-core (~> 3.6.0)
+      rspec-expectations (~> 3.6.0)
+      rspec-mocks (~> 3.6.0)
+    rspec-core (3.6.0)
+      rspec-support (~> 3.6.0)
+    rspec-expectations (3.6.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.6.0)
+    rspec-mocks (3.6.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.6.0)
+    rspec-puppet (2.6.8)
+      rspec
+    rspec-support (3.6.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  puppet (= 3.8.7)!
+  puppet-lint!
+  puppet-lint-absolute_classname-check!
+  puppet-lint-empty_string-check!
+  puppet-lint-leading_zero-check!
+  puppet-lint-roles_and_profiles-check!
+  puppet-lint-spaceship_operator_without_tag-check!
+  puppet-lint-undef_in_function-check!
+  puppet-lint-unquoted_string-check!
+  puppet-lint-variable_contains_upcase!
+  puppetlabs_spec_helper!
+  rake!
+
+BUNDLED WITH
+   1.15.4
