@@ -62,7 +62,6 @@ class opencontrail_ci::puppetmaster(
 
   class { '::puppet::server':
     implementation       => 'puppetserver',
-    parser               => 'future',
     hiera_config         => '/etc/puppet/hiera.yaml',
     puppetserver_version => '1.2.0',
     foreman              => false,
