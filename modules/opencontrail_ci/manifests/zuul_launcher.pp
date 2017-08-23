@@ -24,7 +24,6 @@ class opencontrail_ci::zuul_launcher(
   $proxy_ssl_chain_file_contents = '',
   $sysadmins = [],
   $statsd_host = '',
-  $project_config_repo = '',
   $project_config_base = '',
   $git_email = 'zuul@opencontrail.org',
   $git_name = 'OpenContrail Zuul',
@@ -35,11 +34,12 @@ class opencontrail_ci::zuul_launcher(
   $nodes = [],
   $accept_nodes = '',
   $zuul_launcher_keytab = '',
-) {
+) inherits opencontrail_ci::params {
 
   class { '::project_config':
-    url  => $project_config_repo,
-    base => $project_config_base,
+    url      => $project_config_repo,
+    base     => $project_config_base,
+    revision => $::environment,
   }
 
   file { '/etc/jenkins_jobs':

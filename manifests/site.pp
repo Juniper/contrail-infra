@@ -22,7 +22,6 @@ node 'zl01.dev.opencontrail.org' {
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey'),
     zuul_ssh_private_key => hiera('zuul_ssh_private_key'),
-    project_config_repo  => 'https://github.com/kklimonda/contrail-project-config',
     accept_nodes         => false,
     nodes                => [
       {
@@ -44,7 +43,6 @@ node /^zl\d+\.opencontrail\.org$/ {
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey'),
     zuul_ssh_private_key => hiera('zuul_ssh_private_key'),
-    project_config_repo  => 'https://github.com/kklimonda/contrail-project-config',
     accept_nodes         => false,
     nodes                => [
       {

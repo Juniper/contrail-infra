@@ -1,9 +1,10 @@
 class opencontrail_ci::zuul(
   $layout_dir = '/etc/project-config/zuul',
-){
+) inherits opencontrail_ci::params {
 
   class { '::project_config':
-    url => 'https://github.com/kklimonda/contrail-project-config',
+    url      => $project_config_repo,
+    revision => $::environment,
   }
 
   file { '/etc/init.d/zuul':
