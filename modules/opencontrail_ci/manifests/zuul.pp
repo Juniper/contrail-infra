@@ -23,6 +23,7 @@ class opencontrail_ci::zuul(
     group   => 'root',
     mode    => '0755',
     recurse => true,
+    notify  => Exec['zuul-reload'],
     require => $::project_config::config_dir,
   }
 
