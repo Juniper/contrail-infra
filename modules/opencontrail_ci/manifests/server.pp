@@ -1,6 +1,11 @@
 class opencontrail_ci::server inherits opencontrail_ci::params {
   include ::opencontrail_ci::users
 
+  class { '::firewall': }
+  resources { 'firewall':
+      purge => true,
+  }
+
   class { '::puppet':
     server                    => false,
     puppetmaster              => $hosts['puppetmaster'],
@@ -9,14 +14,7 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
     }
   }
 
-  package { 'curl':
-    ensure => present,
-  }
-
-  class { '::firewall': }
-  resources { 'firewall':
-      purge => true,
-  }
+  class { '::sudo': }
 
   firewall { '000 accept all icmp':
     proto  => 'icmp',
@@ -39,5 +37,14 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   }->
   firewall { '999 drop all other requests':
     action => 'drop',
+  }
+
+  package { 'curl':
+    ensure => present,
+  }
+
+  sudo::conf { 'sudo':
+    priority => 10,
+    content  => "%sudo ALL=(ALL) NOPASSWD: ALL",
   }
 }
