@@ -1,22 +1,22 @@
 # make sure we do the minimum configuration for all nodes that
 # join our puppetmaster (set-up accounts, common packages etc.)
 node default {
-  class { 'opencontrail_ci::server': }
+  class { '::opencontrail_ci::server': }
 }
 
 node 'ci-puppetmaster2.opencontrail.org' {
-  class { 'opencontrail_ci::server': }
-  class { 'opencontrail_ci::puppetmaster': }
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::puppetmaster': }
 }
 
 node 'puppetdb2.opencontrail.org' {
-  class { 'opencontrail_ci::server': }
-  class { 'opencontrail_ci::puppetdb': }
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::puppetdb': }
 }
 
 node 'zl01.dev.opencontrail.org' {
-  class { 'opencontrail_ci::server': }
-  class { 'opencontrail_ci::zuul_launcher':
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::zuul_launcher':
     gearman_server       => 'zuul2.opencontrail.org',
     gerrit_server        => 'review2.opencontrail.org',
     gerrit_user          => 'zuul',
@@ -37,8 +37,8 @@ node 'zl01.dev.opencontrail.org' {
 
 
 node /^zl\d+\.opencontrail\.org$/ {
-  class { 'opencontrail_ci::server': }
-  class { 'opencontrail_ci::zuul_launcher':
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::zuul_launcher':
     gearman_server       => 'zuul2.opencontrail.org',
     gerrit_server        => 'review2.opencontrail.org',
     gerrit_user          => 'zuul',
@@ -59,5 +59,5 @@ node /^zl\d+\.opencontrail\.org$/ {
 }
 
 node 'zuul2.opencontrail.org' {
-  class { 'opencontrail_ci::zuul': }
+  class { '::opencontrail_ci::zuul': }
 }
