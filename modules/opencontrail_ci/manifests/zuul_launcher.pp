@@ -86,7 +86,7 @@ class opencontrail_ci::zuul_launcher(
     git_email               => $git_email,
     git_name                => $git_name,
     revision                => $::revision,
-    git_source_repo         => $::git_source_repo,
+    git_source_repo         => 'https://github.com/kklimonda/zuul',
     jenkins_jobs            => '/etc/jenkins_jobs/config',
     workspace_root          => $workspace_root,
     worker_private_key_file => $worker_private_key_file,
