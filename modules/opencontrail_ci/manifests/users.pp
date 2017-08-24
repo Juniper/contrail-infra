@@ -83,8 +83,8 @@ class opencontrail_ci::users {
     ensure        => present,
     comment       => 'Mithun Mistry',
     groups        => [ 'sudo' ],
-    uid           => '1007',
-    gid           => '1007',
+    uid           => '1008',
+    gid           => '1008',
     purge_sshkeys => true,
     sshkeys       => [
       'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3othGc/CyQYOzkKbGogzcI8NfvfUmMSn4jqPDFh541VYrsImau/wxs08/olgmNttXb6xCYKy8QGAUJF+3852EXNwyaaVyhJjv5N3pwGkKpaCOHOQatonCklmwrmOxJP4XjemjAx3H1RX+6oDujfzjKLq6Mloy4R6DOBIGEvZccAP2WcyIVmu5DloXm676qByR7CZ/ocdW+ZjtJZ8/JptLEEVDvTsD1etXyIjlGPSTAWmzqFICSMTMLfbdVHdXPyNZXhOjDbUUgf5iHF998U2jBoLxa4vycFySg4EwibdY3Ktf5pv0IwfOBjbfh8lVzE6Pd657butJDFrf80gAJRCD mmithun@mmithun-mbp',
