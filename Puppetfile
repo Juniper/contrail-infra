@@ -1,6 +1,5 @@
 moduledir 'vendor'
 
-mod 'opencontrail_ci', :local => true
 mod 'openstackci/ansible',
         :git    => 'https://github.com/openstack-infra/puppet-ansible',
         :commit => '03b90b3'
