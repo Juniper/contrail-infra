@@ -1,3 +1,5 @@
+ruby '~> 2.1'
+
 source 'https://rubygems.org' do
     group :development, :test do
         gem 'puppet-lint'

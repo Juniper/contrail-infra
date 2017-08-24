@@ -114,5 +114,8 @@ DEPENDENCIES
   rake!
   semantic_puppet (= 0.1.4)!
 
+RUBY VERSION
+   ruby 2.1.10p492
+
 BUNDLED WITH
    1.15.4
