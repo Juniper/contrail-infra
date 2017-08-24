@@ -78,5 +78,17 @@ class opencontrail_ci::users {
       'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC1Nx27hz2lUUC20DkwFDgPwh3KB5nAkCgKQakkB10da7Ty8ogcJ4DUOrGS9Gl7kdRAByzAgJ6c6kkzuxQv35qUgH6udljgTXIKzjt8gbvQz9udeLQiTxcAnqztqtb/XIEqNRXIQQwtxklxkcUvCAC4qIbd05s01Cr0kZ53+4o36dhN4z2UMFCgeuH9fqdUTUgSa6IlOwc9cjSaAreFrdnX230hzvIcN5LnX3+sp3X8q/xpwMvX5xze/5gXkd1GRQE4SymlGnFC4Et9ueV9H4gSNCARrx+JcicFVObj/A12/sehw2I+HwSdA2jbBOfPdbiYvHfYKtWHe7xBFzslf5pZ vmahuli@noded1',
     ]
   }
+
+  accounts::user { 'mmithun':
+    ensure        => present,
+    comment       => 'Mithun Mistry',
+    groups        => [ 'sudo' ],
+    uid           => '1007',
+    gid           => '1007',
+    purge_sshkeys => true,
+    sshkeys       => [
+      'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3othGc/CyQYOzkKbGogzcI8NfvfUmMSn4jqPDFh541VYrsImau/wxs08/olgmNttXb6xCYKy8QGAUJF+3852EXNwyaaVyhJjv5N3pwGkKpaCOHOQatonCklmwrmOxJP4XjemjAx3H1RX+6oDujfzjKLq6Mloy4R6DOBIGEvZccAP2WcyIVmu5DloXm676qByR7CZ/ocdW+ZjtJZ8/JptLEEVDvTsD1etXyIjlGPSTAWmzqFICSMTMLfbdVHdXPyNZXhOjDbUUgf5iHF998U2jBoLxa4vycFySg4EwibdY3Ktf5pv0IwfOBjbfh8lVzE6Pd657butJDFrf80gAJRCD mmithun@mmithun-mbp',
+    ]
+  }
   # lint:endignore
 }
