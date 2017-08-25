@@ -14,6 +14,44 @@ node 'puppetdb2.opencontrail.org' {
   class { '::opencontrail_ci::puppetdb': }
 }
 
+node 'logs2.opencontrail.org' {
+  firewall { '200 accept all to 80 for Apache2':
+    proto  => 'tcp',
+    dport  => '80',
+    action => 'accept',
+  }
+  firewall {'201 accept all to 443 for Apache2':
+    proto  => 'tcp',
+    dport  => '443',
+    action => 'accept',
+  }
+  class { '::opencontrail_ci::server': }
+  class { '::apache':
+    default_vhost => false,
+  }
+  apache::vhost { 'logs2.opencontrail.org non-ssl':
+    servername      => 'logs2.opencontrail.org',
+    port            => '80',
+    log_level       => 'warn',
+    error_log_file  => 'error_logs2.opencontrail.org.log',
+    access_log_file => 'access_logs2.opencontrail.org.log',
+    docroot         => '/var/www/logs',
+    redirect_status => 'permanent',
+    redirect_dest   => 'https://logs2.opencontrail.org/',
+  }
+  apache::vhost { 'logs2.opencontrail.org ssl':
+    servername      => 'logs2.opencontrail.org',
+    port            => '443',
+    log_level       => 'warn',
+    access_log_file => 'ssl_access_logs2.opencontrail.org.log',
+    error_log_file  => 'ssl_error_logs2.opencontrail.org.log',
+    docroot         => '/var/www/logs',
+    ssl             => true,
+    ssl_cert        => '/etc/ssl/private/logs2.opencontrail.org.crt',
+    ssl_key         => '/etc/ssl/private/logs2.opencontrail.org.key',
+  }
+}
+
 node 'zl01.dev.opencontrail.org' {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_launcher':
