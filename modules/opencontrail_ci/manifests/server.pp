@@ -45,7 +45,7 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   }
   # lint:endignore
 
-  package { 'curl':
+  package { $::opencontrail_ci::params::common_packages:
     ensure => present,
   }
 
