@@ -14,12 +14,12 @@ fi
 # then run bootstrap playbook that handles the rest
 # of the process.
 
-BOOTSTRAP_DIR=$(dirname $(readlink -f $0))
+SCRIPT_DIR=$(dirname $(readlink -f $0))
 PROJECT_DIR=$(readlink -f $SCRIPT_DIR/../)
 MODULES_DIR=${PROJECT_DIR}/modules/
 
 if [ ! -x /usr/bin/puppet ]; then
-    bash ${BOOTSTRAP_DIR}/install_puppet.sh
+    bash ${SCRIPT_DIR}/install_puppet.sh
 fi
 # install gem and explicitly puppet_forge dependency (to fix conflicting
 # dependencies)
@@ -45,15 +45,21 @@ if [ ! -d /var/cache/r10k/ ]; then
     chown puppet:puppet /var/cache/r10k/
 fi
 chown :puppet ${MODULES_DIR}
-chmod g+w modules
+chmod g+w ${MODULES_DIR}
+cd ${PROJECT_DIR}
+if [ ! -d vendor ]; then
+    mkdir vendor
+fi
+chown puppet vendor
+
 sudo -u puppet r10k puppetfile install --verbose info \
   --moduledir ${MODULES_DIR} --puppetfile ${PROJECT_DIR}/Puppetfile
 
 # initial puppet run to deploy puppet master, without puppetdb
 # integration. Both server and puppetmaster classes are applied,
 # to fullfill module dependencies.
-puppet apply --hiera_config ${PROJECT_DIR}/hiera.yaml \
-  --modulepath ${SCRIPT_DIR}/modules/ \
+puppet apply --hiera_config ${SCRIPT_DIR}/hiera.yaml \
+  --modulepath ${PROJECT_DIR}/modules/:${PROJECT_DIR}/vendor \
   -e "class { '::opencontrail_ci::server': } -> class { 'opencontrail_ci::puppetmaster': puppetdb_enabled => false }"
 
 # create /etc/ansible/hosts for bootstrap
