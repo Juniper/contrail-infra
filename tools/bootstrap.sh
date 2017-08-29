@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 
 . environment.bash
 
-#!/bin/bash
-if [ $EUID -ne 0 ]; then
-    echo "This script must be run as root"
+if [ $EUID -ne 0 -o -z "$SUDO_USER" ]; then
+    echo "This script must executed with sudo from normal user"
     exit 1
 fi
 
@@ -66,4 +65,4 @@ EOF
 ansible-galaxy install -r roles.yaml --force
 # run ansible to finish the bootstrap process
 rm -rf $HOME/.ansible/
-sudo -u ubuntu ANSIBLE_SSH_PIPELINING=True ansible-playbook ${PROJECT_DIR}/playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key /home/ubuntu/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]}"
+sudo -u ${SUDO_USER} ANSIBLE_SSH_PIPELINING=True ansible-playbook ${PROJECT_DIR}/playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key $HOME/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]}"
