@@ -37,8 +37,7 @@ class opencontrail_ci::zuul_launcher(
 ) inherits opencontrail_ci::params {
 
   class { '::project_config':
-    url      => $::project_config_repo,
-    base     => $::project_config_base,
+    url      => $::opencontrail_ci::params::project_config_repo,
     revision => $::environment,
   }
 
