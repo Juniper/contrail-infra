@@ -22,7 +22,7 @@
   - name: Create /etc/puppetlabs/r10k/ hierarchy
     file:
       dest: /etc/puppetlabs/r10k/
-      ensure: directory
+      state: directory
       owner: puppet
       group: puppet
       mode: '0755'
@@ -32,7 +32,7 @@
       src: files/puppet/r10k.yaml
       dest: /etc/puppetlabs/r10k/r10k.yaml
   - name: push checked out git repository to the location puppet expects
-    command: git push /var/lib/puppet/puppet.git {{ puppet_environment }}
+    command: git push /var/lib/puppet/puppet.git {{ current_branch }}:{{ puppet_environment }}
     become: true
     become_user: puppet
     register: git_push
@@ -57,7 +57,7 @@
   - name: copy puppet install script to the remote host
     copy:
     args:
-      src: ../install_puppet.sh
+      src: ../tools/install_puppet.sh
       dest: /root/install_puppet.sh
       mode: 0750
   - name: install puppet from puppetlabs repositories
@@ -76,7 +76,7 @@
     changed_when: false
     register: signed
   - name: run puppet agent once to generate certificate and csr
-    command: puppet agent --noop --no-daemonize --onetime
+    command: puppet agent --noop --test --no-daemonize --onetime --environment {{ puppet_environment }} --server {{ puppetmaster_host }}
     args:
       creates: /var/lib/puppet/ssl/certificate_requests/{{ puppetdb_host}}.pem
     when: signed.rc != 0

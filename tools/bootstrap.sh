@@ -71,4 +71,4 @@ EOF
 ansible-galaxy install -r roles.yaml --force
 # run ansible to finish the bootstrap process
 rm -rf $HOME/.ansible/
-sudo -u ${SUDO_USER} ANSIBLE_SSH_PIPELINING=True ansible-playbook ${PROJECT_DIR}/playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key $HOME/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]}"
+sudo -u ${SUDO_USER} ANSIBLE_SSH_PIPELINING=True ansible-playbook ${PROJECT_DIR}/playbooks/bootstrap_puppet.yaml --user ubuntu --sudo --private-key $HOME/.ssh/id_rsa --extra-vars "puppet_environment=$ENVIRONMENT puppetdb_host=${HOSTS[puppetdb]} puppetmaster_host=${HOSTS[puppetmaster]} current_branch=$CURRENT_BRANCH"
