@@ -94,30 +94,30 @@ its own branch per system:
 
 .. code-block::
 
-user@host ~/build/libuv $ git branch                                                                                                                                                                                                                                                  ⏎
-  R4.0/rhel7
-  R4.0/trusty
-  R4.0/xenial
-* master/rhel7
-  master/xenial
+  user@host ~/build/libuv $ git branch                                                                                                                                                                                                                                                  ⏎
+    R4.0/rhel7
+    R4.0/trusty
+    R4.0/xenial
+  * master/rhel7
+    master/xenial
 
 Every branch should have the distribution-specific file layout, based on how
 packages are managed upstream, for example:
 
 .. code-block::
 
-user@host ~/build/libuv $ git checkout -t origin/master/rhel7
-Branch master/rhel7 set up to track remote branch master/rhel7 from origin.
-Switched to a new branch 'master/rhel7'.
-user@host ~/build/libuv $ ls
-libuv.spec
-sources
-user@host ~/build/libuv $ git checkout -t origin/master/xenial
-Branch master/xenial set up to track remote branch master/xenial from origin.
-Switched to a new branch 'master/xenial'
-user@host ~/build/libuv $ ls
-debian/
-user@host ~/build/libuv $ ls debian/
-changelog         clean             compat            control
-copyright         libuv-dev.install libuv1.install    rules
-source
+  user@host ~/build/libuv $ git checkout -t origin/master/rhel7
+  Branch master/rhel7 set up to track remote branch master/rhel7 from origin.
+  Switched to a new branch 'master/rhel7'.
+  user@host ~/build/libuv $ ls
+  libuv.spec
+  sources
+  user@host ~/build/libuv $ git checkout -t origin/master/xenial
+  Branch master/xenial set up to track remote branch master/xenial from origin.
+  Switched to a new branch 'master/xenial'
+  user@host ~/build/libuv $ ls
+  debian/
+  user@host ~/build/libuv $ ls debian/
+  changelog         clean             compat            control
+  copyright         libuv-dev.install libuv1.install    rules
+  source
