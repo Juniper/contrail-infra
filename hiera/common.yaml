@@ -1,7 +1,7 @@
 opencontrail_ci::hosts:
   puppetmaster: ci-puppetmaster2.opencontrail.org
   puppetdb: puppetdb2.opencontrail.org
-opencontrail_ci::project_config_repo: git@github.com:Juniper/contrail-project-config.git
+opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config.git
 
 puppet::environment: development
 puppetdb::globals::version: 2.3.8-1puppetlabs1
