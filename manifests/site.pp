@@ -20,6 +20,12 @@ node 'logs2.opencontrail.org' {
     logserver_ssl_key  => hiera('logserver_ssl_key'),
     logserver_ssl_cert => hiera('logserver_ssl_cert'),
   }
+  accounts::user { 'zuul':
+    ensure        => present,
+    comment       => 'Zuul Launcher',
+    purge_sshkeys => true,
+    sshkeys       => [ hiera('zuul_ssh_public_key'), ]
+  }
 }
 
 node 'zl01.dev.opencontrail.org' {
@@ -30,6 +36,14 @@ node 'zl01.dev.opencontrail.org' {
     gerrit_user          => 'zuul',
     gerrit_ssh_host_key  => hiera('gerrit_ssh_rsa_pubkey'),
     zuul_ssh_private_key => hiera('zuul_ssh_private_key'),
+    sites                => [
+      {
+        name => 'logs2.opencontrail.org',
+        host => 'logs2.opencontrail.org',
+        user => 'zuul',
+        root => '/var/www/logs',
+      },
+    ],
     accept_nodes         => false,
     nodes                => [
       {
