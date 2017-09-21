@@ -3,18 +3,18 @@ class opencontrail_ci::nodepool_launcher inherits opencontrail_ci::params {
 
   if ! defined(Class['project_config']) {
     class { '::project_config':
-      url =>  $::opencontrail_ci::params::project_config_repo,
+      url      =>  $::opencontrail_ci::params::project_config_repo,
       revision =>  $::environment,
     }
   }
 
   class { '::nodepool':
-    mysql_root_password      => $::opencontrail_ci::params::mysql_root_password,
-    mysql_password           => $::opencontrail_ci::params::mysql_password,
+    mysql_root_password      => hiera('mysql_root_password'),
+    mysql_password           => hiera('mysql_password'),
     git_source_repo          => 'https://github.com/kklimonda/nodepool',
     revision                 => 'feature/zuulv3',
     statsd_host              => undef,
-    nodepool_ssh_private_key => $nodepool_ssh_private_key,
+    nodepool_ssh_private_key => hiera('nodepool_ssh_private_key'),
     scripts_dir              => $::project_config::nodepool_scripts_dir,
     require                  => $::project_config::config_dir,
     install_mysql            => false,
@@ -54,8 +54,8 @@ class opencontrail_ci::nodepool_launcher inherits opencontrail_ci::params {
   }
 
   class { '::nodepool::launcher':
-    statsd_host     => undef,
-    statsd_prefix   => undef,
+    statsd_host   => undef,
+    statsd_prefix => undef,
   }
 
 }
