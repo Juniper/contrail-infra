@@ -3,12 +3,18 @@ moduledir 'vendor'
 mod 'openstackci/ansible',
         :git    => 'https://github.com/openstack-infra/puppet-ansible',
         :commit => '03b90b3'
+mod 'openstackci/diskimage_builder',
+        :git    => 'https://github.com/openstack-infra/puppet-diskimage_builder',
+        :commit => '506554c'
 mod 'openstackci/httpd',
         :git    => 'https://github.com/openstack-infra/puppet-httpd',
         :commit => '5f7b59c'
 mod 'openstackci/logrotate',
         :git    => 'https://github.com/openstack-infra/puppet-logrotate',
         :commit => '5cfa447'
+mod 'openstackci/nodepool',
+        :git    => 'https://github.com/openstack-infra/puppet-nodepool',
+        :commit => 'e2b8c27'
 mod 'openstackci/pip',
         :git    => 'https://github.com/openstack-infra/puppet-pip',
         :commit => '4409068'
@@ -29,6 +35,7 @@ mod 'puppetlabs/accounts', '1.1.0'
 mod 'puppetlabs/apache', '1.11.0'
 mod 'puppetlabs/apt', '2.4.0'
 mod 'puppetlabs/concat', '1.2.5'
+mod 'puppetlabs/mysql', '3.11.0'
 mod 'puppetlabs/stdlib', '4.17.0'
 mod 'saz/sudo', '4.1.0'
 mod 'saz/timezone', '3.3.0'

@@ -93,5 +93,5 @@ node 'zuul2.opencontrail.org' {
 
 node 'nodepool.opencontrail.org' {
   class { '::opencontrail_ci::server': }
-  class { '::opencontrail_ci::nodepool': }
+  class { '::opencontrail_ci::nodepool_launcher': }
 }
