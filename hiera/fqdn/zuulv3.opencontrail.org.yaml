@@ -1,0 +1,41 @@
+---
+proxy_ssl_cert_file_contents: |
+  -----BEGIN CERTIFICATE-----
+  MIIC1DCCAbygAwIBAgIJAItu0yyDkaQvMA0GCSqGSIb3DQEBCwUAMCIxIDAeBgNV
+  BAMMF3p1dWx2My5vcGVuY29udHJhaWwub3JnMB4XDTE3MDkyMTIyNTUzMFoXDTI3
+  MDkxOTIyNTUzMFowIjEgMB4GA1UEAwwXenV1bHYzLm9wZW5jb250cmFpbC5vcmcw
+  ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDILIHN7uZslt2Jgkf+KtHS
+  ERHytAyfwBGr8bGiSye65M1OQwajJakSXVi0eR/7iHo/O2yE8bpWvaiUPtnkT/x1
+  17it9/SKj6mwKBgBSMdX4cEI2BiaXUPfsWhLHJ4GTRKyiya7Zv2OPqVX3EzKEQmm
+  Xj+4vTllL00hUF5X6ifm6gJhLqgLphq9uyrUSv8v/pVV96o4+2eLiMCBGIdQO01a
+  0Q9lP6j4rn2Oka3gnPOyW35qbYPKFuJdk0VE/dLgsXA8xNGz5N2GBwgPeEhpzhET
+  Iz/kvbO2/xbyaq2ActEWF0RnZW7GSYqvPKa/D/aIV4mCDw+lL+oclRVmti01TDWd
+  AgMBAAGjDTALMAkGA1UdEwQCMAAwDQYJKoZIhvcNAQELBQADggEBAAE+fs3mQwPt
+  BdTMvYB+K4iFDBPjcXkFr55B36JK5yEeiHwzAI6/u08nWTb3YLU3g3Env0jNaqPH
+  uCNnzIPP7eRYkWRoezhioXNRV9ZBZ36zqAqDa3vY48ZWCeIJ0cM991jejivvrBa0
+  CLmvOX5v294yt3FI//pZgAmS1dF2mDKEG3g2dY0G1l+fsOLp/nON8xOwL97ZcVWT
+  GgqgkA9gUrQG5i/2/JHdoVn+5OGwVOM5wyBAz4I19/BsK3UbR1IGICJZT4/LSDIx
+  G3S6/R1I+Az2VubGL3smrthV+Du6K3plLNFvXNG7ZU49i4VSUSkagmPMhI6BOght
+  NbUMU9SEs2Y=
+  -----END CERTIFICATE-----
+zuul_connections:
+#  - name: 'smtp'
+#    driver: 'smtp'
+#    server: 'localhost'
+#    port: '25'
+#    default_from: 'zuul@zuulv3.openstack.org'
+#    default_to: 'zuul.reports@zuulv3.openstack.org'
+
+  - name: 'gerrit'
+    driver: 'gerrit'
+    server: 'review.opencontrail.org'
+    canonical_hostname: 'git.opencontrail.org'
+    user: 'zuul'
+    sshkey: '/var/lib/zuul/ssh/id_rsa'
+
+#  - name: 'mysql'
+#    driver: 'sql'
+
+#  - name: 'github'
+#    driver: 'github'
+#    app_key: '/etc/zuul/github.key'
