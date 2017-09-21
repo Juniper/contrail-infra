@@ -90,3 +90,8 @@ node /^zl\d+\.opencontrail\.org$/ {
 node 'zuul2.opencontrail.org' {
   class { '::opencontrail_ci::zuul': }
 }
+
+node 'nodepool.opencontrail.org' {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::nodepool': }
+}

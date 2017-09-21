@@ -18,6 +18,7 @@ mod 'openstackci/project_config',
 mod 'openstackci/vcsrepo', '0.0.8'
 mod 'openstackci/zuul',
         :git    => 'https://github.com/kklimonda/puppet-zuul'
+mod 'deric/zookeeper', '0.7.4'
 mod 'puppet/extlib', '1.1.0'
 mod 'puppet/hiera', '2.4.0'
 mod 'puppetlabs-firewall', '1.9.0'
