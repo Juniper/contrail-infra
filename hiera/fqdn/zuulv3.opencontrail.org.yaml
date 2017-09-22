@@ -28,9 +28,9 @@ zuul_connections:
 
   - name: 'gerrit'
     driver: 'gerrit'
-    server: 'review.opencontrail.org'
+    server: 'review2.opencontrail.org'
     canonical_hostname: 'git.opencontrail.org'
-    user: 'zuul'
+    user: 'zuulv3'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
 #  - name: 'mysql'
