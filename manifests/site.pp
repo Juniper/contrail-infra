@@ -144,7 +144,6 @@ node 'zuulv3.opencontrail.org' {
   }
 
   class { '::zuul::web': }
-  class { '::zuul::server': }
 }
 
 node 'nodepool.opencontrail.org' {

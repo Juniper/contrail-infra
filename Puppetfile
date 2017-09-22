@@ -17,13 +17,15 @@ mod 'openstackci/nodepool',
         :commit => 'e2b8c27'
 mod 'openstackci/pip',
         :git    => 'https://github.com/openstack-infra/puppet-pip',
-        :commit => '4409068'
+        :commit => 'bde44d1'
 mod 'openstackci/project_config',
         :git    => 'https://github.com/openstack-infra/puppet-project_config',
         :commit => '4c13e1a'
 mod 'openstackci/vcsrepo', '0.0.8'
 mod 'openstackci/zuul',
-        :git    => 'https://github.com/kklimonda/puppet-zuul'
+#XXX: Disable kklimonda/puppet-zuul for now - needs verifying if needed for Zuulv3.
+        :git    => 'https://github.com/openstack-infra/puppet-zuul',
+        :commit => '1f43ca6'
 mod 'deric/zookeeper', '0.7.4'
 mod 'puppet/extlib', '1.1.0'
 mod 'puppet/hiera', '2.4.0'
