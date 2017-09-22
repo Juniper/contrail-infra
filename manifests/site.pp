@@ -144,6 +144,7 @@ node 'zuulv3.opencontrail.org' {
   }
 
   class { '::zuul::web': }
+  #class { '::zuul::executor': }
 }
 
 node 'nodepool.opencontrail.org' {
