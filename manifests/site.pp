@@ -101,7 +101,8 @@ node 'zuulv3.opencontrail.org' {
   $revision             = 'feature/zuulv3'
 
   class { '::project_config':
-    url => 'https://git.openstack.org/openstack-infra/project-config',
+    url      => 'https://github.com/kklimonda/contrail-project-config',
+    revision => 'features_zuulv3',
   }
 
   # NOTE(pabelanger): We call ::zuul directly, so we can override all in one
