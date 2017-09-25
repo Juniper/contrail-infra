@@ -32,10 +32,6 @@ zuul_connections:
     canonical_hostname: 'git.opencontrail.org'
     user: 'zuulv3'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
-
-#  - name: 'mysql'
-#    driver: 'sql'
-
-#  - name: 'github'
-#    driver: 'github'
-#    app_key: '/etc/zuul/github.key'
+  - name: 'github'
+    driver: 'github'
+    sshkey: '/var/lib/zuul/ssh/id_rsa'
