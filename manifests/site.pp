@@ -102,7 +102,7 @@ node 'zuulv3.opencontrail.org' {
 
   class { '::project_config':
     url      => 'https://github.com/kklimonda/contrail-project-config',
-    revision => 'features_zuulv3',
+    revision => 'master',
   }
 
   # NOTE(pabelanger): We call ::zuul directly, so we can override all in one
