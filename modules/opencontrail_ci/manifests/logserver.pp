@@ -1,7 +1,12 @@
 class opencontrail_ci::logserver (
   $logserver_ssl_key = undef,
   $logserver_ssl_cert = undef,
+  $docroot = '/var/www/logs/',
+  $template = 'opencontrail_ci/logserver.vhost.erb',
+  $cert_file = "/etc/ssl/private/${::clientcert}.crt",
+  $key_file = "/etc/ssl/private/${::clientcert}.key",
 ) inherits opencontrail_ci::params {
+
   firewall { '200 accept all to 80 for Apache2':
     proto  => 'tcp',
     dport  => '80',
@@ -12,52 +17,43 @@ class opencontrail_ci::logserver (
     proto  => 'tcp',
     dport  => '443',
     action => 'accept',
+    notify => Service['httpd'],
   }
 
-  file { "/etc/ssl/private/${::clientcert}.key":
+  file { $key_file:
     owner   => 'root',
     group   => 'ssl-cert',
     mode    => '0440',
     content => $logserver_ssl_key,
-    notify  => Class['Apache::Service'],
+    notify  => Service['httpd'],
   }
 
-  file { "/etc/ssl/private/${::clientcert}.crt":
+  file { $cert_file:
     owner   => 'root',
     group   => 'ssl-cert',
     mode    => '0440',
     content => $logserver_ssl_cert,
-    notify  => Class['Apache::Service'],
+    notify  => Service['httpd'],
   }
 
-  class { '::apache':
-    default_vhost => false,
+  file { $docroot:
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '1777',
   }
 
-  apache::vhost { "${::clientcert} non-ssl":
-    servername      => $::clientcert,
-    port            => '80',
-    log_level       => 'warn',
-    error_log_file  => "error_${::clientcert}.log",
-    access_log_file => "access_${::clientcert}.log",
-    docroot         => '/var/www/logs',
-    redirect_status => 'permanent',
-    redirect_dest   => "https://${::clientcert}/",
-  }
-
-  apache::vhost { "${::clientcert} ssl":
-    servername      => $::clientcert,
-    port            => '443',
-    log_level       => 'warn',
-    access_log_file => "ssl_access_${::clientcert}.log",
-    error_log_file  => "ssl_error_${::clientcert}log",
-    docroot         => '/var/www/logs',
-    ssl             => true,
-    ssl_cert        => "/etc/ssl/private/${::clientcert}.crt",
-    ssl_key         => "/etc/ssl/private/${::clientcert}.key",
-    require         => [
-        File["/etc/ssl/private/${::clientcert}.key"],
-        File["/etc/ssl/private/${::clientcert}.crt"],
-    ]
+  ::httpd::vhost { $::clientcert:
+    port       => 443,
+    docroot    => $docroot,
+    priority   => '0',
+    ssl        => true,
+    template   => $template,
+    vhost_name => $::clientcert,
+    require    => [
+        File[$docroot],
+        File[$cert_file],
+        File[$key_file],
+    ],
   }
 }
