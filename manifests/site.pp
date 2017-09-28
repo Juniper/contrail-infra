@@ -152,3 +152,11 @@ node 'nodepool.opencontrail.org' {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::nodepool_launcher': }
 }
+
+node /^zuul-merger.*$/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::zuul_merger':
+    gearman_server => '1.1.1.39',
+  }
+}
+
