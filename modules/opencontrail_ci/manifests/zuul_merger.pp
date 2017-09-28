@@ -7,6 +7,7 @@ class opencontrail_ci::zuul_merger(
     gerrit_server        => 'review2.opencontrail.org',
     gerrit_user          => 'zuulv3',
     zuul_ssh_private_key => hiera('zuul_ssh_private_key'),
+    connections          => hiera('zuul_connections', []),
     git_email            => 'zuul@opencontrail.org',
     git_name             => 'OpenContrail Zuul',
     revision             => 'feature/zuulv3',
