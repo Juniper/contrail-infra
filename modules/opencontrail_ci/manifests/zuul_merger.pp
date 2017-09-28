@@ -11,6 +11,7 @@ class opencontrail_ci::zuul_merger(
     git_email            => 'zuul@opencontrail.org',
     git_name             => 'OpenContrail Zuul',
     revision             => 'feature/zuulv3',
+    zuulv3               => true,
     python_version       => 3,
   }
 
