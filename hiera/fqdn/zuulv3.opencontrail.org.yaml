@@ -19,19 +19,12 @@ proxy_ssl_cert_file_contents: |
   NbUMU9SEs2Y=
   -----END CERTIFICATE-----
 zuul_connections:
-#  - name: 'smtp'
-#    driver: 'smtp'
-#    server: 'localhost'
-#    port: '25'
-#    default_from: 'zuul@zuulv3.openstack.org'
-#    default_to: 'zuul.reports@zuulv3.openstack.org'
-
   - name: 'gerrit'
     driver: 'gerrit'
     server: 'review2.opencontrail.org'
-    canonical_hostname: 'git.opencontrail.org'
     user: 'zuulv3'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
+
   - name: 'github'
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
