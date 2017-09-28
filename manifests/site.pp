@@ -118,6 +118,7 @@ node 'zuulv3.opencontrail.org' {
     revision                     => $revision,
     python_version               => 3,
     zookeeper_hosts              => 'nodepool.opencontrail.org:2181',
+    disk_limit_per_job           => 1024,
     zuulv3                       => true,
     connections                  => hiera('zuul_connections', []),
     connection_secrets           => hiera('zuul_connection_secrets', []),
