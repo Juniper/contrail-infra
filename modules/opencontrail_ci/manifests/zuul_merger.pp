@@ -14,4 +14,14 @@ class opencontrail_ci::zuul_merger(
   }
 
   class { '::zuul::merger': }
+
+  file { '/home/zuul/.ssh':
+    ensure  => directory,
+    owner   => 'zuul',
+    group   => 'zuul',
+    mode    => '0700',
+    require => Class['::zuul'],
+  }
+
+  create_resources(sshkey, hiera('zuul_ssh_host_keys'))
 }
