@@ -121,7 +121,6 @@ node 'zuulv3.opencontrail.org' {
     disk_limit_per_job           => 1024,
     zuulv3                       => true,
     connections                  => hiera('zuul_connections', []),
-    connection_secrets           => hiera('zuul_connection_secrets', []),
     zuul_status_url              => 'http://127.0.0.1:8001/opencontrail',
 
     # TODO: test with self-gen certs before rolling out production.
