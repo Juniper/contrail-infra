@@ -43,7 +43,8 @@ zuul::gearman_server_ssl_cert: true
 zuul::gearman_server_ssl_key:  true
 zuul::gearman_ssl_ca:          true
 
-zuul::git_source_repo: "https://github.com/codilime/zuul"
-zuul::revision:        "contrail/feature/zuulv3"
-zuul::zuulv3:          true
-zuul::python_version:  3
+zuul::git_source_repo:         "https://github.com/codilime/zuul"
+zuul::revision:                "contrail/feature/zuulv3"
+zuul::zuulv3:                  true
+zuul::python_version:          3
+zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
