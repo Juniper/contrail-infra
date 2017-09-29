@@ -39,7 +39,6 @@ node 'zuulv3.opencontrail.org' {
   $git_email            = 'zuul@opencontrail.org'
   $git_name             = 'OpenContrail Zuul'
   # This is current name of openstack-infra/zuul branch.
-  $revision             = 'feature/zuulv3'
 
   class { '::project_config':
     url      => hiera('opencontrail_ci::project_config_repo'),
@@ -56,7 +55,6 @@ node 'zuulv3.opencontrail.org' {
     zuul_ssh_private_key         => $zuul_ssh_private_key,
     git_email                    => $git_email,
     git_name                     => $git_name,
-    revision                     => $revision,
     python_version               => 3,
     zookeeper_hosts              => 'nodepool.opencontrail.org:2181',
     disk_limit_per_job           => 1024,
