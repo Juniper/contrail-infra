@@ -101,7 +101,7 @@ node 'zuulv3.opencontrail.org' {
   $revision             = 'feature/zuulv3'
 
   class { '::project_config':
-    url      => 'https://github.com/kklimonda/contrail-project-config',
+    url      => hiera('opencontrail_ci::project_config_repo'),
     revision => 'master',
   }
 
