@@ -4,7 +4,7 @@ class opencontrail_ci::nodepool_launcher inherits opencontrail_ci::params {
   if ! defined(Class['project_config']) {
     class { '::project_config':
       url      =>  $::opencontrail_ci::params::project_config_repo,
-      revision =>  $::environment,
+      revision =>  'master',
     }
   }
 

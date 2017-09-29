@@ -4,7 +4,7 @@ class opencontrail_ci::zuul(
 
   class { '::project_config':
     url      => $::opencontrail_ci::params::project_config_repo,
-    revision => $::environment,
+    revision => 'master',
   }
 
   file { '/etc/init.d/zuul':
