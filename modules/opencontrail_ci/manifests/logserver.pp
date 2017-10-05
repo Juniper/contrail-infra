@@ -25,6 +25,7 @@ class opencontrail_ci::logserver (
     mode    => '0440',
     content => $logserver_ssl_key,
     notify  => Service['httpd'],
+    require => Package['httpd'],
   }
 
   file { $cert_file:
@@ -33,6 +34,7 @@ class opencontrail_ci::logserver (
     mode    => '0440',
     content => $logserver_ssl_cert,
     notify  => Service['httpd'],
+    require => Package['httpd'],
   }
 
   file { $docroot:
