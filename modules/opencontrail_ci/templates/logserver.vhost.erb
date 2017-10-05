@@ -70,6 +70,10 @@
     ForceType text/css
   </FilesMatch>
 
+  RewriteEngine  on
+  RewriteRule    "^/aptly(.*)$"  "http://repo.opencontrail.org$1"  [P]
+  #ProxyPass /aptly http://localhost:8080/
+
   SSLEngine on
   SSLProtocol All -SSLv2 -SSLv3
   SSLCipherSuite ECDH+AESGCM:DH+AESGCM:ECDH+AES256:DH+AES256:ECDH+AES128:DH+AES:RSA+AESGCM:RSA+AES:!AES256:!aNULL:!eNULL:!MD5:!DSS:!PSK:!SRP
