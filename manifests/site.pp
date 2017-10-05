@@ -16,6 +16,7 @@ node 'puppetdb2.opencontrail.org' {
 
 node 'logs2.opencontrail.org' {
   class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::aptly': }
   class { '::opencontrail_ci::logserver':
     logserver_ssl_key  => hiera('logserver_ssl_key'),
     logserver_ssl_cert => hiera('logserver_ssl_cert'),
@@ -25,6 +26,11 @@ node 'logs2.opencontrail.org' {
     comment       => 'Zuul Launcher',
     purge_sshkeys => true,
     sshkeys       => [ hiera('zuul_ssh_public_key'), ]
+  }
+  host { 'aptly_vhost_host_entry':
+    name         => 'repo.opencontrail.org',
+    ensure       => present,
+    ip           => '127.0.0.1',
   }
 }
 

@@ -48,3 +48,39 @@ zuul::revision:                "contrail/feature/zuulv3"
 zuul::zuulv3:                  true
 zuul::python_version:          3
 zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
+
+htpasswd: aptly:$apr1$qtmGlfoX$aCluPxXdpUlRMv9b4SjGo1
+deb_gpg_private_key: |
+  -----BEGIN PGP PRIVATE KEY BLOCK-----
+  lQHYBFnU0oIBBADImVrcak8txf5osEE3T0IvgBFvuZbT2+MpGsRBbPdbm+N8xITs
+  o2YoHU6qCD3qMimncd5Nght1vHr7raLa/v0vNUPvUlqwOxNuDtrJM/cswBZL9sGb
+  b6hXl5jsb4nM/oXmV0Qq6VPuK0FOtEzoTUjCOi8SvZNNTnUUcBhR7dPCywARAQAB
+  AAP+KI+VpzbZvrwnpnxpG2lrzRX8sJYasMjn5EJUx5PkakIZm/tSk1SwzdCrPMdA
+  2a99660jEZIKwmIzjds8sEJZ6AtzgQ1xWXEoSMfDCOOuBjQbPvH9+pQdyp4Z/PvY
+  IHbFByjPT6nHJsKynYFB0d4gkfZO/L8h7cc/HHavnSYjArUCANWFtkiZySo51roF
+  W1zbPuNDHJ40Eu48OwYVJfus8ZwM8xEM74pd3OENtOG+2Lx0qyNSfj9XZshogsv/
+  /10TBl8CAPCBfDM7faTunGbQLl/n0c88PQJa2X8vEe+EUIGdi0g/ZtJfXeQ5aUxq
+  eyMsuMcxL0TSTS+aoXw/P0LJL+wi4xUB/15xtffLPWKyI7K52oQwY3kpCVHVg9wH
+  poXfCuE8OA2IdexXV2Q7vtVmq4XR1hGFDQo4f8AcoKN1yR/77+8LSv2gf7QpU29t
+  ZSBOYW1lIChDb21tZW50KSA8ZW1haWxAZW1haWwuenhjdmJubT6IzgQTAQgAOBYh
+  BBwzL6PrinS4owJ1o0Wv1j0wHnVQBQJZ1NKCAhsDBQsJCAcCBhUICQoLAgQWAgMB
+  Ah4BAheAAAoJEEWv1j0wHnVQuPEEAIkRyUf3whgRV9uQypDQZeooCSsLArkaso3U
+  BPQIXR/WRiimC52w4KIZZ85N+Ev4nATA+Oi8oGRHhEzj92qtflYEcmOuv2FHJZD+
+  FgE0Mzg2SC088Op5v0I/hlwwMFfR+kDFNfnGelNCzcjxl8pkBCdaOT6vl/p2F5VA
+  SWof/mu6
+  =tv4F
+  -----END PGP PRIVATE KEY BLOCK-----
+deb_gpg_public_key: |
+  -----BEGIN PGP PUBLIC KEY BLOCK-----
+  mI0EWdTSggEEAMiZWtxqTy3F/miwQTdPQi+AEW+5ltPb4ykaxEFs91ub43zEhOyj
+  ZigdTqoIPeoyKadx3k2CG3W8evutotr+/S81Q+9SWrA7E24O2skz9yzAFkv2wZtv
+  qFeXmOxvicz+heZXRCrpU+4rQU60TOhNSMI6LxK9k01OdRRwGFHt08LLABEBAAG0
+  KVNvbWUgTmFtZSAoQ29tbWVudCkgPGVtYWlsQGVtYWlsLnp4Y3Zibm0+iM4EEwEI
+  ADgWIQQcMy+j64p0uKMCdaNFr9Y9MB51UAUCWdTSggIbAwULCQgHAgYVCAkKCwIE
+  FgIDAQIeAQIXgAAKCRBFr9Y9MB51ULjxBACJEclH98IYEVfbkMqQ0GXqKAkrCwK5
+  GrKN1AT0CF0f1kYopgudsOCiGWfOTfhL+JwEwPjovKBkR4RM4/dqrX5WBHJjrr9h
+  RyWQ/hYBNDM4NkgtPPDqeb9CP4ZcMDBX0fpAxTX5xnpTQs3I8ZfKZAQnWjk+r5f6
+  dheVQElqH/5rug==
+  =bMO7
+  -----END PGP PUBLIC KEY BLOCK-----
+deb_gpg_key_id: 301E7550
