@@ -19,6 +19,13 @@ class opencontrail_ci::logserver (
     action => 'accept',
   }
 
+  package { 'loganalyze':
+    name     => 'git+https://git.openstack.org/openstack-infra/os-loganalyze@a0a4cadabdc9757a12c8c9c42f6ac0e1fbe86905',
+    provider => 'pip',
+    ensure   => installed,
+    notify   => Service['httpd'],
+  }
+
   file { $key_file:
     owner   => 'root',
     group   => 'ssl-cert',
@@ -44,7 +51,8 @@ class opencontrail_ci::logserver (
     mode   => '1777',
     notify => Service['httpd'],
   }
-
+  
+  ::httpd::mod { 'wsgi': }
   ::httpd::vhost { $::clientcert:
     port       => 443,
     docroot    => $docroot,
