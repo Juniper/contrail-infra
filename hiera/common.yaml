@@ -33,30 +33,30 @@ zuul::gearman_server_ssl_key:  true
 zuul::gearman_ssl_ca:          true
 
 # Zuul installation options -- repo, revision etc.
-zuul::git_source_repo:         "https://github.com/codilime/zuul"
-zuul::revision:                "contrail/feature/zuulv3"
-zuul::zuulv3:                  true
-zuul::python_version:          3
+zuul::git_source_repo: "https://github.com/codilime/zuul"
+zuul::revision:        "contrail/feature/zuulv3"
+zuul::zuulv3:          true
+zuul::python_version:  3
 
 # Zuul Gerrit integation
 zuul::gerrit_server: "review2.opencontrail.org"
-zuul::gerrit_user: "zuulv3"
+zuul::gerrit_user:   "zuulv3"
 
 # Zuul Git configuration
 zuul::git_email: "zuul@opencontrail.org"
-zuul::git_name: "OpenContrail Zuul"
+zuul::git_name:  "OpenContrail Zuul"
 
 # Generic configuration -- part of the zuul.conf template
-zuul::disk_limit_per_job: 2048
+zuul::disk_limit_per_job:      2048
 zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
 zuul::connections:
-  - name: 'gerrit'
+  - name:   'gerrit'
     driver: 'gerrit'
     server: 'review2.opencontrail.org'
-    user: 'zuulv3'
+    user:   'zuulv3'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-  - name: 'github'
+  - name:   'github'
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
