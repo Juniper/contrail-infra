@@ -24,7 +24,7 @@ node 'logs2.opencontrail.org' {
     ensure        => present,
     comment       => 'Zuul Launcher',
     purge_sshkeys => true,
-    sshkeys       => [ hiera('zuul_ssh_public_key'), ]
+    sshkeys       => hiera('zuul_ssh_public_keys'),
   }
 }
 
