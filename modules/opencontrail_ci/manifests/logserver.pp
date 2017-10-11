@@ -19,11 +19,18 @@ class opencontrail_ci::logserver (
     action => 'accept',
   }
 
-  package { 'loganalyze':
-    name     => 'git+https://git.openstack.org/openstack-infra/os-loganalyze@a0a4cadabdc9757a12c8c9c42f6ac0e1fbe86905',
-    provider => 'pip',
-    ensure   => installed,
-    notify   => Service['httpd'],
+  vcsrepo { '/opt/os_loganalyze':
+    ensure   => latest,
+    provider => 'git',
+    revision => 'a0a4cadabdc9757a12c8c9c42f6ac0e1fbe86905',
+    source   => 'https://git.openstack.org/openstack-infra/os-loganalyze',
+  }
+
+  exec { 'install_os_loganalyze':
+    command     => 'pip install -U /opt/os_loganalyze',
+    path        => '/usr/local/bin:/usr/bin:/bin/',
+    refreshonly => true,
+    subscribe   => Vcsrepo['/opt/os_loganalyze'],
   }
 
   file { $key_file:
@@ -51,7 +58,7 @@ class opencontrail_ci::logserver (
     mode   => '1777',
     notify => Service['httpd'],
   }
-  
+
   ::httpd::mod { 'wsgi': }
   ::httpd::vhost { $::clientcert:
     port       => 443,
