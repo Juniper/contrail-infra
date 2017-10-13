@@ -64,5 +64,4 @@ zuul::connections:
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-zuul::zookeeper_hosts:
-  - "zuulv3-dev.opencontrail.org:2181"
+zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:2181"
