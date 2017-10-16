@@ -1,5 +1,4 @@
 class opencontrail_ci::nodepool_launcher inherits opencontrail_ci::params {
-  class { '::zookeeper': }
 
   if ! defined(Class['project_config']) {
     class { '::project_config':

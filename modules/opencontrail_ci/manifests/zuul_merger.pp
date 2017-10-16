@@ -1,6 +1,8 @@
 class opencontrail_ci::zuul_merger inherits opencontrail_ci::params {
 
-  class { '::zuul': }
+  if ! defined(Class['zuul']) {
+    class { '::zuul': }
+  }
 
   class { '::zuul::merger': }
 
