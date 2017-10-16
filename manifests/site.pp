@@ -20,12 +20,6 @@ node 'logs2.opencontrail.org' {
     logserver_ssl_key  => hiera('logserver_ssl_key'),
     logserver_ssl_cert => hiera('logserver_ssl_cert'),
   }
-  accounts::user { 'zuul':
-    ensure        => present,
-    comment       => 'Zuul Launcher',
-    purge_sshkeys => true,
-    sshkeys       => hiera('zuul_ssh_public_keys'),
-  }
 }
 
 node 'zuulv3-dev.opencontrail.org' {
@@ -41,8 +35,6 @@ node 'nodepool.opencontrail.org' {
 
 node /^zuul-merger.*$/ {
   class { '::opencontrail_ci::server': }
-  class { '::opencontrail_ci::zuul_merger':
-    gearman_server => '1.1.1.39',
-  }
+  class { '::opencontrail_ci::zuul_merger': }
 }
 
