@@ -10,4 +10,5 @@ class opencontrail_ci::zuul_scheduler inherits opencontrail_ci::params {
     layout_dir => $::project_config::zuul_layout_dir,
     require    => $::project_config::config_dir,
   }
+  class { '::zookeeper': }
 }
