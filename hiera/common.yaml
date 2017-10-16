@@ -28,7 +28,7 @@ zuul_ssh_host_keys:
     key: AAAAB3NzaC1yc2EAAAADAQABAAABAQDA0UEW07Ir+zrGU8akjmuBu1nV/cQWKL3Yjq6Cfpu6511A4BzkcUVXvYz4KwwRynA1QYbNeIFOT0AL069/dgBMt5/2HqRiHGz5jZad8Qw51CKE5lt8jeSOdfhSJq2L/QhHSq+hZvo3sQpKAgBDHwB+CZAmTQGjrO/fF8fIlOm05WemjAmmcWegeKr0msxAzuwjbyQjk2Xx7AlqbjfJ69TsCwDzLwS7qoxU4nXz+NHWtY2H/9rxAE7RmvMTr+z18oaRSaJp0Fj0dzDjcBKjQpyYyjXWbaVHX0lBv1khWAIw2OofO6MO+UHef4Z/skHVlzVe8wuAZO1hnXketJaNdKo5
 
 # Configure all zuul services to authorize with Gearman server using SSL.
-zuul::gearman_server:          "zuulv3-dev.opencontrail.org"
+zuul::gearman_server:          "zuulv3.opencontrail.org"
 zuul::gearman_ssl_use_puppet:  true
 zuul::gearman_client_ssl_cert: true
 zuul::gearman_client_ssl_key:  true
@@ -64,4 +64,4 @@ zuul::connections:
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:2181"
+zuul::zookeeper_hosts: "zuulv3.opencontrail.org:2181"
