@@ -19,6 +19,13 @@ class opencontrail_ci::logserver (
     action => 'accept',
   }
 
+  accounts::user { 'zuul':
+    ensure        => present,
+    comment       => 'Zuul Launcher',
+    purge_sshkeys => true,
+    sshkeys       => hiera('zuul_ssh_public_keys'),
+  }
+
   vcsrepo { '/opt/os_loganalyze':
     ensure   => latest,
     provider => 'git',
