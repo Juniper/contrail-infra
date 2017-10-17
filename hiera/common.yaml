@@ -61,7 +61,7 @@ zuul::connections:
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-zuul::zookeeper_hosts: "zuulv3.opencontrail.org:3389"
+zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:3389"
 
 # Nodepool Builder and Launcher configuration
 nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
