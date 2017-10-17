@@ -1,0 +1,14 @@
+cache:
+  expiration:
+    server: 5
+    port: 5
+    floating-ip: 5
+clouds:
+  jnpr-contrail-ci:
+    auth:
+      auth_url: http://10.84.26.23:5000/
+      username: '<%= @cloud_credentials['jnpr-contrail-ci']['username'] %>'
+      password: '<%= @cloud_credentials['jnpr-contrail-ci']['password'] %>'
+      project_name: 'ci-zuulv3'
+    identity_api_version: '2'
+    volume_api_version: None
