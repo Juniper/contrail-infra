@@ -26,6 +26,7 @@ node /zuulv3(-dev)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_scheduler': }
   class { '::opencontrail_ci::zuul_merger': }
+  class { '::opencontrail_ci::zookeeper': }
 }
 
 node /nl\d+(-dev|-jnpr)?.opencontrail.org/ {
