@@ -28,7 +28,17 @@ node /zuulv3(-dev)?.opencontrail.org/ {
   class { '::opencontrail_ci::zuul_merger': }
 }
 
-node /nl\d+(-dev)?.opencontrail.org/ {
+node /nl\d+(-dev|-jnpr)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::nodepool_launcher': }
+}
+
+node /nb\d+(-dev|-jnpr)?.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::nodepool_builder': }
+}
+
+node /ze\d+(-dev|-jnpr)?.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::zuul_executor': }
 }

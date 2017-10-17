@@ -1,4 +1,4 @@
-class opencontrail_ci::nodepool_launcher(
+class opencontrail_ci::nodepool_builder(
   $cloud_credentials = $::opencontrail_ci::params::cloud_credentials
 ) inherits opencontrail_ci::params {
 
@@ -9,7 +9,11 @@ class opencontrail_ci::nodepool_launcher(
     }
   }
 
-  class { '::nodepool': }
+  class { '::nodepool':
+    install_mysql => true,
+  }
+
+  class { '::nodepool::builder': }
 
   file { '/home/nodepool/.config':
     ensure  => directory,
@@ -50,10 +54,4 @@ class opencontrail_ci::nodepool_launcher(
       Class['project_config'],
     ],
   }
-
-  class { '::nodepool::launcher':
-    statsd_host   => undef,
-    statsd_prefix => undef,
-  }
-
 }

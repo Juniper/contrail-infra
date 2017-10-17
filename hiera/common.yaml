@@ -65,3 +65,12 @@ zuul::connections:
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
 zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:2181"
+
+# Nodepool Builder and Launcher configuration
+nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
+nodepool::revision:                 "feature/zuulv3"
+nodepool::python_version:           3
+nodepool::scripts_dir:              "/etc/project-config/nodepool/scripts"
+nodepool::require:                  Vcsrepo[/etc/project-config]
+nodepool::install_mysql:            false
+nodepool::install_nodepool_builder: false
