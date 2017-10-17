@@ -74,3 +74,8 @@ nodepool::scripts_dir:              "/etc/project-config/nodepool/scripts"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
+
+## ZooKeeper configuration
+# Override the port zookeeper is listening on to work around
+# access issue in the Juniper lab.
+zookeeper::client_port: 3389
