@@ -2,13 +2,16 @@ opencontrail_ci::hosts:
   puppetmaster: ci-puppetmaster.opencontrail.org
   puppetdb: puppetdb.opencontrail.org
 opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config
+opencontrail_ci::zookeeper::allowed_clients:
+  - 66.129.239.14  # Juniper Networks
+opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
+  - 66.129.239.14  # Juniper Networks
 
 puppet::environment: production
 puppetdb::globals::version: 2.3.8-1puppetlabs1
 
 # zuul user ssh key for logserver
-zuul_ssh_public_keys:
-  - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHOJZx2RY2W1zq3y/kG60LYS96m/PVTe8wW4BQvqZboK87GMsxcTqq/EGaPdz9zr7nZigXOQTcT6bwgRz1OUdkJRk9Yea8DPZvCwg09DPB/vBX8Psq5Z7o/aFCYV5R11+8ecVsr5tnWCx4QdPFjbHJ7DFfe8jyiPJKnI56MvzTC3axzelnKVjZ1bjsI22Z/NUJ1vXY3RzdJf88tIjEbVJdmkT89Z+EbNj1VQOVo7CCxSDEKkJwFoKn4xjlyV45GMIuhHtpqw3od3JCYj3dHfidE1ys8IC8nPl5bEOulh1BWcYLWgNGkIDlcpMVOWi58EDVwHRF4bl5cm2x/CqWjNdH zuul-executor-key
+zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHOJZx2RY2W1zq3y/kG60LYS96m/PVTe8wW4BQvqZboK87GMsxcTqq/EGaPdz9zr7nZigXOQTcT6bwgRz1OUdkJRk9Yea8DPZvCwg09DPB/vBX8Psq5Z7o/aFCYV5R11+8ecVsr5tnWCx4QdPFjbHJ7DFfe8jyiPJKnI56MvzTC3axzelnKVjZ1bjsI22Z/NUJ1vXY3RzdJf88tIjEbVJdmkT89Z+EbNj1VQOVo7CCxSDEKkJwFoKn4xjlyV45GMIuhHtpqw3od3JCYj3dHfidE1ys8IC8nPl5bEOulh1BWcYLWgNGkIDlcpMVOWi58EDVwHRF4bl5cm2x/CqWjNdH zuul-executor-key
 
 gerrit_ssh_rsa_pubkey: |
   AAAAB3NzaC1yc2EAAAADAQABAAABAQDHOJZx2RY2W1zq3y/kG60LYS96m/PVTe8wW4BQvqZboK87GMsxcTqq/EGaPdz9zr7nZigXOQTcT6bwgRz1OUdkJRk9Yea8DPZvCwg09DPB/vBX8Psq5Z7o/aFCYV5R11+8ecVsr5tnWCx4QdPFjbHJ7DFfe8jyiPJKnI56MvzTC3axzelnKVjZ1bjsI22Z/NUJ1vXY3RzdJf88tIjEbVJdmkT89Z+EbNj1VQOVo7CCxSDEKkJwFoKn4xjlyV45GMIuhHtpqw3od3JCYj3dHfidE1ys8IC8nPl5bEOulh1BWcYLWgNGkIDlcpMVOWi58EDVwHRF4bl5cm2x/CqWjNdH
@@ -26,6 +29,8 @@ zuul_ssh_host_keys:
 
 # Configure all zuul services to authorize with Gearman server using SSL.
 zuul::gearman_server:          "zuulv3.opencontrail.org"
+zuul::gearman_port:            '7999'
+zuul::gearman_listen_port:     '7999'
 zuul::gearman_ssl_use_puppet:  true
 zuul::gearman_client_ssl_cert: true
 zuul::gearman_client_ssl_key:  true
@@ -61,7 +66,7 @@ zuul::connections:
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-zuul::zookeeper_hosts: "zuulv3.opencontrail.org:2181"
+zuul::zookeeper_hosts: "zuulv3.opencontrail.org:3389"
 
 # Nodepool Builder and Launcher configuration
 nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
@@ -71,3 +76,8 @@ nodepool::scripts_dir:              "/etc/project-config/nodepool/scripts"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
+
+## ZooKeeper configuration
+# Override the port zookeeper is listening on to work around
+# access issue in the Juniper lab.
+zookeeper::client_port: 3389

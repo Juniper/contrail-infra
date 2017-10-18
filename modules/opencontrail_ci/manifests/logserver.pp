@@ -23,7 +23,7 @@ class opencontrail_ci::logserver (
     ensure        => present,
     comment       => 'Zuul Launcher',
     purge_sshkeys => true,
-    sshkeys       => hiera('zuul_ssh_public_keys'),
+    sshkeys       => [ hiera('zuul_ssh_public_key') ],
   }
 
   vcsrepo { '/opt/os_loganalyze':
