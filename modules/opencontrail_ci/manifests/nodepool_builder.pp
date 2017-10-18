@@ -24,6 +24,14 @@ class opencontrail_ci::nodepool_builder(
     ],
   }
 
+  file { '/home/nodepool/.ssh/zuul-executor.pub':
+    ensure  => present,
+    owner   => 'nodepool',
+    group   => 'nodepool',
+    content => hiera('zuul_ssh_public_key'),
+    require => File['/home/nodepool/.ssh/'],
+  }
+
   file { '/home/nodepool/.config/openstack':
     ensure  => directory,
     owner   => 'nodepool',
