@@ -1,4 +1,6 @@
-class opencontrail_ci::zuul_scheduler inherits opencontrail_ci::params {
+class opencontrail_ci::zuul_scheduler(
+  $gearman_allowed_clients = [],
+) inherits opencontrail_ci::params {
   class { '::project_config':
     url      => $::opencontrail_ci::params::project_config_repo,
     revision => 'master',
@@ -10,4 +12,5 @@ class opencontrail_ci::zuul_scheduler inherits opencontrail_ci::params {
     layout_dir => $::project_config::zuul_layout_dir,
     require    => $::project_config::config_dir,
   }
+  opencontrail_ci::gearman_allow_client { $gearman_allowed_clients: }
 }

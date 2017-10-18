@@ -4,6 +4,8 @@ opencontrail_ci::hosts:
 opencontrail_ci::project_config_repo: https://github.com/codilime/contrail-project-config
 opencontrail_ci::zookeeper::allowed_clients:
   - 213.189.47.210 # OpenStack @ CodiLime
+opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
+  - 213.189.47.210 # OpenStack @ CodiLime
 
 puppet::environment: development
 puppetdb::globals::version: 2.3.8-1puppetlabs1
@@ -37,6 +39,7 @@ zuul::gearman_client_ssl_key:  true
 zuul::gearman_server_ssl_cert: true
 zuul::gearman_server_ssl_key:  true
 zuul::gearman_ssl_ca:          true
+zuul::gearman_listen_port:     '7999'
 
 # Zuul installation options -- repo, revision etc.
 zuul::git_source_repo: "https://github.com/codilime/zuul"
