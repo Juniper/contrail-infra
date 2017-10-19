@@ -3,9 +3,9 @@ opencontrail_ci::hosts:
   puppetdb: puppetdb.opencontrail.org
 opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config
 opencontrail_ci::zookeeper::allowed_clients:
-  - 66.129.239.14  # Juniper Networks
+  - 66.129.239.0/24  # Juniper Networks
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
-  - 66.129.239.14  # Juniper Networks
+  - 66.129.239.0/24  # Juniper Networks
 
 puppet::environment: production
 puppetdb::globals::version: 2.3.8-1puppetlabs1
