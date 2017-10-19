@@ -6,7 +6,10 @@ class opencontrail_ci::zuul_scheduler(
     revision => 'master',
   }
 
-  class { '::zuul': }
+  include ::zuul::known_hosts
+  if ! defined(Class['zuul']) {
+    class { '::zuul': }
+  }
   class { '::zuul::web': }
   class { '::zuul::scheduler':
     layout_dir => $::project_config::zuul_layout_dir,
