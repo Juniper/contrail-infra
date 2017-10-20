@@ -66,7 +66,9 @@ class opencontrail_ci::logserver (
     notify => Service['httpd'],
   }
 
-  ::httpd::mod { 'wsgi': }
+  class { '::httpd::mod::wsgi': }
+  ::httpd::mod { 'rewrite': }
+
   ::httpd::vhost { $::clientcert:
     port       => 443,
     docroot    => $docroot,
@@ -78,6 +80,8 @@ class opencontrail_ci::logserver (
         File[$docroot],
         File[$cert_file],
         File[$key_file],
+        Httpd::Mod['rewrite'],
+        Httpd::Mod['wsgi'],
     ],
   }
 }
