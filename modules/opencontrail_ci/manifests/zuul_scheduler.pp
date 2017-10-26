@@ -6,6 +6,18 @@ class opencontrail_ci::zuul_scheduler(
     revision => 'master',
   }
 
+  firewall { '200 accept all to 80 for Apache2':
+    proto  => 'tcp',
+    dport  => '80',
+    action => 'accept',
+  }
+
+  firewall {'201 accept all to 443 for Apache2':
+    proto  => 'tcp',
+    dport  => '443',
+    action => 'accept',
+  }
+
   include ::zuul::known_hosts
   if ! defined(Class['zuul']) {
     class { '::zuul': }
