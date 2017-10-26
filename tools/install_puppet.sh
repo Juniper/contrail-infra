@@ -210,7 +210,6 @@ EOF
             --assume-yes install python-minimal
     fi;
 
-    apt-get update
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
         --assume-yes dist-upgrade
     DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
@@ -264,6 +263,12 @@ function setup_pip {
         zypper --non-interactive install --force-resolution python python-xml
     fi
 
+    # ubuntu get-pip.py dependencies
+    if is_ubuntu; then
+        DEBIAN_FRONTEND=noninteractive apt-get --option 'Dpkg::Options::=--force-confold' \
+            --assume-yes install -y --force-yes python software-properties-common
+    fi
+
     python get-pip.py
     rm get-pip.py
 
@@ -285,6 +290,11 @@ function setup_pip {
 
     pip install -U setuptools
 }
+
+# single apt-get update for setup_pip and setup_puppet
+if is_ubuntu; then
+    apt-get update
+fi
 
 if $SETUP_PIP; then
     setup_pip
