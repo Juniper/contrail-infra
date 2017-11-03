@@ -26,6 +26,13 @@ class opencontrail_ci::logserver (
     sshkeys       => [ hiera('zuul_ssh_public_key') ],
   }
 
+  accounts::user { 'jenkins':
+    ensure        => present,
+    comment       => 'Windows CI Jenkins',
+    purge_sshkeys => true,
+    sshkeys       => [ hiera('jenkins_ssh_public_key') ],
+  }
+
   vcsrepo { '/opt/os_loganalyze':
     ensure   => latest,
     provider => 'git',
