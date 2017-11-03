@@ -6,10 +6,10 @@ cache:
 clouds:
   jnpr-contrail-ci:
     auth:
-      auth_url: http://10.84.26.23:5000/
+      auth_url: '<%= @cloud_credentials['jnpr-contrail-ci']['auth_url'] %>'
       username: '<%= @cloud_credentials['jnpr-contrail-ci']['username'] %>'
       password: '<%= @cloud_credentials['jnpr-contrail-ci']['password'] %>'
-      project_name: 'ci-zuulv3'
+      project_name: '<%= @cloud_credentials['jnpr-contrail-ci']['project'] %>'
     identity_api_version: '2'
     image_api_version: '2'
     volume_api_version: None
