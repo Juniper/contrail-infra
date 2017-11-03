@@ -6,16 +6,16 @@ cache:
 clouds:
   jnpr-contrail-ci:
     auth:
-      auth_url: '<%= @cloud_credentials['jnpr-contrail-ci']['auth_url'] %>'
-      username: '<%= @cloud_credentials['jnpr-contrail-ci']['username'] %>'
-      password: '<%= @cloud_credentials['jnpr-contrail-ci']['password'] %>'
-      project_name: '<%= @cloud_credentials['jnpr-contrail-ci']['project'] %>'
+      auth_url:     '<%= @cloud_credentials['jnpr-contrail-ci']['auth']['auth_url'] %>'
+      username:     '<%= @cloud_credentials['jnpr-contrail-ci']['auth']['username'] %>'
+      password:     '<%= @cloud_credentials['jnpr-contrail-ci']['auth']['password'] %>'
+      project_name: '<%= @cloud_credentials['jnpr-contrail-ci']['auth']['project'] %>'
     identity_api_version: '2'
     image_api_version: '2'
     volume_api_version: None
-    compute_endpoint_override: http://10.84.26.23:8774/v1.1/6d6d3f2ccd3740c69674e3770bf6a399
-    image_endpoint_override: http://10.84.26.23:9292/v2
-    network_endpoint_override: http://10.84.26.23:9697/
+    compute_endpoint_override: '<%= @cloud_credentials['jnpr-contrail-ci']['compute_endpoint_override'] %>'
+    image_endpoint_override:   '<%= @cloud_credentials['jnpr-contrail-ci']['image_endpoint_override'] %>'
+    network_endpoint_override: '<%= @cloud_credentials['jnpr-contrail-ci']['network_endpoint_override'] %>'
     networks:
       - name: test_net
         routes_externally: False
