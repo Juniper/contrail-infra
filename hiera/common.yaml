@@ -71,6 +71,7 @@ nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
 nodepool::revision:                 "feature/zuulv3"
 nodepool::python_version:           3
 nodepool::scripts_dir:              "/etc/project-config/nodepool/scripts"
+nodepool::elements_dir:             "/etc/project-config/nodepool/elements"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
