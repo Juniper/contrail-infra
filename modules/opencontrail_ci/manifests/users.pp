@@ -90,5 +90,17 @@ class opencontrail_ci::users {
       'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3othGc/CyQYOzkKbGogzcI8NfvfUmMSn4jqPDFh541VYrsImau/wxs08/olgmNttXb6xCYKy8QGAUJF+3852EXNwyaaVyhJjv5N3pwGkKpaCOHOQatonCklmwrmOxJP4XjemjAx3H1RX+6oDujfzjKLq6Mloy4R6DOBIGEvZccAP2WcyIVmu5DloXm676qByR7CZ/ocdW+ZjtJZ8/JptLEEVDvTsD1etXyIjlGPSTAWmzqFICSMTMLfbdVHdXPyNZXhOjDbUUgf5iHF998U2jBoLxa4vycFySg4EwibdY3Ktf5pv0IwfOBjbfh8lVzE6Pd657butJDFrf80gAJRCD mmithun@mmithun-mbp',
     ]
   }
+
+  accounts::user { 'wurbanski':
+    ensure        => present,
+    comment       => 'Wojciech Urbański',
+    groups        => [ 'sudo' ],
+    uid           => '1108',
+    gid           => '1108',
+    purge_sshkeys => true,
+    sshkeys       => [
+      'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChGwBKaBR+W6KxlYenzIcojB0zw0xqjI+3foPiWL5R4eynEvf2g246oynOCCJBWA/xkBTkpy5FAvAA0V1FDUiF/xf5AuPYcR6oe8CBt+1jiQFgeMlo0Mwb7vgrCUtHvedUe3kdO2zYX3lpm9bd/mbnMCCNecja9TsRfdGPZBZuM9tMnf4cGCTelclt2yfxTznf87wH+0iRxDtnSNdtth3GlkblDRWsFsiJzKH4CCAg2sHgwZk6YU8QWt8Z+j4wkm6VfNW8ZetC1Crf/ckrQPNDAKZpt9Bs7IpDgzY8BUf9Dlb4DRpFYaPrZGxGWherQlB1vnZScyMMlvmydLISova2wJzwZVGPaIjHNDrLAEKdA8HBLbsVvEAwGvdf9L9kCm28oz92UstztNXJ8xneX0c2cfEOHxSQkUA/kxpYIgz1bN9wLDod+/TDfNGbulqJ4zoGony5Rz0I8ThyyZuOTyDjkmY9HuTVkfneDPEby1jGkOGQ2k7euHyy8RjLLpd4/ZyxWAeDsWt4aJYKuol5VNUKYiL7ZmUPcrHFhThgLSt4icMcE6dJGAKevZVECB9ZeH7IQgQg/BSQ7eGx8ojZvrc3LWGzSSWJD5Iy8UyyIep0KNfMPZ8bDwT1WdFsgeKXRxAs2nrT1GmDGC4lRRx15dFxsv4hasa9x+v0prfRxMXSBw== wojciech.urbanski@codilime.com'
+    ]
+  }
   # lint:endignore
 }

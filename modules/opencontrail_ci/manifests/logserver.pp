@@ -26,6 +26,13 @@ class opencontrail_ci::logserver (
     sshkeys       => [ hiera('zuul_ssh_public_key') ],
   }
 
+  accounts::user { 'jenkins':
+    ensure        => present,
+    comment       => 'Windows CI Jenkins',
+    purge_sshkeys => true,
+    sshkeys       => [ hiera('jenkins_ssh_public_key') ],
+  }
+
   vcsrepo { '/opt/os_loganalyze':
     ensure   => latest,
     provider => 'git',
@@ -33,11 +40,25 @@ class opencontrail_ci::logserver (
     source   => 'https://git.openstack.org/openstack-infra/os-loganalyze',
   }
 
+  package { 'python-pip':
+    ensure => installed,
+    notify => Exec['install_os_loganalyze'],
+  }
+
+  package { 'python-setuptools':
+    ensure => installed,
+    notify => Exec['install_os_loganalyze'],
+  }
+
   exec { 'install_os_loganalyze':
     command     => 'pip install -U /opt/os_loganalyze',
     path        => '/usr/local/bin:/usr/bin:/bin/',
     refreshonly => true,
     subscribe   => Vcsrepo['/opt/os_loganalyze'],
+    require     => [
+        Package['python-pip'],
+        Package['python-setuptools'],
+    ],
   }
 
   file { $key_file:
