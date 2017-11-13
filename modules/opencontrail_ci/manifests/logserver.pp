@@ -33,11 +33,25 @@ class opencontrail_ci::logserver (
     source   => 'https://git.openstack.org/openstack-infra/os-loganalyze',
   }
 
+  package { 'python-pip':
+    ensure => installed,
+    notify => Exec['install_os_loganalyze'],
+  }
+
+  package { 'python-setuptools':
+    ensure => installed,
+    notify => Exec['install_os_loganalyze'],
+  }
+
   exec { 'install_os_loganalyze':
     command     => 'pip install -U /opt/os_loganalyze',
     path        => '/usr/local/bin:/usr/bin:/bin/',
     refreshonly => true,
     subscribe   => Vcsrepo['/opt/os_loganalyze'],
+    require     => [
+        Package['python-pip'],
+        Package['python-setuptools'],
+    ],
   }
 
   file { $key_file:
