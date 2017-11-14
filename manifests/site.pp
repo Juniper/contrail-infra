@@ -4,17 +4,17 @@ node default {
   class { '::opencontrail_ci::server': }
 }
 
-node /ci-puppetmaster2?.opencontrail.org/ {
+node /ci-puppetmaster(2|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::puppetmaster': }
 }
 
-node /puppetdb2?.opencontrail.org/ {
+node /puppetdb(2|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::puppetdb': }
 }
 
-node /logs2?.opencontrail.org/ {
+node /logs(2|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::logserver':
     logserver_ssl_key  => hiera('logserver_ssl_key'),
@@ -22,24 +22,24 @@ node /logs2?.opencontrail.org/ {
   }
 }
 
-node /zuulv3(-dev)?.opencontrail.org/ {
+node /zuulv3(-dev|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_scheduler': }
   class { '::opencontrail_ci::zuul_merger': }
   class { '::opencontrail_ci::zookeeper': }
 }
 
-node /nl\d+(-dev|-jnpr)?.opencontrail.org/ {
+node /nl\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::nodepool_launcher': }
 }
 
-node /nb\d+(-dev|-jnpr)?.opencontrail.org/ {
+node /nb\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::nodepool_builder': }
 }
 
-node /ze\d+(-dev|-jnpr)?.opencontrail.org/ {
+node /ze\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_executor': }
 }
