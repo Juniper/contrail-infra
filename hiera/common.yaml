@@ -13,6 +13,9 @@ puppetdb::globals::version: 2.3.8-1puppetlabs1
 # zuul user ssh key for logserver
 zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnfYgKpFDw/i5+04wTgmKa3ikOooKBGi6XNFw+l/HjqCED1JJXU0c47lZMt7tg/FNawlrlpN7VuwCO5LPdiKoGWrvB63TR55FNxCLH3B+gn2uo9IglZHi9KFc9dIEKrPgvaqFzyzXwRWOagGtUb+QUn85du8k7VJz4Ka5LaGx2nJV3Z+5YJKxLeodH3XPsUcpZGJbCDkmYLMboIb054q98Uu648oUAFnBra4+x23tOunO9QqajDqXcFevj5NTdXkiFDFv+ahRkuvjpTysR+eLnERbtTXjbAEvnNSCe/KIt/IFARmw/9pQsMc20/hmW1mxs0S/ignHp/VklVZE79E1j zuul-public-key
 
+# jenkins user ssh key for logserver
+jenkins_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCKY5/dVgQ1dtYHNkp032beN5lOTYYRx20Ao2xkVnxenSlaPY7kn3E+s4FyfFco3co4BzPIliKDnhlXcdOSEs5YjqCNgvbcrA4CCDoxTkhLH2vyCsKPfQnfCr6RwU8WLm91sjhaKXxoK3f7QUMJS2n/HwjCxiUaTNcOPdQqvQNjcVMuO6n4W8ajfK7lekjKuok9OBvYnVxtUu8q3bJjWOXAWxu3LC1nNNk8ADSF6Ioa6hupHO0UZFrR8knyNYNSUFDx1N+0oKY9SIaez9IlIwZpq2MpcgdGTLVgmr4xjNwn2Jg67EWehVCqZMIA68K+xmkIj6QNvvmfcKmXrbiszvf jenkins@winci-jenkins.englab.juniper.net
+
 gerrit_ssh_rsa_pubkey: |
   AAAAB3NzaC1yc2EAAAADAQABAAABAQDHOJZx2RY2W1zq3y/kG60LYS96m/PVTe8wW4BQvqZboK87GMsxcTqq/EGaPdz9zr7nZigXOQTcT6bwgRz1OUdkJRk9Yea8DPZvCwg09DPB/vBX8Psq5Z7o/aFCYV5R11+8ecVsr5tnWCx4QdPFjbHJ7DFfe8jyiPJKnI56MvzTC3axzelnKVjZ1bjsI22Z/NUJ1vXY3RzdJf88tIjEbVJdmkT89Z+EbNj1VQOVo7CCxSDEKkJwFoKn4xjlyV45GMIuhHtpqw3od3JCYj3dHfidE1ys8IC8nPl5bEOulh1BWcYLWgNGkIDlcpMVOWi58EDVwHRF4bl5cm2x/CqWjNdH
 
@@ -67,6 +70,7 @@ nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
 nodepool::revision:                 "feature/zuulv3"
 nodepool::python_version:           3
 nodepool::scripts_dir:              "/etc/project-config/nodepool/scripts"
+nodepool::elements_dir:             "/etc/project-config/nodepool/elements"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
