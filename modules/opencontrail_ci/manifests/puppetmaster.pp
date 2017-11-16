@@ -79,6 +79,7 @@ class opencontrail_ci::puppetmaster(
   class { '::hiera':
     hierarchy     => [
       'fqdn/%{::clientcert}',
+      'users',
       'common',
     ],
     datadir       => '/etc/puppet/environments/%{::environment}/hiera/',
