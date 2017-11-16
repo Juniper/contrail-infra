@@ -8,6 +8,7 @@ opencontrail_ci::zookeeper::allowed_clients:
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
   - 66.129.239.0/24 # Juniper Networks
   - 213.189.47.210  # OpenStack @ CodiLime
+opencontrail_ci::puppetmaster_port: 7999
 
 puppet::environment: development
 puppetdb::globals::version: 2.3.8-1puppetlabs1

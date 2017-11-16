@@ -9,6 +9,7 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   class { '::puppet':
     server                    => false,
     puppetmaster              => $::opencontrail_ci::params::hosts['puppetmaster'],
+    port                      => hiera('opencontrail_ci::puppetmaster_port', 8140),
     agent_additional_settings => {
       stringify_facts => false,
     }
