@@ -96,4 +96,13 @@ class opencontrail_ci::puppetmaster(
     dport  => '8140',
     action => 'accept',
   }
+
+  firewall { '102 forward port 7999 to 8140 (puppet)':
+    table   => 'nat',
+    chain   => 'PREROUTING',
+    proto   => tcp,
+    dport   => '7999',
+    jump    => 'REDIRECT',
+    toports => '8140',
+  }
 }
