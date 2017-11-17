@@ -67,6 +67,9 @@ zuul::connections:
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
+  - name:   'stats'
+    driver: 'sql'
+
 zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:3389"
 
 # Nodepool Builder and Launcher configuration
