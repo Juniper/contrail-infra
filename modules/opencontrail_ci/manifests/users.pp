@@ -93,7 +93,7 @@ class opencontrail_ci::users {
 
   accounts::user { 'wurbanski':
     ensure        => present,
-    comment       => 'Wojciech Urbański',
+    comment       => 'Wojciech Urbanski',
     groups        => [ 'sudo' ],
     uid           => '1108',
     gid           => '1108',

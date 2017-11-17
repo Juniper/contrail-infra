@@ -10,7 +10,7 @@ opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
 puppet::environment: production
 puppetdb::globals::version: 2.3.8-1puppetlabs1
 
-# zuul user ssh key for logserver
+# zuul user ssh key for "zuul" account on workers and logserver
 zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnfYgKpFDw/i5+04wTgmKa3ikOooKBGi6XNFw+l/HjqCED1JJXU0c47lZMt7tg/FNawlrlpN7VuwCO5LPdiKoGWrvB63TR55FNxCLH3B+gn2uo9IglZHi9KFc9dIEKrPgvaqFzyzXwRWOagGtUb+QUn85du8k7VJz4Ka5LaGx2nJV3Z+5YJKxLeodH3XPsUcpZGJbCDkmYLMboIb054q98Uu648oUAFnBra4+x23tOunO9QqajDqXcFevj5NTdXkiFDFv+ahRkuvjpTysR+eLnERbtTXjbAEvnNSCe/KIt/IFARmw/9pQsMc20/hmW1mxs0S/ignHp/VklVZE79E1j zuul-public-key
 
 # jenkins user ssh key for logserver
@@ -51,6 +51,7 @@ zuul::git_name:  "OpenContrail Zuul"
 
 # Generic configuration -- part of the zuul.conf template
 zuul::disk_limit_per_job:      2048
+zuul::site_variables_yaml_file: "/etc/project-config/zuul/site-variables.yaml"
 zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
 zuul::connections:
   - name:   'gerrit'
@@ -62,6 +63,9 @@ zuul::connections:
   - name:   'github'
     driver: 'github'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
+
+  - name:   'stats'
+    driver: 'sql'
 
 zuul::zookeeper_hosts: "zuulv3.opencontrail.org:3389"
 
