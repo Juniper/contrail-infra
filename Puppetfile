@@ -24,6 +24,7 @@ mod 'openstackci/vcsrepo', '0.0.8'
 mod 'openstackci/zuul',
         :git    => 'https://github.com/kklimonda/puppet-zuul'
 mod 'deric/zookeeper', '0.7.4'
+mod 'jtopjian/apt_mirror, '1.1.3'
 mod 'katello-pulp', '4.3.3'
 mod 'katello-qpid', '2.2.0'
 mod 'puppet/extlib', '1.1.0'
