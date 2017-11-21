@@ -43,3 +43,8 @@ node /ze\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_executor': }
 }
+
+node /aptmirror\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::aptmirror': }
+}
