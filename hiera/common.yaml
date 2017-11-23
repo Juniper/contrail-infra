@@ -55,6 +55,7 @@ zuul::git_name:  "OpenContrail Zuul"
 zuul::disk_limit_per_job:      2048
 zuul::site_variables_yaml_file: "/etc/project-config/zuul/site-variables.yaml"
 zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
+zuul::trusted_ro_paths: ["/etc/ssl/certs", "/usr/share/ca-certificates", "/var/lib/zuul/ssh"]
 zuul::connections:
   - name:   'gerrit'
     driver: 'gerrit'
