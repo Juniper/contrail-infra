@@ -13,8 +13,7 @@ mod 'openstackci/logrotate',
         :git    => 'https://github.com/openstack-infra/puppet-logrotate',
         :commit => '5cfa447'
 mod 'openstackci/nodepool',
-        :git    => 'https://github.com/openstack-infra/puppet-nodepool',
-        :commit => 'e2b8c27'
+        :git    => 'https://github.com/codilime/puppet-nodepool'
 mod 'openstackci/pip',
         :git    => 'https://github.com/openstack-infra/puppet-pip',
         :commit => 'bde44d1'
