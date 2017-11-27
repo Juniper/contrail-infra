@@ -1,25 +1,21 @@
 opencontrail_ci::hosts:
-  puppetmaster: ci-puppetmaster2.opencontrail.org
-  puppetdb: puppetdb2.opencontrail.org
-opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config-dev
+  puppetmaster: puppetmaster-ttu.opencontrail.org
+  puppetdb: puppetdb-ttu.opencontrail.org
+# FIXME(kklimonda): Change this for the community deployment
+opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config
 opencontrail_ci::zookeeper::allowed_clients:
-  - 66.129.239.0/24 # Juniper Networks
-  - 213.189.47.210  # OpenStack @ CodiLime
+  - 192.168.50.0/24  # TTU Cluster
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
-  - 66.129.239.0/24 # Juniper Networks
-  - 213.189.47.210  # OpenStack @ CodiLime
-opencontrail_ci::puppetmaster_port: 7999
+  - 192.168.50.0/24 # TTU Cluster
 
-puppet::environment: development
+puppet::environment: community
 puppetdb::globals::version: 2.3.8-1puppetlabs1
 
 # zuul user ssh key for "zuul" account on workers and logserver
-zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9/zVIcPaAruJBv0jfMlu+SqR5bLsHxsS9I1i4rfkqVEnAkP1FyrHxQIKOQA8FH2I/3PEuH8Yx8bhyoEQNgoD2takyySQUrRFYQyGZZARTOgp7KE1oLKNaH5nAaGF3rjY+CI3OBcXZ6fDh1Ufs9W1o00mF6bTLjbrywhTcUGI9lfDDA4FPU6aIPoCo52ipWhWRaILRbK8jL+rHrNRT9MmC4PBAGQIrRqmfZ2awMX1zw1w62X0uvfGnzoLG44Oo1jsQmq0UkriM6EeGyBuKwDLs7KokGgm3cT5vLbDV5l52uxi39X4AWkTySjDVc2XpGQQLDVuQ1Cbng0AyYdvWOIBR zuul-executor-dev
+zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC5SdwxmgApyYbbOGgXGSUDkTboGF1QGdJvpUeIM+02XK6ZfYZR7+Ipu9bWLv1Gsi7/jb5oXWOGyOb+Bao72EzO8g6ZqGW3n5dIIerW9tlOAcT4eF2EQqN5h/hZgy3MR5AyQ1BeJpftZimE5ImTYUDdwiZmpfTCdBwY3sK1YQi2LhfFy00JIixAHdiaifmFV3bQfT4nAu8TP+rIxYFQMIPYAB4g9P7a56DKuQ1WjaV2wQ5iVqUTptMB8yMBRq8heT+2AWmY1jShs5wZuTIttDTvFDDoL1Rj572dijlgg35LmMXiiKH7B0xv4yY/H6rb/PBQSiXlpK73Pg+SpoMD8gnv zuul-executor-ttu
 
-# jenkins user ssh key for logserver
-jenkins_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDCKY5/dVgQ1dtYHNkp032beN5lOTYYRx20Ao2xkVnxenSlaPY7kn3E+s4FyfFco3co4BzPIliKDnhlXcdOSEs5YjqCNgvbcrA4CCDoxTkhLH2vyCsKPfQnfCr6RwU8WLm91sjhaKXxoK3f7QUMJS2n/HwjCxiUaTNcOPdQqvQNjcVMuO6n4W8ajfK7lekjKuok9OBvYnVxtUu8q3bJjWOXAWxu3LC1nNNk8ADSF6Ioa6hupHO0UZFrR8knyNYNSUFDx1N+0oKY9SIaez9IlIwZpq2MpcgdGTLVgmr4xjNwn2Jg67EWehVCqZMIA68K+xmkIj6QNvvmfcKmXrbiszvf jenkins@winci-jenkins.englab.juniper.net
-
-gerrit_ssh_rsa_pubkey: AAAAB3NzaC1yc2EAAAADAQABAAABAQCxKAw3pnViqkSUdZrMlPn0aNzYp1DcDMJpNfny2Z6ae2AcFw/o9u8774SmHrq75oMDoz95W6JoA1kC8M+T+DpgMqcq74hVgUkIBnYzgYkDn3WE66Axzoszioi+8I++nztaPsLpTjYzpiTaSqlQ/ufeu1AgibEHh7Mzc9uEgUs2tFM8Tvac9dg60llS1gqr7Fsbxphhzt76iZIb0kmRilmBvsVD//tt2q4fvNvETRPoxf9m8PQeCVHNp+ksZibx+k1POR591NwI3kbcG5nZzxtyI8djWMrA+ylcLkummd+nxC4mROY1ep0UP9ThsjUDFhSlxpC5qOyYrGdPGCxNtc8B
+# SSH Key used to push puppet manifests to the puppet master
+gerrit_ssh_rsa_pubkey: AAAAB3NzaC1yc2EAAAADAQABAAABAQC8IBXtjjXOmkInAzchLxOhuCCQdsWjWV642JEE4lhjfWp4olvr1mgknxmFvp0fMvXiIAs9DOGe0EjNbaISLdhlrxIUFP93swA4hvjIZgQOVh7KExyHyPg4ZdtFOpqtVg/vMosb0RjdTAn3WlRiK/jzSWgv3Cp0wvlv+LTKAfxH73RlHEk7vwL3xWTk4VRm803OvEagPHQJLNKZCCV7MdDtlqCapvfhf+QC+8imZLa5EZe6hEfNFL0UdMuWJLkzZ6emjypKz2HiSP+QtpN0QuzZiM3kllpKwEKjyQylLZPv8O1pk/eWuKCYCh8WFRTDYOf2MGjx9imEd+esyAmYOBVB
 
 zuul::known_hosts::known_hosts_content: |
   github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
@@ -27,9 +23,7 @@ zuul::known_hosts::known_hosts_content: |
   review2.opencontrail.org ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDSDgqNPLX9UN52m5bwUG8ngVrr509HhIsfbNDS+5wFxoTVnQjL86v/3V6Qp4DM51yKzx1rWwfPE9bderyVf6vWAk/0MFBraoguuyWRGtGffYjMizkn34TFWBhVYx3vIbXfT6BDre9jzvhWZVUfp9GPs1PATCx5tzgt0bSkkr3UayPhYZBBeQ5FZbjtxTVMHw+QaFTIP1PH3OI/WjIre/bAinBrscGIMzQls0J36TaWaIwSGpY2iXMnipFoBKIDy6wCb0K83/6e6VDqviFwDTEkl/K7/DSfxBC9iqlEH7UypOzUGruXfN/O070wcbkNm8koeCkZsXUCcmpR6nC/tv0x
 
 # Configure all zuul services to authorize with Gearman server using SSL.
-zuul::gearman_server:          "zuulv3-dev.opencontrail.org"
-zuul::gearman_port:            '7999'
-zuul::gearman_listen_port:     '7999'
+zuul::gearman_server:          "zuulv3-ttu.opencontrail.org"
 zuul::gearman_ssl_use_puppet:  true
 zuul::gearman_client_ssl_cert: true
 zuul::gearman_client_ssl_key:  true
@@ -45,10 +39,10 @@ zuul::python_version:  3
 
 # Zuul Gerrit integation
 zuul::gerrit_server: "review2.opencontrail.org"
-zuul::gerrit_user:   "zuulv3"
+zuul::gerrit_user:   "zuulv3-community"
 
 # Zuul Git configuration
-zuul::git_email: "zuul@opencontrail.org"
+zuul::git_email: "dev@opencontrail.org"
 zuul::git_name:  "OpenContrail Zuul"
 
 # Generic configuration -- part of the zuul.conf template
@@ -61,17 +55,13 @@ zuul::connections:
     driver: 'gerrit'
     server: 'review2.opencontrail.org'
     port:   7999
-    user:   'zuulv3'
+    user:   'zuulv3-community'
     sshkey: '/var/lib/zuul/ssh/id_rsa'
 
   - name:   'github'
     driver: 'github'
-    sshkey: '/var/lib/zuul/ssh/id_rsa'
 
-  - name:   'stats'
-    driver: 'sql'
-
-zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:3389"
+zuul::zookeeper_hosts: "zuulv3-ttu.opencontrail.org"
 
 # Nodepool Builder and Launcher configuration
 nodepool::git_source_repo:          "https://github.com/kklimonda/nodepool"
@@ -83,7 +73,3 @@ nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
 
-## ZooKeeper configuration
-# Override the port zookeeper is listening on to work around
-# access issue in the Juniper lab.
-zookeeper::client_port: 3389
