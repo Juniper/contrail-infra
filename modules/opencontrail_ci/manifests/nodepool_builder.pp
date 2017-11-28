@@ -11,6 +11,7 @@ class opencontrail_ci::nodepool_builder(
 
   class { '::nodepool':
     install_mysql => true,
+    require       => Class['project_config'],
   }
 
   class { '::nodepool::builder': }
