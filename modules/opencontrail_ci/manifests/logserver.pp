@@ -81,14 +81,14 @@ class opencontrail_ci::logserver (
   }
 
   file { '/opt/zuul-jobs-stats/settings.ini':
-    ensure  => file
+    ensure  => file,
     content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
     mode    => '0600',
     user    => 'root',
   }
 
   file { '/opt/zuul-jobs-stats/cron-config.sh':
-    ensure  => file
+    ensure  => file,
     content => inline_template('export LOGS_DIR=<%= @docroot %>'),
     mode    => '0600',
     user    => 'root',
