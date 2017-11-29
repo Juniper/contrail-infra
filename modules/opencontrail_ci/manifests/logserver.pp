@@ -75,6 +75,7 @@ class opencontrail_ci::logserver (
 
   exec { 'install_zuul-jobs-stats':
     command   => 'pip install -r requirements.txt',
+    path      => '/usr/local/bin:/usr/bin:/bin/',
     cwd       => '/opt/zuul-jobs-stats',
     subscribe => Vcsrepo['/opt/zuul-jobs-stats'],
     require   => Package['python-pip'],
@@ -84,18 +85,18 @@ class opencontrail_ci::logserver (
     ensure  => file,
     content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
     mode    => '0600',
-    user    => 'root',
+    owner   => 'root',
   }
 
   file { '/opt/zuul-jobs-stats/cron-config.sh':
     ensure  => file,
     content => inline_template('export LOGS_DIR=<%= @docroot %>'),
     mode    => '0600',
-    user    => 'root',
+    owner   => 'root',
   }
 
   cron { 'zuul-jobs-stats':
-    command => '/opt/zuul-jobs-stats/cron.sh',
+    command => 'bash /opt/zuul-jobs-stats/cron.sh',
     user    => 'root',
     hour    => '*/6',
     require => [
