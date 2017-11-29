@@ -86,6 +86,7 @@ class opencontrail_ci::logserver (
     content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
     mode    => '0600',
     owner   => 'root',
+    require => Vcsrepo['/opt/zuul-jobs-stats'],
   }
 
   file { '/opt/zuul-jobs-stats/cron-config.sh':
