@@ -96,6 +96,13 @@ class opencontrail_ci::logserver (
     owner   => 'root',
   }
 
+  file { '/etc/logrotate.d/zuul-jobs-stats':
+    ensure  => file,
+    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
+    mode    => '0600',
+    owner   => 'root',
+  }
+
   cron { 'zuul-jobs-stats':
     command => 'bash /opt/zuul-jobs-stats/cron.sh',
     user    => 'root',
