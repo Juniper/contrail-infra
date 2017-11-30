@@ -86,11 +86,19 @@ class opencontrail_ci::logserver (
     content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
     mode    => '0600',
     owner   => 'root',
+    require => Vcsrepo['/opt/zuul-jobs-stats'],
   }
 
   file { '/opt/zuul-jobs-stats/cron-config.sh':
     ensure  => file,
     content => inline_template('export LOGS_DIR=<%= @docroot %>'),
+    mode    => '0600',
+    owner   => 'root',
+  }
+
+  file { '/etc/logrotate.d/zuul-jobs-stats':
+    ensure  => file,
+    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
     mode    => '0600',
     owner   => 'root',
   }
