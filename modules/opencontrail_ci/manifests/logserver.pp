@@ -1,6 +1,7 @@
 class opencontrail_ci::logserver (
   $logserver_ssl_key = undef,
   $logserver_ssl_cert = undef,
+  $zuul_jobs_stats = undef,
   $docroot = '/var/www/logs/',
   $template = 'opencontrail_ci/logserver.vhost.erb',
   $cert_file = "/etc/ssl/private/${::clientcert}.crt",
@@ -58,6 +59,58 @@ class opencontrail_ci::logserver (
     require     => [
         Package['python-pip'],
         Package['python-setuptools'],
+    ],
+  }
+
+  package { 'jq':
+    ensure => installed,
+  }
+
+  vcsrepo { '/opt/zuul-jobs-stats':
+    ensure   => latest,
+    provider => 'git',
+    revision => 'master',
+    source   => 'https://github.com/codilime/zuul-jobs-stats',
+  }
+
+  exec { 'install_zuul-jobs-stats':
+    command   => 'pip install -r requirements.txt',
+    path      => '/usr/local/bin:/usr/bin:/bin/',
+    cwd       => '/opt/zuul-jobs-stats',
+    subscribe => Vcsrepo['/opt/zuul-jobs-stats'],
+    require   => Package['python-pip'],
+  }
+
+  file { '/opt/zuul-jobs-stats/settings.ini':
+    ensure  => file,
+    content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
+    mode    => '0600',
+    owner   => 'root',
+    require => Vcsrepo['/opt/zuul-jobs-stats'],
+  }
+
+  file { '/opt/zuul-jobs-stats/cron-config.sh':
+    ensure  => file,
+    content => inline_template('export LOGS_DIR=<%= @docroot %>'),
+    mode    => '0600',
+    owner   => 'root',
+  }
+
+  file { '/etc/logrotate.d/zuul-jobs-stats':
+    ensure  => file,
+    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
+    mode    => '0600',
+    owner   => 'root',
+  }
+
+  cron { 'zuul-jobs-stats':
+    command => 'bash /opt/zuul-jobs-stats/cron.sh',
+    user    => 'root',
+    hour    => '*/6',
+    require => [
+        File['/opt/zuul-jobs-stats/cron-config.sh'],
+        File['/opt/zuul-jobs-stats/settings.ini'],
+        Package['jq'],
     ],
   }
 
