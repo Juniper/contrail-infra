@@ -1,0 +1,6 @@
+/var/log/zuul-jobs-stats.log {
+    rotate 5
+    size 32K
+    compress
+    missingok
+}

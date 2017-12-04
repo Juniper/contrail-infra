@@ -19,6 +19,7 @@ node /logs2?.opencontrail.org/ {
   class { '::opencontrail_ci::logserver':
     logserver_ssl_key  => hiera('logserver_ssl_key'),
     logserver_ssl_cert => hiera('logserver_ssl_cert'),
+    zuul_jobs_stats    => hiera('zuul_jobs_stats'),
   }
 }
 
