@@ -60,7 +60,11 @@
         AddEncoding x-gzip gz
     </FilesMatch>
     <FilesMatch \.txt\.gz$>
-        ForceType application/json
+        ForceType text/plain
+        AddEncoding x-gzip gz
+    </FilesMatch>
+    <FilesMatch \.log\.gz$>
+        ForceType text/plain
         AddEncoding x-gzip gz
     </FilesMatch>
     <FilesMatch \.css$>
