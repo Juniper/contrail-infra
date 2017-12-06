@@ -1,6 +1,16 @@
-class opencontrail_ci::pulp_repo inherits opencontrail_ci::params {
+class opencontrail_ci::pulp_repo(
+  $pulp_version,
+) inherits opencontrail_ci::params {
 
   include ::epel
+
+  yumrepo { "pulp-${pulp_version}-stable":
+      baseurl  => "https://repos.fedorapeople.org/repos/pulp/pulp/stable/${pulp_version}/\$releasever/\$basearch/",
+      descr    => "Pulp ${pulp_version} Production Releases",
+      enabled  => true,
+      gpgcheck => true,
+      gpgkey   => "https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-${pulp_version}",
+  }
 
   class { '::pulp':
     require         => Class['epel'],
