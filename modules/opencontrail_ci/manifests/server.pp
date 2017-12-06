@@ -1,4 +1,5 @@
 class opencontrail_ci::server inherits opencontrail_ci::params {
+  include ::opencontrail_ci::groups
   include ::opencontrail_ci::users
 
   class { '::firewall': }
