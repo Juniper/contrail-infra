@@ -20,6 +20,15 @@ class opencontrail_ci::pulp_repo(
 
   class { '::pulp::admin': }
 
+  pulp_rpmrepo { 'opencontrail-tpc':
+    display_name     => 'opencontrail-tpc',
+    description      => 'Third party packages required for OpenContail build',
+    relative_url     => 'opencontrail-tpc',
+    serve_http       => true,
+    serve_https      => true,
+    checksum_type    => 'sha256',
+  }
+
   firewall { '100 accept all to 80 - repos over http ':
     proto  => 'tcp',
     dport  => '80',
