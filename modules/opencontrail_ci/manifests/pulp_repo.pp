@@ -18,6 +18,8 @@ class opencontrail_ci::pulp_repo(
     enable_rpm      => true,
   }
 
+  class { '::pulp::admin': }
+
   firewall { '100 accept all to 80 - repos over http ':
     proto  => 'tcp',
     dport  => '80',
