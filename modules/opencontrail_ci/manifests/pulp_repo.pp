@@ -16,9 +16,12 @@ class opencontrail_ci::pulp_repo(
     require         => Class['epel'],
     enable_docker   => true,
     enable_rpm      => true,
+    ssl_username    => false,
   }
 
-  class { '::pulp::admin': }
+  class { '::pulp::admin':
+    ca_path => '/etc/pki/pulp/ca.crt'
+  }
 
   pulp_rpmrepo { 'opencontrail-tpc':
     display_name     => 'opencontrail-tpc',
