@@ -30,6 +30,7 @@ class opencontrail_ci::pulp_repo(
     serve_http       => true,
     serve_https      => true,
     checksum_type    => 'sha256',
+    ensure           => present,
   }
 
   firewall { '100 accept all to 80 - repos over http ':
