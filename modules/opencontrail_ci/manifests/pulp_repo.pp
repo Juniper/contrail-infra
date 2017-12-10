@@ -5,18 +5,18 @@ class opencontrail_ci::pulp_repo(
   include ::epel
 
   yumrepo { "pulp-${pulp_version}-stable":
-      baseurl  => "https://repos.fedorapeople.org/repos/pulp/pulp/stable/${pulp_version}/\$releasever/\$basearch/",
-      descr    => "Pulp ${pulp_version} Production Releases",
-      enabled  => true,
-      gpgcheck => true,
-      gpgkey   => "https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-${pulp_version}",
+    baseurl  => "https://repos.fedorapeople.org/repos/pulp/pulp/stable/${pulp_version}/\$releasever/\$basearch/",
+    descr    => "Pulp ${pulp_version} Production Releases",
+    enabled  => true,
+    gpgcheck => true,
+    gpgkey   => "https://repos.fedorapeople.org/repos/pulp/pulp/GPG-RPM-KEY-pulp-${pulp_version}",
   }
 
   class { '::pulp':
-    require         => Class['epel'],
-    enable_docker   => true,
-    enable_rpm      => true,
-    ssl_username    => false,
+    require       => Class['epel'],
+    enable_docker => true,
+    enable_rpm    => true,
+    ssl_username  => false,
   }
 
   class { '::pulp::admin':
@@ -24,13 +24,13 @@ class opencontrail_ci::pulp_repo(
   }
 
   pulp_rpmrepo { 'opencontrail-tpc':
-    display_name     => 'opencontrail-tpc',
-    description      => 'Third party packages required for OpenContail build',
-    relative_url     => 'opencontrail-tpc',
-    serve_http       => true,
-    serve_https      => true,
-    checksum_type    => 'sha256',
-    ensure           => present,
+    ensure        => present,
+    display_name  => 'opencontrail-tpc',
+    description   => 'Third party packages required for OpenContail build',
+    relative_url  => 'opencontrail-tpc',
+    serve_http    => true,
+    serve_https   => true,
+    checksum_type => 'sha256',
   }
 
   firewall { '100 accept all to 80 - repos over http ':
