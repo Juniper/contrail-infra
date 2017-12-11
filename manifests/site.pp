@@ -44,3 +44,13 @@ node /ze\d+(-dev|-jnpr)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_executor': }
 }
+
+node /repo\d+(-dev|-jnpr)?.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::pulp_repo': }
+}
+
+node /ci-repo.englab.juniper.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::pulp_repo': }
+}
