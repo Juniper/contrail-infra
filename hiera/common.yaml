@@ -2,7 +2,7 @@ opencontrail_ci::hosts:
   puppetmaster: puppetmaster-ttu.opencontrail.org
   puppetdb: puppetdb-ttu.opencontrail.org
 # FIXME(kklimonda): Change this for the community deployment
-opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config
+opencontrail_ci::project_config_repo: https://github.com/kklimonda/contrail-project-config
 opencontrail_ci::zookeeper::allowed_clients:
   - 192.168.50.0/24  # TTU Cluster
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
