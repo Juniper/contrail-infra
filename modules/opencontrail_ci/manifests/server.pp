@@ -3,8 +3,18 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   include ::opencontrail_ci::users
 
   class { '::firewall': }
-  resources { 'firewall':
-      purge => true,
+  case $::osfamily {
+    'RedHat': {
+      resources { 'firewall':
+        require => [ Package['iptables-services'], Service['firewalld'] ],
+        purge   => true,
+      }
+    }
+    default: {
+      resources { 'firewall':
+        purge => true,
+      }
+    }
   }
 
   class { '::puppet':
