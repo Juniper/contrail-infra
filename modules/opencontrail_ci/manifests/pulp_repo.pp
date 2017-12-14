@@ -1,5 +1,6 @@
 class opencontrail_ci::pulp_repo(
   $pulp_version,
+  $pulp_admin_password,
 ) inherits opencontrail_ci::params {
 
   include ::epel
@@ -20,7 +21,41 @@ class opencontrail_ci::pulp_repo(
   }
 
   class { '::pulp::admin':
-    ca_path => '/etc/pki/pulp/ca.crt'
+    require => Class['pulp'],
+  }
+
+  # by default cert is only readable by root:apache, make it available for other
+  # users as well
+  exec { 'pulp-make-cacert-systemwide':
+    command => "cp ${::pulp::ca_cert} /etc/pki/ca-trust/source/anchors/pulp_ca.crt && update-ca-trust enable && update-ca-trust extract",
+    path    => '/bin',
+    creates => '/etc/pki/ca-trust/source/anchors/pulp_ca.crt',
+    require => Class['pulp'],
+  }
+
+  accounts::user { 'zuul':
+    ensure        => present,
+    comment       => 'Zuul Executor',
+    home          => '/home/zuul',
+    managehome    => true,
+    purge_sshkeys => true,
+    sshkeys       => [ hiera('zuul_ssh_public_key') ],
+  }
+
+  opencontrail_ci::pulp_repo_admin { 'root':
+    username    => 'admin',
+    password    => $pulp_admin_password,
+    osuser      => 'root',
+    osuser_home => '/root',
+    require     => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
+  }
+
+  opencontrail_ci::pulp_repo_admin { 'zuul':
+    username    => 'admin',
+    password    => $pulp_admin_password,
+    osuser      => 'zuul',
+    osuser_home => '/home/zuul',
+    require     => [ User['zuul'], Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
   }
 
   pulp_rpmrepo { 'opencontrail-tpc':
@@ -31,6 +66,7 @@ class opencontrail_ci::pulp_repo(
     serve_http    => true,
     serve_https   => true,
     checksum_type => 'sha256',
+    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ]
   }
 
   firewall { '100 accept all to 80 - repos over http ':
