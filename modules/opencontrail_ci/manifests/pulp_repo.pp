@@ -91,7 +91,7 @@ class opencontrail_ci::pulp_repo(
 
   firewall { '102 accept all to 5000 - docker registry':
     proto  => 'tcp',
-    dport  => '5001',
+    dport  => '5000',
     action => 'accept',
   }
 }
