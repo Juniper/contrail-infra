@@ -3,6 +3,7 @@ class opencontrail_ci::pulp_repo(
   $pulp_admin_password,
 ) inherits opencontrail_ci::params {
 
+  include ::docker
   include ::epel
 
   yumrepo { "pulp-${pulp_version}-stable":
@@ -66,7 +67,14 @@ class opencontrail_ci::pulp_repo(
     serve_http    => true,
     serve_https   => true,
     checksum_type => 'sha256',
-    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ]
+    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
+  }
+
+  docker::image { 'registry': }
+  docker::run { 'registry':
+    image   => 'registry',
+    ports   => ['5000:5000'],
+    require => Docker::Image['registry'],
   }
 
   firewall { '100 accept all to 80 - repos over http ':
@@ -78,6 +86,12 @@ class opencontrail_ci::pulp_repo(
   firewall { '100 accept all to 443 - repos over https + Pulp API ':
     proto  => 'tcp',
     dport  => '443',
+    action => 'accept',
+  }
+
+  firewall { '102 accept all to 5000 - docker registry':
+    proto  => 'tcp',
+    dport  => '5001',
     action => 'accept',
   }
 }
