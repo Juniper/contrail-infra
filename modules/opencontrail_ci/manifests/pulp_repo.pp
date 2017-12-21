@@ -3,7 +3,9 @@ class opencontrail_ci::pulp_repo(
   $pulp_admin_password,
 ) inherits opencontrail_ci::params {
 
+  include ::docker
   include ::epel
+  include ::selinux
 
   yumrepo { "pulp-${pulp_version}-stable":
     baseurl  => "https://repos.fedorapeople.org/repos/pulp/pulp/stable/${pulp_version}/\$releasever/\$basearch/",
@@ -15,13 +17,16 @@ class opencontrail_ci::pulp_repo(
 
   class { '::pulp':
     require       => Class['epel'],
+    crane_port    => '5001',
+    enable_crane  => true,
     enable_docker => true,
     enable_rpm    => true,
     ssl_username  => false,
   }
 
   class { '::pulp::admin':
-    require => Class['pulp'],
+    enable_docker => true,
+    require       => Class['pulp'],
   }
 
   # by default cert is only readable by root:apache, make it available for other
@@ -66,18 +71,63 @@ class opencontrail_ci::pulp_repo(
     serve_http    => true,
     serve_https   => true,
     checksum_type => 'sha256',
-    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ]
+    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
   }
 
-  firewall { '100 accept all to 80 - repos over http ':
+  selinux::port { 'crane':
+    argument => '-m',
+    context  => http_port_t,
+    protocol => tcp,
+    port     => 5001,
+  }
+
+  file { '/docker-registry':
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => '0700',
+  }
+
+  file { '/docker-registry/data':
+    ensure  => directory,
+    owner   => root,
+    group   => root,
+    mode    => '0700',
+  }
+
+  docker::image { 'registry':
+    ensure    => present,
+    image_tag => '2',
+  }
+
+  docker::run { 'registry':
+    image   => 'registry',
+    ports   => ['5000:5000'],
+    volumes => ['/registry:/var/lib/registry'],
+    require => [ Docker::Image['registry'], File['/docker-registry/data'] ],
+  }
+
+  firewall { '100 accept all to 80 - repos over http':
     proto  => 'tcp',
     dport  => '80',
     action => 'accept',
   }
 
-  firewall { '100 accept all to 443 - repos over https + Pulp API ':
+  firewall { '101 accept all to 443 - repos over https + Pulp API':
     proto  => 'tcp',
     dport  => '443',
+    action => 'accept',
+  }
+
+  firewall { '102 accept all to 5000 - docker registry':
+    proto  => 'tcp',
+    dport  => '5000',
+    action => 'accept',
+  }
+
+  firewall { '103 accept all to 5001 - Pulp/crane registry':
+    proto  => 'tcp',
+    dport  => '5001',
     action => 'accept',
   }
 }
