@@ -94,7 +94,7 @@ class opencontrail_ci::pulp_repo(
     action => 'accept',
   }
 
-  firewall { '100 accept all to 443 - repos over https + Pulp API':
+  firewall { '101 accept all to 443 - repos over https + Pulp API':
     proto  => 'tcp',
     dport  => '443',
     action => 'accept',
@@ -106,7 +106,7 @@ class opencontrail_ci::pulp_repo(
     action => 'accept',
   }
 
-  firewall { '102 accept all to 5001 - Pulp/crane registry':
+  firewall { '103 accept all to 5001 - Pulp/crane registry':
     proto  => 'tcp',
     dport  => '5001',
     action => 'accept',
