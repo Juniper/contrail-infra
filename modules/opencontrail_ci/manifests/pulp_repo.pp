@@ -81,11 +81,30 @@ class opencontrail_ci::pulp_repo(
     port     => 5001,
   }
 
-  docker::image { 'registry': }
+  file { '/docker-registry':
+    ensure => directory,
+    owner  => root,
+    group  => root,
+    mode   => '0700',
+  }
+
+  file { '/docker-registry/data':
+    ensure  => directory,
+    owner   => root,
+    group   => root,
+    mode    => '0700',
+  }
+
+  docker::image { 'registry':
+    ensure    => present,
+    image_tag => '2',
+  }
+
   docker::run { 'registry':
     image   => 'registry',
     ports   => ['5000:5000'],
-    require => Docker::Image['registry'],
+    volumes => ['/registry:/var/lib/registry'],
+    require => [ Docker::Image['registry'], File['/docker-registry/data'] ],
   }
 
   firewall { '100 accept all to 80 - repos over http':
