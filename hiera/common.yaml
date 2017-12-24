@@ -50,7 +50,7 @@ zuul::git_email: "zuul@opencontrail.org"
 zuul::git_name:  "OpenContrail Zuul"
 
 # Generic configuration -- part of the zuul.conf template
-zuul::disk_limit_per_job:      2048
+zuul::disk_limit_per_job:      4096
 zuul::site_variables_yaml_file: "/etc/project-config/zuul/site-variables.yaml"
 zuul::worker_private_key_file: "/var/lib/zuul/ssh/id_rsa"
 zuul::trusted_ro_paths: ["/etc/ssl/certs", "/var/lib/zuul/ssh"]
