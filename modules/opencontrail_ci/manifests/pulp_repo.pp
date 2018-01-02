@@ -81,18 +81,11 @@ class opencontrail_ci::pulp_repo(
     port     => 5001,
   }
 
-  file { '/docker-registry':
+  file { [ '/docker-registry', '/docker-registry/data' ]:
     ensure => directory,
     owner  => root,
     group  => root,
     mode   => '0700',
-  }
-
-  file { '/docker-registry/data':
-    ensure  => directory,
-    owner   => root,
-    group   => root,
-    mode    => '0700',
   }
 
   docker::image { 'registry':
@@ -103,7 +96,7 @@ class opencontrail_ci::pulp_repo(
   docker::run { 'registry':
     image   => 'registry',
     ports   => ['5000:5000'],
-    volumes => ['/registry:/var/lib/registry'],
+    volumes => ['/docker-registry/data:/var/lib/registry'],
     require => [ Docker::Image['registry'], File['/docker-registry/data'] ],
   }
 
