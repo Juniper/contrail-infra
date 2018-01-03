@@ -50,7 +50,7 @@ node /repo\d+(-dev|-jnpr)?.opencontrail.org/ {
   class { '::opencontrail_ci::pulp_repo': }
 }
 
-node /ci-repo.englab.juniper.org/ {
+node /ci-repo.englab.juniper.net/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::pulp_repo': }
 }
