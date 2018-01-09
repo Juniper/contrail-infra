@@ -84,7 +84,6 @@ class opencontrail_ci::pulp_repo(
     serve_https     => true,
     checksum_type   => 'sha256',
     feed            => 'http://mirrors.mit.edu/centos/7/os/x86_64/',
-    download_policy => 'background',
   }
 
   pulp_rpmrepo { 'centos74-updates':
@@ -96,7 +95,6 @@ class opencontrail_ci::pulp_repo(
     serve_https     => true,
     checksum_type   => 'sha256',
     feed            => 'http://mirrors.mit.edu/centos/7/updates/x86_64/',
-    download_policy => 'background',
   }
 
   pulp_rpmrepo { 'centos74-extras':
@@ -108,7 +106,6 @@ class opencontrail_ci::pulp_repo(
     serve_https     => true,
     checksum_type   => 'sha256',
     feed            => 'http://mirrors.mit.edu/centos/7/extras/x86_64/',
-    download_policy => 'background',
   }
 
   pulp_rpmrepo { 'centos74-epel':
@@ -120,7 +117,6 @@ class opencontrail_ci::pulp_repo(
     serve_https     => true,
     checksum_type   => 'sha256',
     feed            => 'http://mirrors.mit.edu/epel/7/x86_64/',
-    download_policy => 'background',
   }
 
   selinux::port { 'crane':
