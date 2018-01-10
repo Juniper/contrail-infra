@@ -43,7 +43,16 @@ class opencontrail_ci::logserver (
 
   package { 'python-pip':
     ensure => installed,
-    notify => Exec['install_os_loganalyze'],
+    notify => [
+      Exec['install_os_loganalyze'],
+      Package['pip'],
+    ],
+  }
+
+  package { 'pip':
+    ensure   => latest,
+    provider => 'pip',
+    notify   => Exec['install_os_loganalyze'],
   }
 
   package { 'python-setuptools':
@@ -98,7 +107,7 @@ class opencontrail_ci::logserver (
 
   file { '/etc/logrotate.d/zuul-jobs-stats':
     ensure  => file,
-    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
+    content => 'puppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
     mode    => '0600',
     owner   => 'root',
   }
