@@ -24,7 +24,9 @@ class opencontrail_ci::zuul_scheduler(
 
   include ::zuul::known_hosts
   if ! defined(Class['zuul']) {
-    class { '::zuul': }
+    class { '::zuul':
+      statsd_host => $::zuul::statsd_host,
+    }
   }
   class { '::zuul::web': }
   class { '::zuul::scheduler':
