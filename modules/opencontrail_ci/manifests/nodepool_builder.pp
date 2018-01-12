@@ -1,5 +1,6 @@
 class opencontrail_ci::nodepool_builder(
-  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials
+  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials,
+  $statsd_host       = $::nodepool::statsd_host
 ) inherits opencontrail_ci::params {
 
   if ! defined(Class['project_config']) {
@@ -14,7 +15,9 @@ class opencontrail_ci::nodepool_builder(
     require       => Class['project_config'],
   }
 
-  class { '::nodepool::builder': }
+  class { '::nodepool::builder':
+    statsd_host => $statsd_host,
+  }
 
   file { '/home/nodepool/.config':
     ensure  => directory,
