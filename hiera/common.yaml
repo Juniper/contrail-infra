@@ -80,6 +80,7 @@ nodepool::elements_dir:             "/etc/project-config/nodepool/elements"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
+nodepool::statsd_host: "127.0.0.1"
 
 ## ZooKeeper configuration
 # Override the port zookeeper is listening on to work around
