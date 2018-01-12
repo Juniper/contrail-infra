@@ -1,5 +1,6 @@
 class opencontrail_ci::nodepool_builder(
   $cloud_credentials = $::opencontrail_ci::params::cloud_credentials,
+  $statsd_host       = $::nodepool::statsd_host,
   $rhel_reg_method   = $::opencontrail_ci::nodepool_builder::rhel_reg_method,
   $rhel_username     = $::opencontrail_ci::nodepool_builder::rhel_username,
   $rhel_password     = $::opencontrail_ci::nodepool_builder::rhel_password,
@@ -19,7 +20,9 @@ class opencontrail_ci::nodepool_builder(
     require       => Class['project_config'],
   }
 
-  class { '::nodepool::builder': }
+  class { '::nodepool::builder':
+    statsd_host => $statsd_host,
+  }
 
   file { '/home/nodepool/.config':
     ensure  => directory,
