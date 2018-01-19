@@ -6,6 +6,7 @@ opencontrail_ci::zookeeper::allowed_clients:
   - 66.129.239.0/24  # Juniper Networks
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
   - 66.129.239.0/24  # Juniper Networks
+
 opencontrail_ci::pulp_repo::pulp_version: 2
 
 puppet::environment: production
