@@ -3,7 +3,7 @@ class opencontrail_ci::pulp_public_repo inherits opencontrail_ci::params {
     ensure        => present,
     display_name  => 'opencontrail-thirdparty',
     description   => 'Third party packages required for OpenContrail build',
-    relative_url  => 'opencontrail-thirdparty/x86_64',
+    relative_url  => 'centos/7/opencontrail-thirdparty/x86_64',
     serve_http    => true,
     serve_https   => true,
     checksum_type => 'sha256',
