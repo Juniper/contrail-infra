@@ -20,4 +20,5 @@ class opencontrail_ci::pulp_public_repo inherits opencontrail_ci::params {
     servce_https  => true,
     checksum_type => 'sha256',
     require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
+  }
 }
