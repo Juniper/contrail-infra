@@ -14,7 +14,7 @@ class opencontrail_ci::pulp_public_repo inherits opencontrail_ci::params {
   pulp_rpmrepo { 'opencontrail':
     ensure        => present,
     display_name  => 'opencontrail',
-    description   => 'OpenContrail nightly'
+    description   => 'OpenContrail nightly',
     relative_url  => 'centos/7/opencontrail/x86_64',
     serve_http    => true,
     servce_https  => true,
