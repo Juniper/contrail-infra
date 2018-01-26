@@ -1,4 +1,4 @@
-class opencontrail_ci::pulp_repo(
+class opencontrail_ci::pulp_server(
   $pulp_version,
   $pulp_admin_password,
 ) inherits opencontrail_ci::params {
@@ -6,6 +6,37 @@ class opencontrail_ci::pulp_repo(
   include ::docker
   include ::epel
   include ::selinux
+
+  firewall { '100 accept all to 80 - repos over http':
+    proto  => 'tcp',
+    dport  => '80',
+    action => 'accept',
+  }
+
+  firewall { '101 accept all to 443 - repos over https + Pulp API':
+    proto  => 'tcp',
+    dport  => '443',
+    action => 'accept',
+  }
+
+  firewall { '102 accept all to 5000 - docker registry':
+    proto  => 'tcp',
+    dport  => '5000',
+    action => 'accept',
+  }
+
+  firewall { '103 accept all to 5001 - Pulp/crane registry':
+    proto  => 'tcp',
+    dport  => '5001',
+    action => 'accept',
+  }
+
+  file { '/etc/httpd/conf.d/global-rewrite.conf':
+    ensure => file,
+    source => 'puppet:///modules/opencontrail_ci/pulp/global_rewrite.conf',
+    mode   => '0600',
+    owner  => 'root',
+  }
 
   yumrepo { "pulp-${pulp_version}-stable":
     baseurl  => "https://repos.fedorapeople.org/repos/pulp/pulp/stable/${pulp_version}/\$releasever/\$basearch/",
@@ -63,28 +94,6 @@ class opencontrail_ci::pulp_repo(
     require     => [ User['zuul'], Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
   }
 
-  pulp_rpmrepo { 'opencontrail-tpc':
-    ensure        => present,
-    display_name  => 'opencontrail-tpc',
-    description   => 'Third party packages required for OpenContail build',
-    relative_url  => 'opencontrail-tpc',
-    serve_http    => true,
-    serve_https   => true,
-    checksum_type => 'sha256',
-    require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
-  }
-
-  pulp_rpmrepo { 'centos74':
-    ensure        => present,
-    display_name  => 'centos74',
-    description   => 'englab centos74 mirror',
-    relative_url  => 'centos74',
-    serve_http    => true,
-    serve_https   => true,
-    checksum_type => 'sha256',
-    feed          => 'http://mirrors.mit.edu/centos/7/os/x86_64/',
-  }
-
   selinux::port { 'crane':
     argument => '-m',
     context  => http_port_t,
@@ -104,29 +113,5 @@ class opencontrail_ci::pulp_repo(
     ports   => ['5000:5000'],
     volumes => ['/docker-registry/data:/var/lib/registry'],
     require => File['/docker-registry/data'],
-  }
-
-  firewall { '100 accept all to 80 - repos over http':
-    proto  => 'tcp',
-    dport  => '80',
-    action => 'accept',
-  }
-
-  firewall { '101 accept all to 443 - repos over https + Pulp API':
-    proto  => 'tcp',
-    dport  => '443',
-    action => 'accept',
-  }
-
-  firewall { '102 accept all to 5000 - docker registry':
-    proto  => 'tcp',
-    dport  => '5000',
-    action => 'accept',
-  }
-
-  firewall { '103 accept all to 5001 - Pulp/crane registry':
-    proto  => 'tcp',
-    dport  => '5001',
-    action => 'accept',
   }
 }
