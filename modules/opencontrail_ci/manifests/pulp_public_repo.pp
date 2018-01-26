@@ -17,7 +17,7 @@ class opencontrail_ci::pulp_public_repo inherits opencontrail_ci::params {
     description   => 'OpenContrail nightly',
     relative_url  => 'centos/7/opencontrail/x86_64',
     serve_http    => true,
-    servce_https  => true,
+    serve_https   => true,
     checksum_type => 'sha256',
     require       => [ Service['pulp_resource_manager', 'httpd'], Class['pulp::admin'] ],
   }
