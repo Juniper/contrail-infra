@@ -105,7 +105,7 @@ class opencontrail_ci::logserver (
 
   file { '/etc/logrotate.d/zuul-jobs-stats':
     ensure  => file,
-    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
+    content => 'puppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
     mode    => '0600',
     owner   => 'root',
   }

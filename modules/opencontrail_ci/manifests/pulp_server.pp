@@ -114,4 +114,31 @@ class opencontrail_ci::pulp_server(
     volumes => ['/docker-registry/data:/var/lib/registry'],
     require => File['/docker-registry/data'],
   }
+
+  file { '/opt/opencontrail_ci':
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '1777',
+  }
+
+  file { '/opt/opencontrail_ci/artifact_curator.py':
+    ensure  => file,
+    content => 'puppet:///modules/opencontrail_ci/pulp/artifact_curator.py',
+    mode    => '0700',
+    owner   => 'root',
+    require => [
+        File['/opt/opencontrail_ci']
+    ],
+  }
+
+  cron { 'artifact_curator':
+    command => '/opt/opencontrail_ci/artifact_curator.py',
+    user    => 'root',
+    hour    => '*/4',
+    require => [
+        File['/opt/opencontrail_ci/artifact_curator.py']
+    ],
+  }
+
 }
