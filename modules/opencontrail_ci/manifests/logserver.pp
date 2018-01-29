@@ -27,6 +27,13 @@ class opencontrail_ci::logserver (
     sshkeys       => [ hiera('zuul_ssh_public_key') ],
   }
 
+  accounts::user { 'zuul-win':
+    ensure        => present,
+    comment       => 'Windows Zuulv2',
+    purge_sshkeys => true,
+    sshkeys       => [ hiera('zuul_win_ssh_public_key') ],
+  }
+
   accounts::user { 'jenkins':
     ensure        => present,
     comment       => 'Windows CI Jenkins',
