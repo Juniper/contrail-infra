@@ -1,0 +1,28 @@
+---
+
+- name: stop gerrit on {{ dest_host}}
+  service:
+    name: gerrit
+    state: stopped
+  delegate_to: "{{ dest_host }}"
+
+# rsync -arvhtl git/ root@review2.opencontrail.org:/home/gerrit2/review_site/git/
+- name: push repositories to {{ dest_host }}
+  synchronize:
+    mode: push
+    src: "{{ source_dir }}"
+    dest: "{{ dest_dir }}"
+
+    archive: yes
+    recursive: yes
+    times: yes
+    links: yes
+  delegate_to: "{{ source_host }}"
+
+- name: start gerrit on {{ dest_host}}
+  service:
+    name: gerrit
+    state: started
+  delegate_to: "{{ dest_host }}"
+
+

@@ -1,0 +1,78 @@
+---
+
+- name: push mysqldump
+  copy:
+    src: /tmp/mysqldump/{{ gerrit_src }}/tmp/{{ db_name }}.sql
+    dest: /tmp/{{ db_name }}.sql
+
+- name: stop gerrit
+  service:
+    name: gerrit
+    state: stopped
+
+- name: backup of {{ db_name }}
+  mysql_db:
+    name: '{{ db_name }}'
+    state: dump
+    target: /tmp/{{ db_name }}_{{ ansible_date_time.epoch }}_backup.sql
+    single_transaction: yes
+
+- block:
+  - name: drop existing database {{ db_name }}
+    mysql_db:
+      name: "{{ db_name }}"
+      state: absent
+
+  - name: import {{ db_name }} from dump file
+    mysql_db:
+      name: "{{ db_name }}"
+      state: import
+      target: /tmp/{{ db_name }}.sql
+
+  - name: update list of admins
+    shell: >
+      echo "INSERT INTO {{db_name}}.account_group_members
+        select account_id, group_id
+          from {{ db_name }}.accounts
+          join (select group_id 
+                from {{ db_name}}.account_groups
+                where name='Administrators') as gid
+        where full_name IN
+          ('Wojciech Urbanski',
+          'Pawel Rusak',
+          'Jarek Lukow',
+          'Lukasz Lukasiewicz',
+          'Krzysztof Klimonda');" | mysql
+
+  - name: reindex
+    command: |
+      java -jar /home/gerrit2/review_site/bin/gerrit.war reindex
+    args:
+      chdir: /home/gerrit2/review_site
+    become: yes
+    become_user: gerrit2
+
+  rescue:
+  - name: recreate database
+    mysql_db:
+      name: "{{ db_name }}"
+      state: import
+      target: /tmp/{{ db_name }}_{{ ansible_date_time.epoch }}_backup.sql
+
+  always:
+  - name: start gerrit
+    service:
+      name: gerrit
+      state: started
+
+- name: flush caches
+  command: |
+    ssh -p 29418 {{ gerrit_user|default('opencontrail-admin') }}@{{ gerrit_host }} gerrit flush-caches --all
+  ignore_errors: yes
+  delegate_to: localhost
+
+- name: add ssh key for zuulv3
+  command: |
+    echo "{{ zuulv3_key }}" | ssh -p 29418 {{ gerrit_user|default('opencontrail-admin') }}@{{ gerrit_host }} gerrit set-account zuulv3 --add-ssh-key -
+  delegate_to: localhost
+
