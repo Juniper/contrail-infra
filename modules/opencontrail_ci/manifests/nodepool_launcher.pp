@@ -9,7 +9,9 @@ class opencontrail_ci::nodepool_launcher(
     }
   }
 
-  class { '::nodepool': }
+  class { '::nodepool':
+    require => Class['project_config'],
+  }
 
   file { '/home/nodepool/.config':
     ensure  => directory,

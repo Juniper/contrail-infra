@@ -13,8 +13,7 @@ mod 'openstackci/logrotate',
         :git    => 'https://github.com/openstack-infra/puppet-logrotate',
         :commit => '5cfa447'
 mod 'openstackci/nodepool',
-        :git    => 'https://github.com/openstack-infra/puppet-nodepool',
-        :commit => 'e2b8c27'
+        :git    => 'https://github.com/codilime/puppet-nodepool'
 mod 'openstackci/pip',
         :git    => 'https://github.com/openstack-infra/puppet-pip',
         :commit => 'bde44d1'
@@ -25,8 +24,13 @@ mod 'openstackci/vcsrepo', '0.0.8'
 mod 'openstackci/zuul',
         :git    => 'https://github.com/kklimonda/puppet-zuul'
 mod 'deric/zookeeper', '0.7.4'
+mod 'katello-pulp', '4.3.3'
+mod 'katello-qpid', '2.2.0'
 mod 'puppet/extlib', '1.1.0'
 mod 'puppet/hiera', '2.4.0'
+mod 'puppet/mongodb', '1.1.0'
+mod 'puppet/selinux', '0.8.0'
+mod 'puppetlabs-docker', '1.0.0'
 mod 'puppetlabs-firewall', '1.9.0'
 mod 'puppetlabs-inifile', '1.6.0'
 mod 'puppetlabs-postgresql', '4.9.0'
@@ -39,6 +43,9 @@ mod 'puppetlabs/mysql', '3.11.0'
 mod 'puppetlabs/stdlib', '4.17.0'
 mod 'saz/sudo', '4.1.0'
 mod 'saz/timezone', '3.3.0'
+mod 'stahnma-epel', '1.3.0'
 mod 'stankevich/python', '1.9.4'
 mod 'theforeman/git', '2.0.0'
 mod 'theforeman/puppet', '7.1.1'
+mod 'thias-squid3', '1.0.2'
+mod 'puppet-collectd', '5.3.0'

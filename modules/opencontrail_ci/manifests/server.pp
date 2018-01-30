@@ -1,14 +1,26 @@
 class opencontrail_ci::server inherits opencontrail_ci::params {
+  include ::opencontrail_ci::groups
   include ::opencontrail_ci::users
 
   class { '::firewall': }
-  resources { 'firewall':
-      purge => true,
+  case $::osfamily {
+    'RedHat': {
+      resources { 'firewall':
+        require => [ Package['iptables-services'], Service['firewalld'] ],
+        purge   => true,
+      }
+    }
+    default: {
+      resources { 'firewall':
+        purge => true,
+      }
+    }
   }
 
   class { '::puppet':
     server                    => false,
     puppetmaster              => $::opencontrail_ci::params::hosts['puppetmaster'],
+    port                      => hiera('opencontrail_ci::puppetmaster_port', 8140),
     agent_additional_settings => {
       stringify_facts => false,
     }

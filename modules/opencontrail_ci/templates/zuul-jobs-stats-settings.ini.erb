@@ -1,0 +1,12 @@
+# Managed with Puppet
+[logging]
+verbosity = 0
+file = /var/log/zuul-jobs-stats.log
+
+[database]
+engine = mysql
+uri = <%= @zuul_jobs_stats['dburi'] %>
+username = <%= @zuul_jobs_stats['dbuser'] %>
+password = <%= @zuul_jobs_stats['dbpass'] %>
+dbname = <%= @zuul_jobs_stats['dbname'] %>
+verbose = no

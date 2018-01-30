@@ -19,6 +19,7 @@ node /logs(2|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::logserver':
     logserver_ssl_key  => hiera('logserver_ssl_key'),
     logserver_ssl_cert => hiera('logserver_ssl_cert'),
+    zuul_jobs_stats    => hiera('zuul_jobs_stats'),
   }
 }
 
@@ -42,4 +43,16 @@ node /nb\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
 node /ze\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_executor': }
+}
+
+node /ci-repo.englab.juniper.net/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::pulp_server': }
+  class { '::opencontrail_ci::pulp_ci_repo': }
+}
+
+node /repo.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::pulp_server': }
+  class { '::opencontrail_ci::pulp_public_repo': }
 }

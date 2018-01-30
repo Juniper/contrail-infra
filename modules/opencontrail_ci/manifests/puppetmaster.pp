@@ -79,6 +79,7 @@ class opencontrail_ci::puppetmaster(
   class { '::hiera':
     hierarchy     => [
       'fqdn/%{::clientcert}',
+      'users',
       'common',
     ],
     datadir       => '/etc/puppet/environments/%{::environment}/hiera/',
@@ -95,5 +96,14 @@ class opencontrail_ci::puppetmaster(
     proto  => 'tcp',
     dport  => '8140',
     action => 'accept',
+  }
+
+  firewall { '102 forward port 7999 to 8140 (puppet)':
+    table   => 'nat',
+    chain   => 'PREROUTING',
+    proto   => tcp,
+    dport   => '7999',
+    jump    => 'REDIRECT',
+    toports => '8140',
   }
 }
