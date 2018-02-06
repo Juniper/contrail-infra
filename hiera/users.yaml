@@ -27,13 +27,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCZRWPsDnCCD/krWhk4Zy1SCCR2xS5hGSxW/08TRmWTjenzdrsFEBVKV9gJA5gJVRabebOeRMdBE3bYEHUdU+aCsngkO6Lid/itpUR3u6QKTboxkO7uH+mvVbMIxorl4ufYRk6axL7y3VoGrFwR0Sl9kvtncrjqUcfpNcVrNuP/0EzOKXVp6xhZVAYYLg1/0lCDhq/M2uMG1MHEXk52u6eAZarRqbOE3TU+Zcp3dq4sgIsbQlLqofsqMPMMbgPYKiwyHU0+eQyHCazTI+caxpafy4uc96xtxPnyKcaetPEH9+uRw5Y4UcQW2xDRfGClqjpl08zxevJNcf9OcUUcaa2F prusak@pawel-rusak
-  klash:
-    comment: Karl Klashinsky
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEA64tYZhxSScstVpzdPQfN84iuDtYLoqP26PFptWs4TZjoaC0w6CKQv+LzJF/xqoAZjRcyFmTjZGy7NfkkpO4B91/jol+MsLatB0Oqb4H1/98WP2HVaISELOAKpekhaX1XXMLzH3/By8YTpqDfGVa+h3SBbcXZiP8VwuJWt4b1s91WX8OfD6b8HUxIyWU4hOnZ9ZOpb58FC9YGdDGTPqAXozUxtAlmrxBsQo5Vf3tCZf/p+dW/SauBcEhuG2IQQ9Ga3dW/3OsuH92v4kg7RSYR/lnJDfayGo5Mx71nbgl8i7lAXQ8mz+hlkYMOaOTwc4UPoc+o28d1Ue9Y75+Pb0JsBw== klash@sa-nc-spg-177.static.jnpr.net
   vmahuli:
     comment: Vinay Mahuli
     groups:
@@ -55,10 +48,16 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChGwBKaBR+W6KxlYenzIcojB0zw0xqjI+3foPiWL5R4eynEvf2g246oynOCCJBWA/xkBTkpy5FAvAA0V1FDUiF/xf5AuPYcR6oe8CBt+1jiQFgeMlo0Mwb7vgrCUtHvedUe3kdO2zYX3lpm9bd/mbnMCCNecja9TsRfdGPZBZuM9tMnf4cGCTelclt2yfxTznf87wH+0iRxDtnSNdtth3GlkblDRWsFsiJzKH4CCAg2sHgwZk6YU8QWt8Z+j4wkm6VfNW8ZetC1Crf/ckrQPNDAKZpt9Bs7IpDgzY8BUf9Dlb4DRpFYaPrZGxGWherQlB1vnZScyMMlvmydLISova2wJzwZVGPaIjHNDrLAEKdA8HBLbsVvEAwGvdf9L9kCm28oz92UstztNXJ8xneX0c2cfEOHxSQkUA/kxpYIgz1bN9wLDod+/TDfNGbulqJ4zoGony5Rz0I8ThyyZuOTyDjkmY9HuTVkfneDPEby1jGkOGQ2k7euHyy8RjLLpd4/ZyxWAeDsWt4aJYKuol5VNUKYiL7ZmUPcrHFhThgLSt4icMcE6dJGAKevZVECB9ZeH7IQgQg/BSQ7eGx8ojZvrc3LWGzSSWJD5Iy8UyyIep0KNfMPZ8bDwT1WdFsgeKXRxAs2nrT1GmDGC4lRRx15dFxsv4hasa9x+v0prfRxMXSBw== wojciech.urbanski@codilime.com
-  bil:
-    comment: Michal Bilski
+  kuljinder:
+    comment: Kuljinder Mathoun
     groups:
       - sudo
     purge_sshkeys: true
     sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC+TTuK3swIoeoVNupsZ6oswK8gggmBBAxGVKxymyQbQPL8HTUS1XBu34xorw3Ex6Q3mYaFCTEnWkMVCHIymFMHct6h7p0OmufnwIjTjbkPNLB6BoCJ7c+Pb+ykPzmRLeSe95aArRPJ+7SziVFnckbWmMCToXF+EZdLnmBX5pbDN7OajUzZJirpio77y+bVPcAhTQ8ANPgvTrytWvIfi68m7j2TvN1VLJuSj+k9WLO94bwhpWcFMgvPHcgVdNUD7xLKZaNyuX5ZBRbCyT01688Z79CunBy1avYOROkIQrKUw4IKjDPU/6JbJVKec/MARYFSgORcMXpPM2ImjnWnhCN9 michal.bilski@codilime.com
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCUgIpDxcjKvWhSdmghJwadlAOP0fXQIT4NjgWjMrxsKIXuaXpF0E/FK95A5SyR4J+AfLZikeuQJn2gydHjUSg+MrANz9/74MtujILkb17Dt/9jaujHQjwa8OQr3AANzgGzLTPBJ9BT+z3J/Jqrpc5S6HaTP+1xeFcwcXxjNeVX/oZ+GeY/aSzuAYGblsTFezPHWZejTsCJr6R/6hrQ88OW0OCDO/oo/LoSUTRmG1TO9gvogVlUB+aY+dmL2fj42f7GFVdWICCFJBIPIx4i1EGiQIiV/zCHVeh9Cd0JgC/AnGlPhPz/GyQJeyQR49glc3oaVKQeH8KaCe8A4zV6aztd kuljinder@ttsv-shell101
+  bil:
+    comment: Michal Bilski
+    ensure: absent
+  klash:
+    comment: Karl Klashinsky
+    ensure: absent
