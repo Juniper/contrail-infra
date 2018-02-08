@@ -1,8 +1,9 @@
-#! /usr/bin/env python
-from __future__ import print_function
+#!/usr/bin/env python
+import logging
 import json
 import requests
 from docker import Client
+from docker.errors import NotFound
 
 """
 This script will remove all registry containers created by buildsets that have already finished
@@ -10,16 +11,26 @@ Registry container format: registry_{change}_{patchset}_{first 10 chars of build
 TODO: remove pulp rpm repos
 """
 
-dry_run = False
+log_filename = '/var/log/artifact_curator.log'
+logger = logging.getLogger('artifact_curator')
+logger.setLevel(logging.INFO)
+fh = logging.FileHandler(log_filename)
+fh.setLevel(logging.INFO)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+fh.setFormatter(formatter)
+logger.addHandler(fh)
 
+dry_run = True
 registries = []
 running_buildsets = []
+
+logger.info('Started artifact_curator, dry run: ' + str(dry_run))
 
 # Get the list of running containers first to prevent race condition
 cli = Client()
 containers = cli.containers()
 for container in containers:
-    #print(container['Names'])
+    logger.info(str(container['Names']))
     assert len(container['Names']) > 0
     name = container['Names'][0]
     if name.startswith('/registry_'):
@@ -29,7 +40,6 @@ for container in containers:
 # Get the list of running builds(ets) from Zuul status
 req = requests.get('http://zuulv3.opencontrail.org/status.json')
 build_data = req.json()
-#print(json.dumps(build_data, indent=4))
 for pipeline in build_data['pipelines']:
     for ch_queue in pipeline['change_queues']:
         for head in ch_queue['heads']:
@@ -42,17 +52,22 @@ for pipeline in build_data['pipelines']:
 
 # Delete all registries created by non-running buildsets
 to_delete = []
-print()
 for cont in registries:
     if cont in running_buildsets:
-        print('Not removing', cont)
+        logger.info('Will not remove ' + str(cont))
     else:
-        print('Removing,', cont)
+        logger.info('Will remove ' + str(cont))
         to_delete.append(cont)
+
+logger.info('Will remove {} containers'.format(len(to_delete)))
+logger.info('Will not remove {} containers'.format(len(registries) - len(to_delete)))
+
 for cont in to_delete:
     name = 'registry_{change}_{patchset}_{buildset}'.format(**cont)
-    print(name)
+    logger.info('Removing ' + name)
     if not dry_run:
-        # TODO handle already removed containers
-        c = cli.remove_container(name, v=True, force=True)
-        print(c)
+        try:
+            c = cli.remove_container(name, v=True, force=True)
+        except NotFound as nf:
+            logger.error('Container {} not found'.format(name))
+            logger.error(str(nf))
