@@ -29,7 +29,7 @@ class opencontrail_ci::logserver (
 
   accounts::user { 'zuul-win':
     ensure        => present,
-    comment       => 'Windows Zuulv2',
+    comment       => 'Windows CI Zuulv2',
     purge_sshkeys => true,
     sshkeys       => [ hiera('zuul_win_ssh_public_key') ],
   }
@@ -105,7 +105,7 @@ class opencontrail_ci::logserver (
 
   file { '/etc/logrotate.d/zuul-jobs-stats':
     ensure  => file,
-    content => 'pupppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
+    content => 'puppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
     mode    => '0600',
     owner   => 'root',
   }
