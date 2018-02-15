@@ -39,7 +39,7 @@ def get_running_containers():
         name = container['Names'][0]
         if name.startswith('/registry_'):
             _, change, patchset, buildset = name.split('_')
-            registries.append({'change': change, 'patchset': patchset, 'buildset': buildset})#, 'name': name})
+            registries.append({'change': change, 'patchset': patchset, 'buildset': buildset})
     return registries
 
 
@@ -104,10 +104,10 @@ def get_pulp_repositories():
     return repos
 
 
-def delete_pulp_repos(repo_list, active_buildsets, dry_run=False):
+def delete_pulp_repos(repo_list, active_buildsets, dry_run=True):
     """Delete Pulp repositories that are not part of the running buildsets"""
     logger.info("STAGE: Deleting Pulp RPM repositories")
-    active_changesets = [set['change'] + "-" + set['patchset'] for set in active_buildsets]
+    active_changesets = [set_['change'] + "-" + set_['patchset'] for set_ in active_buildsets]
     cleanup_list = []
     review_re = r"""\d+-\d{1,3}"""
     for repo in repo_list:
@@ -144,7 +144,7 @@ def delete_pulp_repos(repo_list, active_buildsets, dry_run=False):
             subprocess.check_call(command)
 
 
-def delete_containers(container_list, active_buildsets, dry_run=False):
+def delete_containers(container_list, active_buildsets, dry_run=True):
     """Delete all containers that are not part of active buildsets"""
     logger.info("STAGE: Deleting Containers")
     to_delete = []
@@ -165,8 +165,7 @@ def delete_containers(container_list, active_buildsets, dry_run=False):
             logger.debug("DRY_RUN: Removing %s", name)
         else:
             try:
-                #c = cli.remove_container(name, v=True, force=True)
-                logger.debug("WTF?")
+                c = cli.remove_container(name, v=True, force=True)
             except NotFound as nf:
                 logger.error('Container {} not found'.format(name))
                 logger.error(str(nf))
