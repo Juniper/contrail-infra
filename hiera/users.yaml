@@ -6,3 +6,10 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8xYbz7ohnFJuo8pvaRmzzRazLAPzGTcwcq848iKx6W9OZWjHMKJ40TiMM4RyeWvjGP68aEkLA6Pgdrxlf1e2rmiIH5il+znLEHslnpA3FjWbRMx5HiXn4ZKmVvFU8uGmXPeevMbHM+YJdxkMjAdf9uV8pA4EmUcsdyxK9oLZFDWsvJEeZXz6Andc+wpYCNh3FNoRO0+lIhuFdzXhf2a9mVqV3TmkgUW4KojH03kEGzudsZ+9ZZuKOe2TevHA58atabSiKQfg7T2q1EmNObpcEacxFiVsmT8DgbkHjN+AftsFulUKPA9kzfSYmfAX238Ib4aSKcvpONPi/RKzh5ee3 kklimonda@noise
+  pcarver:
+    comment: Paul Carver
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmsdQ2eoTcTQ5nkPergqoghiiejRNLJN2lgrVTlpunCKPZQRDkamNAKVepHMyfsJdXZY1xpIxM2VAYYFA7M+FlYQowRiNec3vHyOBxQR/i/1VT/BDUjNVH6oBZh9iRFr11Ep+gBsQIUuyHQLKk4pHiwQhSzYfoDwiON3/XJIhJyC8E9Slu48X2nGmTJ7xZgBLSx/Km/6tlWkDLibl0hO53th/eiRKzsJqnmfyhYFUHIea41d/70QbBUPKQ3n0xAWicjjElGAYraaBnO77hL+ZQ+iTFKklmME2aG5Zml83mhsj0pfRAWbct7nSK7rgVX6tsn5h+LLm4xs0ARexjsUMbQ== Paul Carver pcarver@att.com 
