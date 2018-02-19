@@ -1,0 +1,23 @@
+# ************************************
+# Managed by Puppet
+# ************************************
+
+<VirtualHost *:80>
+    ServerName <%= @vhost_name %>
+    DocumentRoot <%= @docroot %>
+
+    LogLevel warn
+    ErrorLog /var/log/apache2/<%= @vhost_name %>_error.log
+    CustomLog /var/log/apache2/<%= @vhost_name %>_access.log combined
+    ServerSignature Off
+
+    <Directory <%= @docroot %>>
+        Options Indexes FollowSymLinks MultiViews
+        AllowOverride None
+        AllowOverrideList Redirect RedirectMatch
+        Satisfy Any
+        Require all granted
+    </Directory>
+
+</VirtualHost>
+

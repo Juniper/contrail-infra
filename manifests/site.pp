@@ -56,3 +56,8 @@ node /repo.opencontrail.org/ {
   class { '::opencontrail_ci::pulp_server': }
   class { '::opencontrail_ci::pulp_public_repo': }
 }
+
+node /aptmirror\d+(-dev|-jnpr|-ttu)?.opencontrail.org/ {
+      class { '::opencontrail_ci::server': }
+      class { '::opencontrail_ci::aptmirror': }
+}
