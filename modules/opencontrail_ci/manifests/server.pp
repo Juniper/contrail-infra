@@ -2,6 +2,11 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   include ::opencontrail_ci::groups
   include ::opencontrail_ci::users
 
+  include ::ntp
+  class { '::timezone':
+    timezone => 'UTC',
+  }
+
   class { '::firewall': }
   case $::osfamily {
     'RedHat': {

@@ -1,5 +1,10 @@
 class opencontrail_ci::pulp_ci_repo inherits opencontrail_ci::params {
 
+    firewall { '100 accept all tcp - docker registries per-review':
+        proto  => 'tcp',
+        action => 'accept',
+    }
+
     pulp_rpmrepo { 'opencontrail-tpc':
         ensure        => present,
         display_name  => 'opencontrail-tpc',
