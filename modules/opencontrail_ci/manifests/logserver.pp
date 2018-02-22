@@ -6,6 +6,7 @@ class opencontrail_ci::logserver (
   $template = 'opencontrail_ci/logserver.vhost.erb',
   $cert_file = "/etc/ssl/private/${::clientcert}.crt",
   $key_file = "/etc/ssl/private/${::clientcert}.key",
+  $logfiles_ttl = 30,
 ) inherits opencontrail_ci::params {
 
   firewall { '200 accept all to 80 for Apache2':
@@ -163,6 +164,33 @@ class opencontrail_ci::logserver (
         File[$key_file],
         Httpd::Mod['rewrite'],
         Httpd::Mod['wsgi'],
+    ],
+  }
+
+  file { '/opt/opencontrail_ci':
+      ensure => directory,
+      mode   => '0700',
+      owner  => 'root',
+  }
+
+  file { '/opt/opencontrail_ci/log_curator.sh':
+    ensure  => file,
+    source => 'puppet:///modules/opencontrail_ci/logs/log_curator.sh',
+    mode    => '0700',
+    owner   => 'root',
+    require => [
+        File['/opt/opencontrail_ci/']
+    ],
+  }
+
+  cron { 'log_curator':
+    command  => "/opt/opencontrail_ci/log_curator.sh -p ${docroot} -d ${logfiles_ttl}",
+    user     => 'root',
+    minute   => '0',
+    hour     => '0',
+    monthday => '*/1',
+    require  => [
+        File['/opt/opencontrail_ci/log_curator.sh']
     ],
   }
 }
