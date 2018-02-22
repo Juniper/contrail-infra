@@ -124,7 +124,7 @@ class opencontrail_ci::pulp_server(
 
   file { '/opt/opencontrail_ci/artifact_curator.py':
     ensure  => file,
-    content => 'puppet:///modules/opencontrail_ci/pulp/artifact_curator.py',
+    source  => 'puppet:///modules/opencontrail_ci/pulp/artifact_curator.py',
     mode    => '0700',
     owner   => 'root',
     require => [
