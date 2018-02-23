@@ -17,9 +17,6 @@ clouds:
     image_endpoint_override:   '<%= @cloud_credentials['jnpr-contrail-ci']['image_endpoint_override'] %>'
     network_endpoint_override: '<%= @cloud_credentials['jnpr-contrail-ci']['network_endpoint_override'] %>'
     networks:
-      - name: test_net
-        routes_externally: False
       - name: public
         routes_externally: True
-      - name: ci-zuulv3-internal
-        nat_destination: True
+
