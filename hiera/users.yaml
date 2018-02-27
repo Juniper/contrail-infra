@@ -13,3 +13,10 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAQEAmsdQ2eoTcTQ5nkPergqoghiiejRNLJN2lgrVTlpunCKPZQRDkamNAKVepHMyfsJdXZY1xpIxM2VAYYFA7M+FlYQowRiNec3vHyOBxQR/i/1VT/BDUjNVH6oBZh9iRFr11Ep+gBsQIUuyHQLKk4pHiwQhSzYfoDwiON3/XJIhJyC8E9Slu48X2nGmTJ7xZgBLSx/Km/6tlWkDLibl0hO53th/eiRKzsJqnmfyhYFUHIea41d/70QbBUPKQ3n0xAWicjjElGAYraaBnO77hL+ZQ+iTFKklmME2aG5Zml83mhsj0pfRAWbct7nSK7rgVX6tsn5h+LLm4xs0ARexjsUMbQ== Paul Carver pcarver@att.com 
+  prabhjot:
+    comment: Prabhjot Singh Sethi
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCyT+Qj+mLEaj18Pb+TGPU4e1ZcZ4hBCXz0HNk6u2clHp5GYjT2AlvVxELJvE2KyIdpBwZVca+r2uAt58TQoGPH7/gWH0/9YkRC1Wy+MU0XMQOLRqNk/+AbxjUhQrvHGJ8Dpk7zPdbV6+TU7Jo0mPu/ANGWkrZooQargmjdoFkEboS7yw3iMkgQOaaIUZWRPGow5Nm2GI2jEZ1ZZWSUUTlg8KN4YVBP1soedOY+6qeMQDoyUTmFP6A3UgDwidHztLsJJw1tvgE/TgB6m1VwK56nP3RhHpGPGS1X2PeNoyqu3w7sRhsW/nQiMJ4UublkF9Lg5DxYikN7ujXz48/KvGyZ prabhjot@techtrueup.com
