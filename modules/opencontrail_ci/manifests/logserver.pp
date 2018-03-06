@@ -175,7 +175,7 @@ class opencontrail_ci::logserver (
 
   file { '/opt/opencontrail_ci/log_curator.sh':
     ensure  => file,
-    source => 'puppet:///modules/opencontrail_ci/logs/log_curator.sh',
+    source  => 'puppet:///modules/opencontrail_ci/logs/log_curator.sh',
     mode    => '0700',
     owner   => 'root',
     require => [

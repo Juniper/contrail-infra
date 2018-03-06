@@ -23,3 +23,14 @@ clouds:
         routes_externally: True
       - name: ci-zuulv3-internal
         nat_destination: True
+  jnpr-contrail-ci-c:
+    auth:
+      auth_url:     '<%= @cloud_credentials['jnpr-contrail-ci-c']['auth']['auth_url'] %>'
+      username:     '<%= @cloud_credentials['jnpr-contrail-ci-c']['auth']['username'] %>'
+      password:     '<%= @cloud_credentials['jnpr-contrail-ci-c']['auth']['password'] %>'
+      project_name: '<%= @cloud_credentials['jnpr-contrail-ci-c']['auth']['project'] %>'
+    interface: public
+    identity_api_version: '3'
+    networks:
+      - name: ci-zuulv3-internal
+        nat_destination: True
