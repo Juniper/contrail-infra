@@ -27,5 +27,10 @@ class opencontrail_ci::zuul_executor inherits opencontrail_ci::params {
     }
   }
 
+  package { "python3-jmespath":
+    ensure => present,
+    before => Class['::zuul::executor'],
+  }
+
   class { '::zuul::executor': }
 }
