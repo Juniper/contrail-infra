@@ -3,6 +3,7 @@ class opencontrail_ci::logserver (
   $logserver_ssl_cert = undef,
   $zuul_jobs_stats = undef,
   $docroot = '/var/www/logs/',
+  $static_docroot = '/var/www/static/',
   $template = 'opencontrail_ci/logserver.vhost.erb',
   $cert_file = "/etc/ssl/private/${::clientcert}.crt",
   $key_file = "/etc/ssl/private/${::clientcert}.key",
@@ -148,6 +149,14 @@ class opencontrail_ci::logserver (
     notify => Service['httpd'],
   }
 
+  file { $static_docroot:
+    ensure => 'directory',
+    owner  => 'root',
+    group  => 'root',
+    mode   => '1777',
+    notify => Service['httpd'],
+  }
+
   class { '::httpd::mod::wsgi': }
   ::httpd::mod { 'rewrite': }
 
@@ -160,6 +169,7 @@ class opencontrail_ci::logserver (
     vhost_name => $::clientcert,
     require    => [
         File[$docroot],
+        File[$static_docroot],
         File[$cert_file],
         File[$key_file],
         Httpd::Mod['rewrite'],
