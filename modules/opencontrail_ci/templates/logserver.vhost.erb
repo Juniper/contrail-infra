@@ -11,6 +11,9 @@
     CustomLog /var/log/apache2/<%= @vhost_name %>_access.log combined
     ServerSignature Off
 
+    Alias "/static/" "<%= @static_docroot %>"
+    Alias "/static" "<%= @static_docroot %>"
+
     <Directory <%= @docroot %>>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride None
