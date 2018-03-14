@@ -16,10 +16,7 @@ node /puppetdb-ttu.opencontrail.org/ {
 
 node /logs-ttu.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
-  class { '::opencontrail_ci::logserver':
-    logserver_ssl_key  => hiera('logserver_ssl_key'),
-    logserver_ssl_cert => hiera('logserver_ssl_cert'),
-  }
+  class { '::opencontrail_ci::logserver': }
 }
 
 node /zuulv3-ttu.opencontrail.org/ {
