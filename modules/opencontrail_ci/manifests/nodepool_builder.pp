@@ -77,11 +77,11 @@ class opencontrail_ci::nodepool_builder(
   exec {'nodepool-inject-secrets':
     command     => 'python /opt/nodepool-inject-secrets.py /etc/nodepool/nodepool.yaml.tmpl rhel-7 > /etc/nodepool/nodepool.yaml',
     environment => [
-      "DINJ_REG_USER=${rhel_username}",
-      "DINJ_REG_PASSWORD=${rhel_password}",
-      "DINJ_REG_POOL_ID=${rhel_pool_id}",
-      "DINJ_DIB_LOCAL_IMAGE=${rhel_local_image}",
-      "DINJ_REG_METHOD=${rhel_reg_method}",
+      "INJECT_REG_USER=${rhel_username}",
+      "INJECT_REG_PASSWORD=${rhel_password}",
+      "INJECT_REG_POOL_ID=${rhel_pool_id}",
+      "INJECT_DIB_LOCAL_IMAGE=${rhel_local_image}",
+      "INJECT_REG_METHOD=${rhel_reg_method}",
       ],
     path        => '/usr/bin',
     logoutput   => false,
