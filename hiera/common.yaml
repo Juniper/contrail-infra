@@ -92,6 +92,8 @@ nodepool::elements_dir:             "/etc/project-config/nodepool/elements"
 nodepool::require:                  Vcsrepo[/etc/project-config]
 nodepool::install_mysql:            false
 nodepool::install_nodepool_builder: false
+opencontrail_ci::nodepool_builder::rhel_local_image:         "/opt/cloud_images/rhel-server-7.4-update-4-x86_64-kvm.qcow2"
+opencontrail_ci::nodepool_builder::rhel_reg_method:          "portal"
 
 ## ZooKeeper configuration
 # Override the port zookeeper is listening on to work around
