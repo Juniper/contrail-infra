@@ -40,24 +40,7 @@ class opencontrail_ci::nodepool_launcher(
     require => File['/home/nodepool/.config'],
   }
 
-  file { '/opt/nodepool-inject-secrets.py':
-    source => 'puppet:///modules/opencontrail_ci/nodepool-inject-secrets.py',
-    owner  => 'root',
-    group  => 'root',
-  }
-
-  exec {'nodepool-inject-secrets':
-    command     => 'python /opt/nodepool-inject-secrets.py /etc/nodepool/nodepool.yaml.tmpl rhel-7 > /etc/nodepool/nodepool.yaml',
-    environment => [
-      "DINJ_REG_USER=${::nodepool::rhel_username}",
-      "DINJ_REG_PASSWORD=${::nodepool::rhel_password}",
-      "DINJ_REG_POOL_ID=${::nodepool::rhel_pool_id}",
-      ],
-    logoutput   => false,
-    require     => File['/opt/nodepool-inject-secrets.py'],
-  }
-
-  file { '/etc/nodepool/nodepool.yaml.tmpl':
+  file { '/etc/nodepool/nodepool.yaml':
     ensure  => present,
     source  => $::project_config::nodepool_config_file,
     owner   => 'nodepool',
