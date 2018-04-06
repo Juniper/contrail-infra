@@ -1,5 +1,10 @@
 class opencontrail_ci::nodepool_builder(
-  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials
+  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials,
+  $rhel_reg_method = hiera('rhel_reg_method'),
+  $rhel_username = hiera('rhel_username'),
+  $rhel_password = hiera('rhel_password'),
+  $rhel_local_image = hiera('rhel_local_imae'),
+  $rhel_pool_id = hiera('rhel_pool_id')
 ) inherits opencontrail_ci::params {
 
   if ! defined(Class['project_config']) {
@@ -22,7 +27,7 @@ class opencontrail_ci::nodepool_builder(
     group   => 'nodepool',
     require => [
       User['nodepool'],
-    ],
+      ],
   }
 
   file { '/home/nodepool/.ssh/zuul-executor.pub':
@@ -39,7 +44,7 @@ class opencontrail_ci::nodepool_builder(
     group   => 'nodepool',
     require => [
       File['/home/nodepool/.config'],
-    ],
+      ],
   }
 
   file { '/home/nodepool/.config/openstack/clouds.yaml':
@@ -51,7 +56,36 @@ class opencontrail_ci::nodepool_builder(
     require => File['/home/nodepool/.config'],
   }
 
-  file { '/etc/nodepool/nodepool.yaml':
+  file { '/opt/cloud_images':
+    ensure  => directory,
+    owner   => 'nodepool',
+    group   => 'nodepool',
+    require => [
+      User['nodepool'],
+      ],
+  }
+
+  file { '/opt/nodepool-inject-secrets.py':
+    source => 'puppet:///modules/opencontrail_ci/nodepool-inject-secrets.py',
+    owner  => 'root',
+    group  => 'root',
+  }
+
+  exec {'nodepool-inject-secrets':
+    command     => 'python /opt/nodepool-inject-secrets.py /etc/nodepool/nodepool.yaml.tmpl rhel-7 > /etc/nodepool/nodepool.yaml',
+    environment => [
+      "INJECT_REG_USER=${rhel_username}",
+      "INJECT_REG_PASSWORD=${rhel_password}",
+      "INJECT_REG_POOL_ID=${rhel_pool_id}",
+      "INJECT_DIB_LOCAL_IMAGE=${rhel_local_image}",
+      "INJECT_REG_METHOD=${rhel_reg_method}",
+      ],
+    path        => '/usr/bin',
+    logoutput   => false,
+    require     => File['/opt/nodepool-inject-secrets.py'],
+  }
+
+  file { '/etc/nodepool/nodepool.yaml.tmpl':
     ensure  => present,
     source  => $::project_config::nodepool_config_file,
     owner   => 'nodepool',
@@ -61,6 +95,7 @@ class opencontrail_ci::nodepool_builder(
       File['/etc/nodepool'],
       User['nodepool'],
       Class['project_config'],
-    ],
+      ],
+    notify  => Exec['nodepool-inject-secrets'],
   }
 }
