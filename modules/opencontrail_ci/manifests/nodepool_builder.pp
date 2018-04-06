@@ -1,11 +1,11 @@
 class opencontrail_ci::nodepool_builder(
   $cloud_credentials = $::opencontrail_ci::params::cloud_credentials,
   $statsd_host       = $::nodepool::statsd_host,
-  $rhel_reg_method   = hiera('rhel_reg_method'),
-  $rhel_username     = hiera('rhel_username'),
-  $rhel_password     = hiera('rhel_password'),
-  $rhel_local_image  = hiera('rhel_local_imae'),
-  $rhel_pool_id      = hiera('rhel_pool_id')
+  $rhel_reg_method   = $::opencontrail_ci::nodepool_builder::rhel_reg_method,
+  $rhel_username     = $::opencontrail_ci::nodepool_builder::rhel_username,
+  $rhel_password     = $::opencontrail_ci::nodepool_builder::rhel_password,
+  $rhel_local_image  = $::opencontrail_ci::nodepool_builder::rhel_local_image,
+  $rhel_pool_id      = $::opencontrail_ci::nodepool_builder::rhel_pool_id
 ) inherits opencontrail_ci::params {
 
   if ! defined(Class['project_config']) {
