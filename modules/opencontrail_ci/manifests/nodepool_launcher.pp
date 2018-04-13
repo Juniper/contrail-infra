@@ -1,5 +1,6 @@
 class opencontrail_ci::nodepool_launcher(
-  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials
+  $cloud_credentials = $::opencontrail_ci::params::cloud_credentials,
+  $statsd_host       = $::nodepool::statsd_host
 ) inherits opencontrail_ci::params {
 
   if ! defined(Class['project_config']) {
@@ -55,8 +56,7 @@ class opencontrail_ci::nodepool_launcher(
   }
 
   class { '::nodepool::launcher':
-    statsd_host   => undef,
-    statsd_prefix => undef,
+    statsd_host   => $::nodepool::statsd_host,
   }
 
 }
