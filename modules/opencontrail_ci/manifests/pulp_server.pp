@@ -140,5 +140,4 @@ class opencontrail_ci::pulp_server(
         File['/opt/opencontrail_ci/artifact_curator.py']
     ],
   }
-
 }
