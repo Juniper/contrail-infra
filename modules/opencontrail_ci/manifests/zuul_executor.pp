@@ -2,6 +2,14 @@ class opencontrail_ci::zuul_executor inherits opencontrail_ci::params {
 
   include ::zuul::known_hosts
 
+  package { 'python3-mysqldb':
+      ensure => installed,
+  }
+
+  package { 'mysql-client':
+      ensure => installed,
+  }
+
   firewall { '100 accept all to 3306 - build number db':
     proto  => 'tcp',
     dport  => '3306',
