@@ -60,4 +60,23 @@ class opencontrail_ci::pulp_ci_repo inherits opencontrail_ci::params {
         checksum_type => 'sha256',
         feed          => 'http://mirrors.mit.edu/epel/7/x86_64/',
     }
+    
+    file { '/opt/opencontrail_ci/repo_sync.sh':
+        ensure  => file,
+        source  => 'puppet:///modules/opencontrail_ci/pulp/repo_sync.sh',
+        mode    => '0700',
+        owner   => 'root',
+        require => [
+            File['/opt/opencontrail_ci']
+        ],
+    }
+
+    cron { 'sync_repos':
+        command => '/opt/opencontrail_ci/repo_sync.sh'
+        user    => 'root',
+        hour    => '1',
+        require => [
+            File['/opt/opencontrail_ci/repo_sync.sh']
+        ],
+    }
 }
