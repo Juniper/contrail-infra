@@ -76,51 +76,23 @@ class opencontrail_ci::logserver (
   }
 
   vcsrepo { '/opt/zuul-jobs-stats':
-    ensure   => latest,
-    provider => 'git',
-    revision => 'master',
-    source   => 'https://github.com/codilime/zuul-jobs-stats',
-  }
-
-  exec { 'install_zuul-jobs-stats':
-    command   => 'pip install -r requirements.txt',
-    path      => '/usr/local/bin:/usr/bin:/bin/',
-    cwd       => '/opt/zuul-jobs-stats',
-    subscribe => Vcsrepo['/opt/zuul-jobs-stats'],
-    require   => Package['python-pip'],
+    ensure   => absent,
   }
 
   file { '/opt/zuul-jobs-stats/settings.ini':
-    ensure  => file,
-    content => template('opencontrail_ci/zuul-jobs-stats-settings.ini.erb'),
-    mode    => '0600',
-    owner   => 'root',
-    require => Vcsrepo['/opt/zuul-jobs-stats'],
+    ensure  => absent,
   }
 
   file { '/opt/zuul-jobs-stats/cron-config.sh':
-    ensure  => file,
-    content => inline_template('export LOGS_DIR=<%= @docroot %>'),
-    mode    => '0600',
-    owner   => 'root',
+    ensure  => absent,
   }
 
   file { '/etc/logrotate.d/zuul-jobs-stats':
-    ensure  => file,
-    content => 'puppet:///modules/opencontrail_ci/zuul-jobs-stats/logrotate',
-    mode    => '0600',
-    owner   => 'root',
+    ensure  => absent,
   }
 
   cron { 'zuul-jobs-stats':
-    command => 'bash /opt/zuul-jobs-stats/cron.sh',
-    user    => 'root',
-    hour    => '*/6',
-    require => [
-        File['/opt/zuul-jobs-stats/cron-config.sh'],
-        File['/opt/zuul-jobs-stats/settings.ini'],
-        Package['jq'],
-    ],
+    ensure => absent,
   }
 
   file { $key_file:
