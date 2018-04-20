@@ -55,6 +55,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCUgIpDxcjKvWhSdmghJwadlAOP0fXQIT4NjgWjMrxsKIXuaXpF0E/FK95A5SyR4J+AfLZikeuQJn2gydHjUSg+MrANz9/74MtujILkb17Dt/9jaujHQjwa8OQr3AANzgGzLTPBJ9BT+z3J/Jqrpc5S6HaTP+1xeFcwcXxjNeVX/oZ+GeY/aSzuAYGblsTFezPHWZejTsCJr6R/6hrQ88OW0OCDO/oo/LoSUTRmG1TO9gvogVlUB+aY+dmL2fj42f7GFVdWICCFJBIPIx4i1EGiQIiV/zCHVeh9Cd0JgC/AnGlPhPz/GyQJeyQR49glc3oaVKQeH8KaCe8A4zV6aztd kuljinder@ttsv-shell101
+  abhayj:
+    comment: Abhay Joshi
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVR1LISJh+dGUN4v/Gf6wYI7XlOdDv6lDtG5N3QoCETpW3oto3YRfxMw+XfaVW0FP/baBFixEUV1Uraw44npV3RKuV9eDTv9VU+rUWZ+axcnllbmR1Uk7kPQIyEinN7X3+RGOr7LMtfmDV+1oOG66h77KNoK6iy0eo7ancQ3Wfc+1JgCe2/nbFYNClZCeYZJW9rEuWnC+adwxmiKI1e8V5KBGT2iNSJ41RPqJYegAi4WE6LjBjw2OOXIkfiKhkY0QufVII3fcSNjZ8ARt+BS1C1U808iFLyrvOYkcQCRhKdDC/drZgNlVlAQmkWzBz7ObxUnlbeU6k2k6aQaqkOGpqyu+RJJOwjqbupo6G6bDKkIsijt7d6QoQiM7BP/ATsrE9PGEQMXMWVLw/POr4CwXF2rWbIAKiB+STdEGGEjsLZX0K445tW+qXIg/lopZPB2ITAJin8+k7L6TgRvWoRY/lvOws1Xx7fsWd9wO0BJdzgptUe2/HqVAh7fJuyLlJ0LwO022AJ/llmtqBnY8O8GwxPmWjs43pZYypHEg3mthbCZaWb1XeeMBE28rustlNdAlxp+MY4I2h8ZOr2Dryr2S3UaVRCL3IwA3aaH9jSF+CaoyvKYBfbKm1ubCVv9hdgCqOcQj9VPdneaZDd5ox2TciatKqO6ORae8mCPQW36tU5w== abhayj@juniper.net
   bil:
     comment: Michal Bilski
     ensure: absent
