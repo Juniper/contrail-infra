@@ -62,6 +62,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVR1LISJh+dGUN4v/Gf6wYI7XlOdDv6lDtG5N3QoCETpW3oto3YRfxMw+XfaVW0FP/baBFixEUV1Uraw44npV3RKuV9eDTv9VU+rUWZ+axcnllbmR1Uk7kPQIyEinN7X3+RGOr7LMtfmDV+1oOG66h77KNoK6iy0eo7ancQ3Wfc+1JgCe2/nbFYNClZCeYZJW9rEuWnC+adwxmiKI1e8V5KBGT2iNSJ41RPqJYegAi4WE6LjBjw2OOXIkfiKhkY0QufVII3fcSNjZ8ARt+BS1C1U808iFLyrvOYkcQCRhKdDC/drZgNlVlAQmkWzBz7ObxUnlbeU6k2k6aQaqkOGpqyu+RJJOwjqbupo6G6bDKkIsijt7d6QoQiM7BP/ATsrE9PGEQMXMWVLw/POr4CwXF2rWbIAKiB+STdEGGEjsLZX0K445tW+qXIg/lopZPB2ITAJin8+k7L6TgRvWoRY/lvOws1Xx7fsWd9wO0BJdzgptUe2/HqVAh7fJuyLlJ0LwO022AJ/llmtqBnY8O8GwxPmWjs43pZYypHEg3mthbCZaWb1XeeMBE28rustlNdAlxp+MY4I2h8ZOr2Dryr2S3UaVRCL3IwA3aaH9jSF+CaoyvKYBfbKm1ubCVv9hdgCqOcQj9VPdneaZDd5ox2TciatKqO6ORae8mCPQW36tU5w== abhayj@juniper.net
+  kravvcu:
+    comment: Michal Krawczyk
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtAu6vDs3DI6sAX48HZfUVAgX9xG21H0XPVK749UOJJhWLURS+OyD6LtwUtUYBAuzKNEp1Tx0TX8mHEfPAw+nCt54a5S3BdIvw1255gv4zhuhzCcgK/D7vkjzvMIrsrp6EvF4EFDeJKfADaYwL5cT/VgIMqvjDnQFb+ODSKgpPkxru/pZ8aVHfYUrQh+Gk9hdOI9ILia68TV/sqWipZd0ZgpTBgzmzaJ8HGaVEHoufn+Ou9QBioO84ueWR4oVfVlUNOFu8GKM6oXud2AWFdQ1UJihpaEjImq76IRVlgq60zNswMVhZhj1mAj/i+j1VH8WvYv3UtPVBIevJUTtK/CTV kravvcu@kravvcu
   bil:
     comment: Michal Bilski
     ensure: absent
