@@ -12,7 +12,7 @@ import subprocess
 import sys
 
 from docker import Client
-from docker.errors import NotFound
+from docker.errors import NotFound, APIError
 
 """
 This script will remove all registry containers created by buildsets that have already finished
@@ -22,6 +22,20 @@ TODO: remove pulp rpm repos
 
 logger = logging.getLogger('artifact_curator')
 review_re = re.compile(r"""^\d+-\d+$""")
+version_re = r"""\d+(\.\d+)+|master"""
+
+# Regexp to match only review repositories:
+#   - 37999-1-centos
+#   - 38123-12-redhat
+review_repo_regex = re.compile(r"""^\d+-\d+-(centos|redhat)$""")
+# Regexp to match only nightly repositories:
+#   - master-1-centos
+#   - 5.0-12-redhat
+nightly_repo_regex = re.compile(r"""^""" + version_re + r"""-\d+-(centos|redhat)$""")
+nightly_registry_regex = re.compile(r"""^registry_(""" + version_re + r""")_\d+_[a-f0-9]+$""")
+version_re = re.compile(version_re)
+nightly_keep_days = 21
+
 
 def get_running_containers():
     """Get a list of running per-review docker registry containers
@@ -36,11 +50,12 @@ def get_running_containers():
     registries = []
     for container in containers:
         logger.info(str(container['Names']))
+        created = datetime.datetime.fromtimestamp(container['Created'])
         assert len(container['Names']) > 0
         name = container['Names'][0]
         if name.startswith('/registry_'):
             _, change, patchset, buildset = name.split('_')
-            registries.append({'change': change, 'patchset': patchset, 'buildset': buildset})
+            registries.append({'change': change, 'patchset': patchset, 'buildset': buildset, 'timestamp': created, 'name': name[1:]})
     return registries
 
 
@@ -77,34 +92,34 @@ def get_pulp_repositories():
 
     repos = []
 
-    # Regexp to match only review repositories:
-    #   - 37999-1
-    #   - 38123-12
-    #   - 5.0-20180202121314
-    #   - 5.1-20180202121314
-    #   - master-20180202121314
-    #
-    # This wont match any of the static repositories, e.g.
-    # centos74, opencontrail-tpc, centos74-updates
-    review_repo_re = r"""^(R\d+\.\d+|\d+|master)-\d+$"""
-
     pulp_repo_list = \
-        subprocess.check_output(["/bin/pulp-admin", "rpm", "repo", "list", "--fields", "id"]).split("\n")
+        subprocess.check_output(["/bin/pulp-admin", "rpm", "repo", "list", "--details"]).split("\n")
+    # due to multiple "Last Updated" lines in output we need to make sure that we emit each repo only once
+    # use this flag for it
+    record_started = False
     for line in pulp_repo_list:
-        if not line.startswith("Id:"):
-            continue
-        repo = line.split(" ")[1]
-        if re.match(review_repo_re, repo):
-            repos.append(repo)
+        #logger.info('AAA: ' + line)
+        if line.startswith("Id:"):
+	    repo = line.split()[1]
+            record_started = True
+        if line.startswith("  Last Updated:") and record_started:
+	    timestamp = line.split()[-1]
+            # Example pulp output time format: 2018-05-01T06:19:25Z
+            timestamp = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
+            # append repo to the list only if it is nightlty or per-review: ignore static ones
+            if re.match(review_repo_regex, repo) or re.match(nightly_repo_regex, repo):
+                repos.append({"name": repo, "timestamp": timestamp})
+            record_started = False
 
     # XXX(kklimonda): development-only, verify that static repositories are not returned
     def assert_not_static_repo(repos):
         static_repos = [
             "centos74", "centos74-epel", "centos74-extras",
-            "centos74-updates", "opencontrail-tpc", "repo1", "repo2"
+            "centos74-updates", "opencontrail-tpc", "repo1",
+            "repo2", "opencontrail-tpc-R5.0", "opencontrail-tpc-master"
         ]
         for repo in repos:
-            assert repo not in static_repos
+            assert repo['name'] not in static_repos
 
     assert_not_static_repo(repos)
 
@@ -112,37 +127,56 @@ def get_pulp_repositories():
     return repos
 
 
-def delete_pulp_repos(repo_list, active_buildsets, dry_run=True):
+def check_call(command, dry_run=True):
+    """Wrapper for subprocess.check_call with dry_run support"""
+    if dry_run:
+        logger.debug("DRY_RUN: %s", " ".join(command))
+    else:
+        subprocess.check_call(command)
+
+
+def delete_pulp_repos(repo_list, active_buildsets, nightly_retention_days, dry_run=True):
     """Delete Pulp repositories that are not part of the running buildsets"""
     logger.info("STAGE: Deleting Pulp RPM repositories")
-    active_changesets = [set_['change'] + "-" + set_['patchset'] for set_ in active_buildsets if set_['change'] and set_['patchset']]
+    active_changesets = [set_['change'] + "-" + set_['patchset'] + "-centos" for set_ in active_buildsets if set_['change'] and set_['patchset']]
     cleanup_list = []
+    threshold_date = datetime.datetime.now()-datetime.timedelta(days=nightly_retention_days)
     for repo in repo_list:
-        if repo in active_changesets:
+        if repo['name'] in active_changesets:
             logger.info("Repository %s part of active buildset - skipping", repo)
             continue
-        if re.match(review_re, repo):
+        if re.match(review_repo_regex, repo['name']):
             logger.info("Repository %s scheduled for deletion -- matching buildset missing", repo)
-            cleanup_list.append(repo)
-
+            cleanup_list.append(repo['name'])
+        if re.match(nightly_repo_regex, repo['name']):
+            if repo['timestamp'] < threshold_date:
+                logger.info("Repository %s scheduled for deletion -- too old", repo)
+                cleanup_list.append(repo['name'])
+    print(cleanup_list)
     for repo in cleanup_list:
-        command = ["/bin/pulp-admin", "rpm", "repo", "delete", "--repo-id", repo]
-        if dry_run:
-            logger.debug("DRY_RUN: %s", " ".join(command))
-        else:
-            subprocess.check_call(command)
+        delete_repo_command = ["/bin/pulp-admin", "rpm", "repo", "delete", "--repo-id", repo]
+        check_call(delete_repo_command, dry_run)
+    delete_orphans_command = ["/bin/pulp-admin", "orphan", "remove", "--type=rpm"]
+    check_call(delete_orphans_command, dry_run)
 
 
-def delete_containers(container_list, active_buildsets, dry_run=True):
+def delete_containers(container_list, active_buildsets, nightly_retention_days, dry_run=True):
     """Delete all containers that are not part of active buildsets"""
     logger.info("STAGE: Deleting Containers")
     to_delete = []
     active_buildset_ids = [x['buildset'] for x in active_buildsets]
+    threshold_date = datetime.datetime.now()-datetime.timedelta(days=nightly_retention_days)
     for cont in container_list:
-        if not re.match(review_re, "{change}-{patchset}".format(**cont)) or cont['buildset'] in active_buildset_ids:
+        if cont['buildset'] in active_buildset_ids:
             logger.info('Will not remove ' + str(cont))
+        elif re.match(nightly_registry_regex, cont['name']):
+            if cont["timestamp"] < threshold_date:
+                logger.info('Will remove ' + str(cont) + ': too old')
+                to_delete.append(cont)
+            else:
+                logger.info('Will not remove ' + str(cont) + ': too fresh')
         else:
-            logger.info('Will remove ' + str(cont))
+            logger.info('Will remove ' + str(cont) + ': matching buildset missing')
             to_delete.append(cont)
 
     logger.info('Will remove {} containers'.format(len(to_delete)))
@@ -159,6 +193,10 @@ def delete_containers(container_list, active_buildsets, dry_run=True):
             except NotFound as nf:
                 logger.error('Container {} not found'.format(name))
                 logger.error(str(nf))
+            except APIError as ae:
+                logger.error('Docker API returned error during removal of {} container'.format(name))
+                logger.error(str(ae))
+                sys.exit(1)
 
 
 def set_logging(args):
@@ -189,6 +227,7 @@ def main():
     parser.add_argument("--debug", action="store_true", help="Output debug messages")
     parser.add_argument("--dry-run", action="store_true", help="Don't delete anything")
     parser.add_argument("--yes", action="store_true", help="Don't ask any questions - just delete")
+    parser.add_argument("--nightly-retention-days", type=int, help="Set the number of days nightly repos and registries should be kept", required=True)
     args = parser.parse_args()
 
     set_logging(args)
@@ -208,8 +247,8 @@ def main():
             print("Cancelled by user. Exiting.")
             sys.exit(0)
 
-    delete_containers(container_list, active_buildsets, dry_run=args.dry_run)
-    delete_pulp_repos(pulp_repo_list, active_buildsets, dry_run=args.dry_run)
+    delete_containers(container_list, active_buildsets, args.nightly_retention_days, dry_run=args.dry_run)
+    delete_pulp_repos(pulp_repo_list, active_buildsets, args.nightly_retention_days, dry_run=args.dry_run)
 
 if __name__ == "__main__":
     main()
