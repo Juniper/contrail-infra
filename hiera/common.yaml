@@ -78,6 +78,13 @@ zuul::connections:
   - name:   'stats'
     driver: 'sql'
 
+  - name:   'smtp'
+    driver: 'smtp'
+    server: 'review.opencontrail.org'
+    port:   '25'
+    default_from: 'zuulv3-dev@opencontrail.org'
+    default_to:   'ci-admin@opencontrail.org'
+
 zuul::zookeeper_hosts: "zuulv3-dev.opencontrail.org:3389"
 
 # Configure connection to local statsd collector (collectd plugin)
