@@ -7,7 +7,7 @@ class opencontrail_ci::logserver (
   $template = 'opencontrail_ci/logserver.vhost.erb',
   $cert_file = "/etc/ssl/private/${::clientcert}.crt",
   $key_file = "/etc/ssl/private/${::clientcert}.key",
-  $logfiles_ttl = 21,
+  $logfiles_ttl = 30,
 ) inherits opencontrail_ci::params {
 
   firewall { '200 accept all to 80 for Apache2':
