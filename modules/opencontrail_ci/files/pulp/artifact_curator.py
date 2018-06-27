@@ -189,6 +189,7 @@ def delete_containers(container_list, active_buildsets, nightly_retention_days, 
     logger.info('Will not remove %s containers', len(container_list) - len(to_delete))
 
     cli = Client()
+    removed_something = False
     for cont in to_delete:
         name = 'registry_{change}_{patchset}_{buildset}'.format(**cont)
         if dry_run:
@@ -196,12 +197,15 @@ def delete_containers(container_list, active_buildsets, nightly_retention_days, 
         else:
             try:
                 c = cli.remove_container(name, v=True, force=True)
+                removed_something = True
             except NotFound as nf:
                 logger.error('Container %s not found', name)
                 logger.error(str(nf))
             except APIError as ae:
                 logger.error('Docker API returned an error during removal of %s container', name)
                 logger.error(str(ae))
+    if removed_something:
+        check_call(["docker", "volume", "prune", "-f"], dry_run)
 
 
 def set_logging(args):
