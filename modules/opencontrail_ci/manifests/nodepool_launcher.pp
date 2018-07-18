@@ -52,7 +52,6 @@ class opencontrail_ci::nodepool_launcher(
       User['nodepool'],
       Class['project_config'],
       ],
-    notify  => Exec['nodepool-inject-secrets'],
   }
 
   class { '::nodepool::launcher':
