@@ -146,4 +146,17 @@ class opencontrail_ci::mirror (
       'create 640 root adm',
       ],
   }
+
+  firewall { '200 accept all to 80 for Apache2':
+    proto  => 'tcp',
+    dport  => '80',
+    action => 'accept',
+  }
+
+  firewall {'201 accept all to 443 for Apache2':
+    proto  => 'tcp',
+    dport  => '443',
+    action => 'accept',
+  }
+
 }
