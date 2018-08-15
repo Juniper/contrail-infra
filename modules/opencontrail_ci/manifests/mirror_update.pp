@@ -15,7 +15,7 @@ class opencontrail_ci::mirror_update {
     basedir       => '/opt/mirror/ubuntu',
     distributions => 'opencontrail_ci/reprepro/distributions.ubuntu.erb',
     updates_file  => 'puppet:///modules/opencontrail_ci/reprepro/debuntu-updates',
-    releases      => ['trusty'],
+    releases      => ['trusty', 'xenial'],
   }
 
   cron { 'reprepro ubuntu':
