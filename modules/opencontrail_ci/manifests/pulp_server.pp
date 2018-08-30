@@ -133,7 +133,7 @@ class opencontrail_ci::pulp_server(
   }
 
   cron { 'artifact_curator':
-    command => '/opt/opencontrail_ci/artifact_curator.py',
+    command => '/opt/opencontrail_ci/artifact_curator.py --yes --nightly-retention-days 21',
     user    => 'root',
     hour    => '*/4',
     require => [
