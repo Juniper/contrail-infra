@@ -19,10 +19,11 @@ class opencontrail_ci::mirror_update {
   }
 
   cron { 'reprepro ubuntu':
-    user        => $user,
+    user        => $::user,
     hour        => '*/2',
     minute      => fqdn_rand(45, 'reprepro-ubuntu'),
-    command     => 'flock -n /var/run/reprepro/ubuntu.lock reprepro-mirror-update /etc/reprepro/ubuntu mirror.ubuntu >>/var/log/reprepro/ubuntu-mirror.log 2>&1',
+    command     => 'flock -n /var/run/reprepro/ubuntu.lock reprepro-mirror-update \
+/etc/reprepro/ubuntu mirror.ubuntu >>/var/log/reprepro/ubuntu-mirror.log 2>&1',
     environment => 'PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin',
     require     => [
       File['/usr/local/bin/reprepro-mirror-update'],
