@@ -65,7 +65,7 @@ node /mirrors.englab.juniper.net/ {
   class {'::opencontrail_ci::mirror_update': }
 }
 
-node /ci-nexus.contrail.juniper.net/ {
+node /ci-nexus.englab.juniper.net/ {
   class {'::opencontrail_ci::server': }
   class {'::opencontrail_ci::nexus_repository':
     registry_ports => [5000, 5001, 5002, 5005, 5006, 5007],

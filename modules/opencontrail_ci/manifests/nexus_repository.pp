@@ -27,6 +27,12 @@ class opencontrail_ci::nexus_repository(
     ]
   }
 
+  service {'nexus3':
+    ensure  => running,
+    enable  => true,
+    require => Package['nexus3'],
+  }
+
   firewall {'100 accept all HTTP(s)':
     proto  => tcp,
     dport  => [80, 443],
