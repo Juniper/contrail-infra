@@ -7,7 +7,7 @@ define opencontrail_ci::reprepro (
   $options_template = 'opencontrail_ci/reprepro/options.erb',
   $releases = [],
 ) {
-  file { "${confdir}":
+  file { $confdir :
     ensure => directory,
   }
 
