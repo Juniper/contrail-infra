@@ -175,4 +175,19 @@ class opencontrail_ci::logserver (
         File['/opt/opencontrail_ci/log_curator.sh']
     ],
   }
+
+  class { '::opencontrail_ci::acid':
+      acid_db_host         => hiera('acid_db_host'),
+      acid_db_name         => hiera('acid_db_name'),
+      acid_db_user         => hiera('acid_db_user'),
+      acid_db_pass         => hiera('acid_db_pass'),
+      acid_zuul_url        => 'http://zuulv3.opencontrail.org/',
+      acid_log_url         => $::fqdn,
+      acid_ssh_public_key  => $::acid_ssh_public_key,
+      acid_ssh_private_key => $::acid_ssh_private_key,
+      acid_manager_tenant  => 'opencontrail',
+      acid_manager_host    => 'zuulv3.opencontrail.org',
+      acid_manager_user    => 'acid',
+      acid_manager_project => 'Juniper/contrail-analytics',
+  }
 }

@@ -18,6 +18,13 @@ class opencontrail_ci::zuul_scheduler(
     action => 'accept',
   }
 
+  accounts::user { 'acid':
+      ensure        => present,
+      comment       => 'ACID CI Dashboard',
+      purge_sshkeys => true,
+      sshkeys       => hiera('acid_ssh_public_key'),
+  }
+
   package { 'python3-mysqldb':
       ensure => installed,
   }

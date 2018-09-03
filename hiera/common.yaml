@@ -14,6 +14,9 @@ opencontrail_ci::pulp_server::pulp_version: 2
 puppet::environment: production
 puppetdb::globals::version: 2.3.8-1puppetlabs1
 
+# acid ssh public key
+acid_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDELfKynQMq6daDIzC93ruoHFS1H7hZSd8gaVrH26+lKgTO/wNh/fCKISdwNnLbxwE6iPzlrk7jDZfrNG+X38jqczTQGILIkEgWd3FVFSFsVrWFkDqDwqzIfv84SGLIqnTvDKKad95fMgQNS8gvcRNQnowZ+GP0femVSMG+1Qu/cBsc4lxWrK1rLUFQPQxfRcHlLylocMgvq2FVvGikqjrVUtXIQj1Zw3xKUCKFLVZObta6BxanhY+FVNrVPYQ431JnMA7t41Q4waDJnMOHZwfGj7BWLwIDV8R7VBoBV5xf/PClJ4SBIFgZz+N3uDzq+7oByc9dy+eV0TKgNNkvFmJr acid-public-key
+
 # zuul user ssh key for "zuul" account on workers and logserver
 zuul_ssh_public_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCnfYgKpFDw/i5+04wTgmKa3ikOooKBGi6XNFw+l/HjqCED1JJXU0c47lZMt7tg/FNawlrlpN7VuwCO5LPdiKoGWrvB63TR55FNxCLH3B+gn2uo9IglZHi9KFc9dIEKrPgvaqFzyzXwRWOagGtUb+QUn85du8k7VJz4Ka5LaGx2nJV3Z+5YJKxLeodH3XPsUcpZGJbCDkmYLMboIb054q98Uu648oUAFnBra4+x23tOunO9QqajDqXcFevj5NTdXkiFDFv+ahRkuvjpTysR+eLnERbtTXjbAEvnNSCe/KIt/IFARmw/9pQsMc20/hmW1mxs0S/ignHp/VklVZE79E1j zuul-public-key
 

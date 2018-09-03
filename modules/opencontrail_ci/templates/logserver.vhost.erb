@@ -14,6 +14,10 @@
     Alias "/static/" "<%= @static_docroot %>"
     Alias "/static" "<%= @static_docroot %>"
 
+    <Location "/acid/">
+      ProxyPass "http://<%= @vhost_name %>:8000/"
+    </Location>
+
     <Directory <%= @docroot %>>
         Options Indexes FollowSymLinks MultiViews
         AllowOverride None
