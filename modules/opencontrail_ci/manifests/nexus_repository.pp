@@ -33,6 +33,19 @@ class opencontrail_ci::nexus_repository(
     require => Package['nexus3'],
   }
 
+  # Setup reverse proxy
+  include '::nginx'
+
+  nginx::resource::server { $::fqdn:
+      listen_port => 80,
+      proxy       => 'http://localhost:8081',
+  }
+
+  selboolean {'httpd_can_network_connect':
+    persistent => true,
+    value      => on,
+  }
+
   firewall {'100 accept all HTTP(s)':
     proto  => tcp,
     dport  => [80, 443],
