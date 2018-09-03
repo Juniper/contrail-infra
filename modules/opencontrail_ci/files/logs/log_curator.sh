@@ -24,6 +24,6 @@ if [ -z "${path}" ] || [ -z "${days}" ]; then
 fi
 
 echo "Removing files older than ${days} days..."
-find ${path} -not -type d -mtime +${days} -delete
+find ${path}  -not \( -regex '.*generate-build-change-info/changes\.json$' -o -regex '.*generate-build-change-info/changes\.html$' -o -regex '.*generate-build-change-info/bugs\.html$' -o -regex '.*periodic-nightly/.*/zuul-info/.*' \) -not -type d -mtime +${days} -delete
 echo "Removing empty dirs..."
 find ${path} -type d -empty -delete
