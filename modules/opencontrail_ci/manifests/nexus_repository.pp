@@ -37,8 +37,11 @@ class opencontrail_ci::nexus_repository(
   include '::nginx'
 
   nginx::resource::server { $::fqdn:
-      listen_port => 80,
-      proxy       => 'http://localhost:8081',
+      listen_port       => 80,
+      proxy             => 'http://localhost:8081',
+      server_cfg_append => {
+        'client_max_body_size' => '1G',
+      },
   }
 
   selboolean {'httpd_can_network_connect':
