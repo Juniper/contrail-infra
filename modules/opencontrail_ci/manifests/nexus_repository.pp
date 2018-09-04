@@ -20,7 +20,7 @@ class opencontrail_ci::nexus_repository(
   }
 
   package {'nexus3':
-    ensure  => present,
+    ensure  => '3.13.0.01-17.1',
     require => [
       Gnupg_key['obs:woid:nexus3'],
       Yumrepo['obs:woid:nexus3'],
@@ -28,9 +28,9 @@ class opencontrail_ci::nexus_repository(
   }
 
   service {'nexus3':
-    ensure  => running,
-    enable  => true,
-    require => Package['nexus3'],
+    ensure    => running,
+    enable    => true,
+    subscribe => Package['nexus3'],
   }
 
   # Setup reverse proxy
