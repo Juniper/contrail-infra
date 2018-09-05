@@ -3,7 +3,7 @@ class opencontrail_ci::nexus_repository(
 ) {
   include '::gnupg'
 
-  gnupg_key { 'obs:woid:nexus3':
+  gnupg_key { 'nexus3-yum-repo':
     ensure     => present,
     key_id     => 'a6f34cb3',
     user       => 'root',
@@ -11,7 +11,7 @@ class opencontrail_ci::nexus_repository(
     key_type   => 'public',
   }
 
-  yumrepo {'obs:woid:nexus3':
+  yumrepo {'nexus3-yum-repo':
     baseurl  => 'http://download.opensuse.org/repositories/home:/woid:/nexus3/CentOS_7/',
     descr    => 'Nexus3 subrepository (CentOS_7)',
     enabled  => true,
@@ -22,8 +22,8 @@ class opencontrail_ci::nexus_repository(
   package {'nexus3':
     ensure  => '3.13.0.01-17.1',
     require => [
-      Gnupg_key['obs:woid:nexus3'],
-      Yumrepo['obs:woid:nexus3'],
+      Gnupg_key['nexus3-yum-repo'],
+      Yumrepo['nexus3-yum-repo'],
     ]
   }
 
