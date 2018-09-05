@@ -42,7 +42,7 @@ zuul::gearman_server_ssl_key:  true
 zuul::gearman_ssl_ca:          true
 
 # Zuul installation options -- repo, revision etc.
-zuul::git_source_repo: "https://github.com/codilime/zuul"
+zuul::git_source_repo: "https://github.com/Juniper/zuul"
 zuul::revision:        "contrail/feature/zuulv3"
 zuul::zuulv3:          true
 zuul::python_version:  3
