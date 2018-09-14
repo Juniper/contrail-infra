@@ -24,14 +24,20 @@ logger = logging.getLogger('artifact_curator')
 review_re = re.compile(r"""^\d+-\d+$""") # <changeset>-<patchset>
 version_re = r"""\d+(\.\d+)+|master"""
 
-# Regexp to match only review repositories (<changeset>-<patchset>-<distro>):
+# Regexp to match only review repositories (<changeset>-<patchset>-<distro>-<openstack_version>):
 #   - 37999-1-centos
-#   - 38123-12-redhat
-review_repo_regex = re.compile(r"""^\d+-\d+-(centos|redhat)$""")
+#   - 38123-12-rhel-ocata
+#   - 38123-2-rhel-queens
+review_repo_regex = re.compile(r"""^\d+-\d+-(centos|rhel)(-[a-z]+|$)""")
+
 # Regexp to match only nightly repositories:
 #   - master-1-centos
-#   - 5.0-12-redhat
-nightly_repo_regex = re.compile(r"""^(""" + version_re + r""")-\d+-(centos|redhat)$""")
+#   - master-2-rhel-ocata
+#   - master-3-rhel-queens
+#   - 5.0-14-centos
+#   - 5.0-12-rhel-ocata
+#   - 5.0-13-rhel-queens
+nightly_repo_regex = re.compile(r"""^(""" + version_re + r""")-\d+-(centos|rhel)(-[a-z]+|$)""")
 nightly_registry_regex = re.compile(r"""^registry_(""" + version_re + r""")_\d+_[a-f0-9]+$""")
 version_re = re.compile(version_re)
 
@@ -99,10 +105,10 @@ def get_pulp_repositories():
     for line in pulp_repo_list:
         #logger.info('AAA: ' + line)
         if line.startswith("Id:"):
-	    repo = line.split()[1]
+            repo = line.split()[1]
             record_started = True
         if line.startswith("  Last Updated:") and record_started:
-	    timestamp = line.split()[-1]
+            timestamp = line.split()[-1]
             # Example pulp output time format: 2018-05-01T06:19:25Z
             timestamp = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%SZ")
             # append repo to the list only if it is nightlty or per-review: ignore static ones
@@ -114,8 +120,7 @@ def get_pulp_repositories():
     def assert_not_static_repo(repos):
         static_repos = [
             "centos74", "centos74-epel", "centos74-extras",
-            "centos74-updates", "opencontrail-tpc", "repo1",
-            "repo2", "opencontrail-tpc-R5.0", "opencontrail-tpc-master"
+            "centos74-updates", "opencontrail-tpc", "opencontrail-tpc-R5.0", "opencontrail-tpc-master"
         ]
         for repo in repos:
             assert repo['name'] not in static_repos
@@ -138,6 +143,14 @@ def match_subdict(d1, d2):
     return all(d1_item in d2_view for d1_item in d1.viewitems())
 
 
+def unpack_repo_name(repo_name):
+    try:
+        change, patchset, distro, openstack_version = repo_name.split('-')
+    except ValueError:
+        change, patchset, distro, openstack_version = repo_name.split('-') + [None]
+    return change, patchset, distro, openstack_version
+
+
 def delete_pulp_repos(repo_list, active_buildsets, nightly_retention_days, dry_run=True):
     """Delete Pulp repositories that are not part of the running buildsets"""
     logger.info("STAGE: Deleting Pulp RPM repositories")
@@ -145,7 +158,7 @@ def delete_pulp_repos(repo_list, active_buildsets, nightly_retention_days, dry_r
     threshold_date = datetime.datetime.now()-datetime.timedelta(days=nightly_retention_days)
     for repo in repo_list:
         if re.match(review_repo_regex, repo['name']):
-            change, patchset, distro = repo['name'].split('-')
+            change, patchset, distro, _ = unpack_repo_name(repo['name'])
             if any(match_subdict({'change': change, 'patchset': patchset}, buildset) for buildset in active_buildsets):
                 logger.info("Keeping repository %s: part of active buildset", repo)
             else:
