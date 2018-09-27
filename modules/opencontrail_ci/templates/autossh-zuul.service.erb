@@ -1,0 +1,11 @@
+[Unit]
+Description=AutoSSH-based reverse SSH proxy for zuul finger connection
+After=network.target
+
+[Service]
+User=zuul
+Environment="AUTOSSH_GATETIME=0"
+ExecStart=/usr/bin/autossh -i <%= @ssh_key_path %> -M <%= @monitoring_port %> -o "UserKnownHostsFile /dev/null" -o "StrictHostKeyChecking no" -o "ServerAliveInterval 30" -o "ServerAliveCountMax 3" -NR <%= @finger_port %>:localhost:<%= @finger_port %> <%= @ssh_user %>@<%= @zuul_host %>
+
+[Install]
+WantedBy=multi-user.target

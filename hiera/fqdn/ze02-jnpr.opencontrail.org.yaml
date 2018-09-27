@@ -1,7 +1,7 @@
 ---
-zuul::finger_port: 7900
+zuul::finger_port: 7901
 
 opencontrail_ci::zuul_executor_autossh::finger_port: "%{hiera('zuul::finger_port')}"
-opencontrail_ci::zuul_executor_autossh::monitoring_port: 10000
+opencontrail_ci::zuul_executor_autossh::monitoring_port: 10010
 opencontrail_ci::zuul_executor_autossh::zuul_ssh_key: "%{hiera('zuul::worker_private_key_file')}"
 opencontrail_ci::zuul_executor_autossh::zuul_host: "%{hiera('zuul::gearman_server')}"

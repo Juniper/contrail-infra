@@ -43,6 +43,7 @@ node /nb\d+(-dev|-jnpr)?.opencontrail.org/ {
 node /ze\d+(-dev|-jnpr)?.opencontrail.org/ {
   class { '::opencontrail_ci::server': }
   class { '::opencontrail_ci::zuul_executor': }
+  class { '::opencontrail_ci::zuul_executor_autossh': }
 }
 
 node /ci-repo.englab.juniper.net/ {
