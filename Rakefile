@@ -7,6 +7,7 @@ PuppetLint::RakeTask.new :lint do |config|
     config.fail_on_warnings = true
     config.log_format = "%{path}:%{line} [%{KIND}] %{message}"
     config.disable_checks = ['documentation']
+    config.ignore_paths = ["vendor/**/*"]
 end
 
 PuppetSyntax.exclude_paths = ["vendor/**/*"]
