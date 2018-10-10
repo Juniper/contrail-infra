@@ -1,0 +1,8 @@
+- project:
+    name: Juniper/contrail-infra
+    check:
+      jobs:
+        - puppet-lint
+    gate:
+      jobs:
+        - puppet-lint
