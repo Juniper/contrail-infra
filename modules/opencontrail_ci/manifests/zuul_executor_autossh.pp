@@ -11,17 +11,17 @@ class opencontrail_ci::zuul_executor_autossh(
   }
 
   file { '/etc/systemd/system/autossh-zuul.service':
-    ensure => present,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0644',
+    ensure  => present,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0644',
     content => template('opencontrail_ci/autossh-zuul.service.erb'),
-    notify => Service['autossh-zuul'],
+    notify  => Service['autossh-zuul'],
   }
 
   service { 'autossh-zuul':
-    ensure    => running,
-    enable    => true,
+    ensure  => running,
+    enable  => true,
     require => [ Package['autossh'], File['/etc/systemd/system/autossh-zuul.service'] ],
   }
 }
