@@ -1,0 +1,15 @@
+- hosts: all
+  tasks:
+    - command: rpm -Uvh https://yum.puppet.com/puppet6/puppet6-release-el-7.noarch.rpm
+      become: true
+    - command: yum install puppet-agent
+      become: true
+    - command: /opt/puppetlabs/puppet/bin/gem install r10k
+      args:
+        chdir: '{{ zuul.project.src_dir }}'
+    - command: /opt/puppetlabs/puppet/bin/r10k puppetfile install -v
+      args:
+        chdir: '{{ zuul.project.src_dir }}'
+    - command: /opt/puppetlabs/bin/puppet apply --hiera_config tools/hiera.yaml --modulepath modules:vendor --test manifests/site.pp
+      args:
+        chdir: '{{ zuul.project.src_dir }}'
