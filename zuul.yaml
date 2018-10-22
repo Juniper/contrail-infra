@@ -1,0 +1,11 @@
+- project:
+    name: Juniper/contrail-infra
+    check:
+      jobs:
+        - puppet6-apply:
+            voting: false
+
+- job:
+    name: puppet6-apply
+    run: zuul_playbooks/puppet6-apply/run.yaml
+    nodeset: builder-centos-7
