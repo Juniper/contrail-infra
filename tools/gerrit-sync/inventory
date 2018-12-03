@@ -1,0 +1,10 @@
+[gerrit-prod]
+review.opencontrail.org ansible_user=root
+
+[gerrit-dev]
+review2.opencontrail.org ansible_user=root
+
+[gerrit:children]
+gerrit-prod
+gerrit-dev
+

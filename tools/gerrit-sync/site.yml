@@ -1,0 +1,13 @@
+---
+
+- hosts: gerrit-prod
+  roles:
+    - role: get-mysqldump
+      db_name: reviewdb
+
+- hosts: gerrit-dev
+  roles:
+    - push-repositories
+    - role: load-gerrit
+      db_name: reviewdb
+      gerrit_user: opencontrail-admin

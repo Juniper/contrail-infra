@@ -1,0 +1,5 @@
+source_dir: /home/gerrit2/review_site/git/
+dest_dir: "{{ source_dir }}"
+
+source_host: "{{ hostvars[groups['prod'][0]]['inventory_hostname'] }}"
+dest_host: "{{ hostvars[groups['dev'][0]]['inventory_hostname'] }}"

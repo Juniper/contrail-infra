@@ -1,0 +1,13 @@
+---
+
+- name: create mysqldump of {{ db_name }}
+  mysql_db:
+    name: '{{ db_name }}'
+    state: dump
+    target: /tmp/{{ db_name }}.sql
+    single_transaction: yes
+
+- name: pull mysqldump file
+  fetch:
+    src: /tmp/{{ db_name }}.sql
+    dest: /tmp/mysqldump

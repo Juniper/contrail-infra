@@ -1,0 +1,3 @@
+gerrit_host: "{{ hostvars[groups['gerrit-dev'][0]]['inventory_hostname'] }}"
+gerrit_src: "{{ hostvars[groups['gerrit-prod'][0]]['inventory_hostname'] }}"
+zuulv3_key: ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC9/zVIcPaAruJBv0jfMlu+SqR5bLsHxsS9I1i4rfkqVEnAkP1FyrHxQIKOQA8FH2I/3PEuH8Yx8bhyoEQNgoD2takyySQUrRFYQyGZZARTOgp7KE1oLKNaH5nAaGF3rjY+CI3OBcXZ6fDh1Ufs9W1o00mF6bTLjbrywhTcUGI9lfDDA4FPU6aIPoCo52ipWhWRaILRbK8jL+rHrNRT9MmC4PBAGQIrRqmfZ2awMX1zw1w62X0uvfGnzoLG44Oo1jsQmq0UkriM6EeGyBuKwDLs7KokGgm3cT5vLbDV5l52uxi39X4AWkTySjDVc2XpGQQLDVuQ1Cbng0AyYdvWOIBR
