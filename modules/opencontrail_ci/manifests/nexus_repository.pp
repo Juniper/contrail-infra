@@ -12,15 +12,15 @@ class opencontrail_ci::nexus_repository(
   }
 
   yumrepo {'nexus3-yum-repo':
-    baseurl  => 'http://download.opensuse.org/repositories/home:/woid:/nexus3/CentOS_7/',
+    baseurl  => 'https://download.opensuse.org/repositories/home:/tungsten-infra:/third-party-packages/CentOS_7/',
     descr    => 'Nexus3 subrepository (CentOS_7)',
     enabled  => true,
     gpgcheck => true,
-    gpgkey   => 'http://download.opensuse.org/repositories/home:/woid:/nexus3/CentOS_7/repodata/repomd.xml.key',
+    gpgkey   => 'https://download.opensuse.org/repositories/home:/tungsten-infra:/third-party-packages/CentOS_7/repodata/repomd.xml.key',
   }
 
   package {'nexus3':
-    ensure  => '3.13.0.01-17.1',
+    ensure  => '3.14.0.04-8.1',
     require => [
       Gnupg_key['nexus3-yum-repo'],
       Yumrepo['nexus3-yum-repo'],
