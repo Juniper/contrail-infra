@@ -69,7 +69,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtAu6vDs3DI6sAX48HZfUVAgX9xG21H0XPVK749UOJJhWLURS+OyD6LtwUtUYBAuzKNEp1Tx0TX8mHEfPAw+nCt54a5S3BdIvw1255gv4zhuhzCcgK/D7vkjzvMIrsrp6EvF4EFDeJKfADaYwL5cT/VgIMqvjDnQFb+ODSKgpPkxru/pZ8aVHfYUrQh+Gk9hdOI9ILia68TV/sqWipZd0ZgpTBgzmzaJ8HGaVEHoufn+Ou9QBioO84ueWR4oVfVlUNOFu8GKM6oXud2AWFdQ1UJihpaEjImq76IRVlgq60zNswMVhZhj1mAj/i+j1VH8WvYv3UtPVBIevJUTtK/CTV kravvcu@kravvcu
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC/ZdBlEeGVzyN4EoThC4MYiiDZks+lh0xROHkEfgr1OKVayNqPY8hyNLTTTcTXcc/Mkb3MuPK3WdzFwq5kF7fuTacqpeMuoAzqP19XGWAIZaqnu5TDdHSCOOVE51qJiMDwPbe0xfPUwh+RVd9DvhMeDshijwncoLD+8A0+bU6jv+aak9EK7g/WFIFA8bipEWD4jQIP87sevhloiKVKK/EBMbUQM+ihaddPl+H3SR2ZOvgc95joAmeH5jYB4Lr4LY7ApUCAEhCZdl+hRtmskCpE275WYLucBctK41XYqBPgW3LtAEaW0lAi95V7/xgyK/Q2LiYPwBwOBvsn4YXDOqf7 kravvcu@kravvcu
   bil:
     comment: Michal Bilski
     ensure: absent
