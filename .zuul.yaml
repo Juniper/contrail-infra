@@ -4,5 +4,6 @@
       jobs:
         - puppet-lint
     gate:
+      queue: contrail-infra
       jobs:
         - puppet-lint
