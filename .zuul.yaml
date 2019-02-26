@@ -3,6 +3,40 @@
     check:
       jobs:
         - puppet-lint
+        - ci-test-mock-contrail-vnc-build-packages
+        - contrail-build-containers-centos7-ocata:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages
+        - contrail-build-test-containers:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages
+        - contrail-build-containers-centos7-ocata:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages
+        - contrail-build-containers-centos7-queens:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages
+        - contrail-build-containers-centos7-rocky:
+            voting: False
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-ocata
+        - contrail-sanity-centos7-kolla-queens:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
+        - contrail-sanity-centos7-kolla-rocky:
+            voting: False
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-rocky
+        - contrail-sanity-centos7-k8s:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
     gate:
       jobs:
         - puppet-lint
