@@ -2,7 +2,55 @@
     name: Juniper/contrail-infra
     check:
       jobs:
-        - puppet-lint
+        - ci-test-mock-contrail-vnc-build-packages   # (1) just because we need contrail_container_tag (2) must run on builder
+        - contrail-build-containers-centos7-ocata:
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+              # contrail_version: '{{ packaging.version.public }}-latest'
+        - contrail-build-containers-centos7-queens:
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-build-containers-centos7-rocky:
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-build-test-containers:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages  # just because we need contrail_container_tag
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-ocata
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-kolla-queens:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-kolla-rocky:
+            voting: False
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-rocky
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
+        - contrail-sanity-centos7-k8s:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              setup_docker_registry: false
     gate:
       jobs:
         - puppet-lint
