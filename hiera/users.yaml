@@ -69,6 +69,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4TEafJR4s5v0MhG6ES5/JLTC16BHNjHxJEKJ0Hcr5CGzsHZ1XMu9AyTxOISGNnkCkmz6zvzU/f88nG0IsLldxJOJckdDbTbshqrgucHKgKAwT4snDFhP1grKti9hQVgFnoHwn6O0qZz+Y20frMoALLio2anNhvR0CFFBvplyw1DgWmmIvegZ9pTkCrosYUtd8NCAh0Ecq/Bc0TDdzmwwr4Us3rthdT44eesnROdOspNJeZyvS7t0vegKETZhyPUPHg3EMs8LJgZsTBRpsc7zugV3bn51872ac7x2pH8023EDdd2H3akNJj2i6iRk8O0insXztY+rO1wvz28Sy2gcemCvbjYT+BxyLSkWY9aNg92TTtEW4GurDwDgwkxwR12JVffpjutni1NaI1wpSClJzJIXpBECQPTP9QdHpGcFj7JBohKOPlYrulAfbx8dxIxcpOoRCjjpPTgruf/Uib+N1hc3dGVVU2Rawd8TOBo+CvmH4ECMbYlRaSJWnzTcGRuXKFP7BJtZsVLYwFhzOPhj88bHyajZB/e7mKvCjfa//3n15xsmhQaai0i36lC3w2tLu7nHDJNaQBVrkvUT5Si/7/SgUXZ77w1P73qmFpipFy9tl2q428wemBcmKJFLhX43gUX1+HIBrzjalDDBVhTw34OeZmKIxyugqnr49HvsRYw== sebastian.szwed@codilime.com
+  kubit:
+    comment: Jakub Bielecki
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRk5cWveMNIP8aDBXPjS7hvPyR0nGjfqR3kmVleNrqQAcnq1Z7mUa7EDaRPHJO6C/+VpRhkr0Zre3hJiZj+iBIzWr7OAMR2FlUv+FYIqK9564CbypAmBg6QAh3JBIvke01d+L/Kf0nNeLHxY5nWeNlXOZKSkxMeIJnISHGlfSVXYszm3GhyLjXC3zLVqOSfTZKNhIdrF4qWTfPJt3t9Mw5LnLS47jDsF2jjCD+sjpScNGewYgNAImibpULIIl0bWbzaGt7jmQFRvM5dDWpp5hAbm3wDECegSPDGfyq0E6jMRSHL1eHiJZqpY9WjyE4uFuqhwFIFCpPWShgD5i13zjN kubit@kubit
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
