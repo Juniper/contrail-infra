@@ -2,7 +2,41 @@
     name: Juniper/contrail-infra
     check:
       jobs:
-        - puppet-lint
+        - ci-test-mock-contrail-vnc-build-packages   # (1) just because we need zuul_return contrail_container_tag (2) must run on builder
+        # here vars:   fixture_repo_path: '{{ nexus.repos.yum_nightly }}/master-538-centos'
+        - contrail-build-containers-centos7-ocata:
+            vars:
+              # XXX url should have been supplied by ci-test-mock-contrail-vnc-build-packages; I've tested it isn't
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+              # setup_docker_registry: false
+              # contrail_version: '{{ packaging.version.public }}-latest'
+        - contrail-build-containers-centos7-queens:
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+        - contrail-build-containers-centos7-rocky:
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+        - contrail-build-test-containers:
+            dependencies:
+              - ci-test-mock-contrail-vnc-build-packages  # just because we need contrail_container_tag
+            vars:
+              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+        - contrail-sanity-centos7-kolla-ocata:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-ocata
+        - contrail-sanity-centos7-kolla-queens:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
+        - contrail-sanity-centos7-kolla-rocky:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-rocky
+        - contrail-sanity-centos7-k8s:
+            dependencies:
+              - contrail-build-test-containers
+              - contrail-build-containers-centos7-queens
     gate:
       jobs:
         - puppet-lint
