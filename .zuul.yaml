@@ -3,6 +3,7 @@
     check:
       jobs:
         - puppet-lint
+        - ci-test-mock-contrail-vnc-build-packages
     gate:
       jobs:
         - puppet-lint
