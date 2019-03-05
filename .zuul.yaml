@@ -6,23 +6,22 @@
         # here vars:   fixture_repo_path: '{{ nexus.repos.yum_nightly }}/master-538-centos'
         - contrail-build-containers-centos7-ocata:
             vars:
-              # (to test) is url supplied by ci-test-mock-contrail-vnc-build-packages
-              # contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
+#              # (to test) url supplied by ci-test-mock-contrail-vnc-build-packages
+#              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
               # contrail_version: '{{ packaging.version.public }}-latest'
         - contrail-build-containers-centos7-queens:
             vars:
-              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
         - contrail-build-containers-centos7-rocky:
             vars:
+              # experiment to delete
               contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
         - contrail-build-test-containers:
             dependencies:
               - ci-test-mock-contrail-vnc-build-packages  # just because we need contrail_container_tag
             vars:
-              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
         - contrail-sanity-centos7-kolla-ocata:
             dependencies:
@@ -37,22 +36,16 @@
             vars:
               setup_docker_registry: false
         - contrail-sanity-centos7-kolla-rocky:
-            # XXX is it still?
-            voting: false
             dependencies:
               - contrail-build-test-containers
               - contrail-build-containers-centos7-rocky
             vars:
-              # XXX delete this
-              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
         - contrail-sanity-centos7-k8s:
             dependencies:
               - contrail-build-test-containers
               - contrail-build-containers-centos7-queens
             vars:
-              # XXX delete this
-              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
               setup_docker_registry: false
     gate:
       jobs:
