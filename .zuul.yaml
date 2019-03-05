@@ -2,60 +2,7 @@
     name: Juniper/contrail-infra
     check:
       jobs:
-        - ci-test-mock-contrail-vnc-build-packages:
-            vars:
-              fixture_repo_name: '{{ nexus.repos.yum_nightly }}'
-              fixture_repo_subdir: 'master-538-centos'
-              fixture_repo_search: 'version=5.1.0-538.el7'
-        - contrail-build-containers-centos7-ocata:
-            dependencies:
-              - ci-test-mock-contrail-vnc-build-packages
-            vars:
-              # url supplied by ci-test-mock-contrail-vnc-build-packages
-              # contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
-              setup_docker_registry: false
-              # contrail_version: '{{ packaging.version.public }}-latest'
-        - contrail-build-containers-centos7-queens:
-            dependencies:
-              - ci-test-mock-contrail-vnc-build-packages
-            vars:
-              # experiment to be deleted
-              contrail_package_repository: 'http://ci-nexus.englab.juniper.net/repository/yum-tungsten-nightly/master-538-centos'
-              setup_docker_registry: false
-        - contrail-build-containers-centos7-rocky:
-            dependencies:
-              - ci-test-mock-contrail-vnc-build-packages
-            vars:
-              setup_docker_registry: false
-        - contrail-build-test-containers:
-            dependencies:
-              - ci-test-mock-contrail-vnc-build-packages
-            vars:
-              setup_docker_registry: false
-        - contrail-sanity-centos7-kolla-ocata:
-            dependencies:
-              - contrail-build-test-containers
-              - contrail-build-containers-centos7-ocata
-            vars:
-              setup_docker_registry: false
-        - contrail-sanity-centos7-kolla-queens:
-            dependencies:
-              - contrail-build-test-containers
-              - contrail-build-containers-centos7-queens
-            vars:
-              setup_docker_registry: false
-        - contrail-sanity-centos7-kolla-rocky:
-            dependencies:
-              - contrail-build-test-containers
-              - contrail-build-containers-centos7-rocky
-            vars:
-              setup_docker_registry: false
-        - contrail-sanity-centos7-k8s:
-            dependencies:
-              - contrail-build-test-containers
-              - contrail-build-containers-centos7-queens
-            vars:
-              setup_docker_registry: false
+        - ci-test-mock-contrail-vnc-build-packages
     gate:
       jobs:
         - puppet-lint
