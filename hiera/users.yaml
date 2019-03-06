@@ -86,6 +86,11 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQBuvVBrUJx1REiN+qRU82GQbRrY3O2Sh0kwfi0jH9VBl3IZZpkisNoHku7NnCqOyI+JD+wUEfNbmrsuGl87g5GufTdKO7bkBerHG3IfgEu5mUzR+FryJVT3N1d8+O7y1IHXvoi8I4K8RK+szgQSY85YX1snulBv4KNzjkI3UnodLpwOBnhg6dNlze2EXVZt2rw7c/iXuPHrj1wYW65J70ihnrYhcu6zDneBxou7VEwWEXn7EqTccZc7Of1HniX6QRsepy+SIVmVpkS+kU6YoebIJ0TtIqFkOto2xGs8MmR0hGSWhBXo/CT0FQTpZ5BBRPv4t3vKQArOj0acOmsbHl alexey.osorgin@gmail.com
+  amorlang:
+    comment: Alexey Morlang
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpc1rb+F2+RnLxM/TrK7vozE5xhoATTand4Go9UmwEbuGfY35kfhNTndtg4dJgONAKgDCu9K/7VLqy3SnjnTuo7mXexXPBG9mTZsITOoP21FdYiyTH0gLmFe/mL9y5fiXwS0Lv3rHPnaNwwz2uRCPFQgiiCyYq43ZRJ3QkoWREeyhbDs3dOuED7oYm9J//OODJqOJyWp6wSJ7bH+Eg4jIAgIaiAKLHvOo5YWYisnnIPkPlnoKYrt/unw7qrQR7NcTtyAH04c13+2U+zoz9K97Fwy8xVcN5VxYMEGW0uOU9zZTM4m7mZoJ3pdk9BIYP52HXchwhUmCBVIjaT/2Lw3UH alexm@Apple-keys-MacBook-Pro.local
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
