@@ -76,6 +76,16 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRk5cWveMNIP8aDBXPjS7hvPyR0nGjfqR3kmVleNrqQAcnq1Z7mUa7EDaRPHJO6C/+VpRhkr0Zre3hJiZj+iBIzWr7OAMR2FlUv+FYIqK9564CbypAmBg6QAh3JBIvke01d+L/Kf0nNeLHxY5nWeNlXOZKSkxMeIJnISHGlfSVXYszm3GhyLjXC3zLVqOSfTZKNhIdrF4qWTfPJt3t9Mw5LnLS47jDsF2jjCD+sjpScNGewYgNAImibpULIIl0bWbzaGt7jmQFRvM5dDWpp5hAbm3wDECegSPDGfyq0E6jMRSHL1eHiJZqpY9WjyE4uFuqhwFIFCpPWShgD5i13zjN kubit@kubit.codilime.com
+  apavlov:
+    comment: Andrey Pavlov
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHZuJhuOB/e/fszSh6Hl8+mrDq0P9vxP3TLAKC0Hl3Sc881ysSkvs7FNbq7L8QlMPqy5h7BASRWBu83fRKZ60M4JBreXmrEPJQMqCkxlFr7AO8o30ts3jEO/9nYk+iGn4EFisruBvyYqoNEfdqJTxWTfImPy27PSIhw/5xeE+Oh/bkGRJXEOQoekvaRODH+XMyDbhc6VUxSYSRWzCxT29x+k8Onk56VM27Nw4AkBvIFDjNaQMAW8YiYyVrki5ANUY1YdkiDxqztqskj51C52KP1jWNpinlu0OI2zjq+XKk51aLfD+nmUbSpm0V+QQ3R7FmMsPzxWwyask1kbzEvXNJ andrey-mp@yandex.ru
+  aosorgin:
+    comment: Alexey Osorgin
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQBuvVBrUJx1REiN+qRU82GQbRrY3O2Sh0kwfi0jH9VBl3IZZpkisNoHku7NnCqOyI+JD+wUEfNbmrsuGl87g5GufTdKO7bkBerHG3IfgEu5mUzR+FryJVT3N1d8+O7y1IHXvoi8I4K8RK+szgQSY85YX1snulBv4KNzjkI3UnodLpwOBnhg6dNlze2EXVZt2rw7c/iXuPHrj1wYW65J70ihnrYhcu6zDneBxou7VEwWEXn7EqTccZc7Of1HniX6QRsepy+SIVmVpkS+kU6YoebIJ0TtIqFkOto2xGs8MmR0hGSWhBXo/CT0FQTpZ5BBRPv4t3vKQArOj0acOmsbHl alexey.osorgin@gmail.com
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
