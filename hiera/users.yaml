@@ -1,11 +1,4 @@
 opencontrail_ci::users::accounts:
-  kklimonda:
-    comment: Krzysztof Klimonda
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC8xYbz7ohnFJuo8pvaRmzzRazLAPzGTcwcq848iKx6W9OZWjHMKJ40TiMM4RyeWvjGP68aEkLA6Pgdrxlf1e2rmiIH5il+znLEHslnpA3FjWbRMx5HiXn4ZKmVvFU8uGmXPeevMbHM+YJdxkMjAdf9uV8pA4EmUcsdyxK9oLZFDWsvJEeZXz6Andc+wpYCNh3FNoRO0+lIhuFdzXhf2a9mVqV3TmkgUW4KojH03kEGzudsZ+9ZZuKOe2TevHA58atabSiKQfg7T2q1EmNObpcEacxFiVsmT8DgbkHjN+AftsFulUKPA9kzfSYmfAX238Ib4aSKcvpONPi/RKzh5ee3 kklimonda@noise
   jluk:
     comment: Jaroslaw Lukow
     groups:
@@ -13,13 +6,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvHlOvM6E0vBQHEhBsBsULqtaySmpvi50c4zp8zpWqnl4Br1jc4aABpnmM3EmBAfSlKjbk3LK1N1PHdh7m+ADwpumWX1MnVh1BZqL9Cm5r0pBEfZEpslqWbwsD+ym6RkJ8OdQB7uHjvbQ6xYma4ptEaXaq4UGcWUiLICt4tTEy9P2YZBZfGXv4XWJfBWUr2UhK3MbGOmquk3grB9OmesBZYG88UXcFy15NWEFIXQZsBIEU7jFtAEVpDhVN7aNYH+CvOU7AQ/pgqlRv1+ZTrDehAlp93eONAs9sxxyL2QF7O8v+O2doPiIW2QO3ila852c0qo3udM0DAfWYhbJPYC4PAVuTYdLx18RkLBXlfE8JPFf+UOJ63lQGqTn8vyhUfjpW+3OAY0/xGzZncDvGqbBEQ/N6zQAxAlKOmAb0b5oaUyFLnJ3KrYS3yDAHXl8E98PPDkoIyHQ+pNo3EBLNe91MJ5kMEiL/zU7gc4stNFT6HZQJNObQu200yKBFdjAgYM/BqbUk5YkrQMo3qpTZk1fP2TuLLmJADwEQ7yLZq88J6vqDsQqReQtGn/espwwjTi7uVfoYovdVkmrXw8BpKk9ti5R2+K/eFDCO85MxVpp+2/45noH8+mtDj+FGOx1P+Y0sqVP0ePYbASKngcm0HDVWdg2ZFA7GuE7CtS3EPzgAKw== jaroslaw@jaroslaw-lukow',
-  lukasz.lukasiewicz:
-    comment: Lukasz Lukasiewicz
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCxMPK7PS/rYZ8+kwzuqs25T2S3WcCBV4X8kUwbYx46INV8ocHfE8ZJGLtYeAKkfeZLjpb6z+ksSK/rXlsVlcNHlUm7ikVPXkDtSuzBsn5cYXEtoqXfskWja6JIidQX3qpC/QGLub98siOTVTPEoujRT0TAmkRmRXy2z8mPlz3tWrrLjSQHE3VyczgIv3Zv61VmjIJ6fXyv333R3lh9Lc86pcZrb8p849eJ+VFcX8UKmFgSAgELae8oPbS5f8EHV2mRoKo+F+zxh6TwZLFWSs3yRmuvh5zdFXPOQp52MUzu/hsPfBoiFkV2+V5494jl8Nx7BMZd22ckHmyiefqwGdC7 lukasz.lukasiewicz@HellNote
   pjrusak:
     comment: Pawel Rusak
     groups:
@@ -41,13 +27,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC3othGc/CyQYOzkKbGogzcI8NfvfUmMSn4jqPDFh541VYrsImau/wxs08/olgmNttXb6xCYKy8QGAUJF+3852EXNwyaaVyhJjv5N3pwGkKpaCOHOQatonCklmwrmOxJP4XjemjAx3H1RX+6oDujfzjKLq6Mloy4R6DOBIGEvZccAP2WcyIVmu5DloXm676qByR7CZ/ocdW+ZjtJZ8/JptLEEVDvTsD1etXyIjlGPSTAWmzqFICSMTMLfbdVHdXPyNZXhOjDbUUgf5iHF998U2jBoLxa4vycFySg4EwibdY3Ktf5pv0IwfOBjbfh8lVzE6Pd657butJDFrf80gAJRCD mmithun@mmithun-mbp
-  wurbanski:
-    comment: Wojciech Urbanski
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQChGwBKaBR+W6KxlYenzIcojB0zw0xqjI+3foPiWL5R4eynEvf2g246oynOCCJBWA/xkBTkpy5FAvAA0V1FDUiF/xf5AuPYcR6oe8CBt+1jiQFgeMlo0Mwb7vgrCUtHvedUe3kdO2zYX3lpm9bd/mbnMCCNecja9TsRfdGPZBZuM9tMnf4cGCTelclt2yfxTznf87wH+0iRxDtnSNdtth3GlkblDRWsFsiJzKH4CCAg2sHgwZk6YU8QWt8Z+j4wkm6VfNW8ZetC1Crf/ckrQPNDAKZpt9Bs7IpDgzY8BUf9Dlb4DRpFYaPrZGxGWherQlB1vnZScyMMlvmydLISova2wJzwZVGPaIjHNDrLAEKdA8HBLbsVvEAwGvdf9L9kCm28oz92UstztNXJ8xneX0c2cfEOHxSQkUA/kxpYIgz1bN9wLDod+/TDfNGbulqJ4zoGony5Rz0I8ThyyZuOTyDjkmY9HuTVkfneDPEby1jGkOGQ2k7euHyy8RjLLpd4/ZyxWAeDsWt4aJYKuol5VNUKYiL7ZmUPcrHFhThgLSt4icMcE6dJGAKevZVECB9ZeH7IQgQg/BSQ7eGx8ojZvrc3LWGzSSWJD5Iy8UyyIep0KNfMPZ8bDwT1WdFsgeKXRxAs2nrT1GmDGC4lRRx15dFxsv4hasa9x+v0prfRxMXSBw== wojciech.urbanski@codilime.com
   kuljinder:
     comment: Kuljinder Mathoun
     groups:
@@ -62,6 +41,50 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtAu6vDs3DI6sAX48HZfUVAgX9xG21H0XPVK749UOJJhWLURS+OyD6LtwUtUYBAuzKNEp1Tx0TX8mHEfPAw+nCt54a5S3BdIvw1255gv4zhuhzCcgK/D7vkjzvMIrsrp6EvF4EFDeJKfADaYwL5cT/VgIMqvjDnQFb+ODSKgpPkxru/pZ8aVHfYUrQh+Gk9hdOI9ILia68TV/sqWipZd0ZgpTBgzmzaJ8HGaVEHoufn+Ou9QBioO84ueWR4oVfVlUNOFu8GKM6oXud2AWFdQ1UJihpaEjImq76IRVlgq60zNswMVhZhj1mAj/i+j1VH8WvYv3UtPVBIevJUTtK/CTV kravvcu@kravvcu
+  pmarcinkiewicz:
+    comment: Przemyslaw Marcinkiewicz
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDdBvyXls9dv7Bh3Qo5LR7oFEvizGtnFgLoUC4045eKF+6zLPm3AQcThEUFqruGxm/EeLH0kA5NpNsD4dwsw+V5Q+qar8k8pnwktHMuyIL7CRoI65RVA48gDZkuk1MRbG2ODI0OsLHhoudvZ/4rrbjmNj8tx2pY4ydbEXVC2hxyvk2kYZGkXL/fw1CRMHtGNVwxAHw2K2hzi+D2ADhACqiEvsAPDiRpuWaCzMXjMFuhcjKDUQS9Wpc9xpanOFeieooG804urD09i4KyIsHUuE/IRjarlJp86t78TO0X7bWKVSfFMHbsMoXx+gu+UJ8jfWFt+GSTeCfI1LclhOnYhNcbD0UQs5vz0+C1wtnr1PLBLPJS+ryZP06b7cXvS1OhL1Y4qK459lRcdRHuRWh1Vdf59FcF4sg6M24l4Zh1n3+IRxh559GwAoNPt8A7j5pkTo6F4OhKF5I9qSQtZKhbE7PwgKDu+OkTEVTw7EPpN9e8dk7St7xBR1/cCNhI1QfA+dKZJYDmYopocFnbStYHO+1MttptlKYqJKMQh8W00KZfoRg0zRs6+r+tUQHsKFCvoBL0pCUVvYdGT45YCBhEb2Kw+uYixzaAJSw66HwH0sWBaoRyVDGkA51jdH1iuLC+5hD+gPWgrLxnM4UnKqVX6ahIEtXVSF2grPeIUIXhMBoQUw== przemyslaw.marcinkiewicz@codilime.com
+  bpankowski:
+    comment: Bartosz Pankowski
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCthbxJFQfmFGUtq3+UnO6kWzky5tv2esrFiq63MjrRvo53Vix8CyH7zukaMGzCPYAT0xnMyubt+BSxRmKiKEWQJ0AvRjKaOkvX5DEAbhNUCKyWxAGk/3XAhN7LSYKluSnsin9A4f9Ph96b3tzyHiOaSnkOz7AvxcuXXC4zzyp9Qs2tqOF9AtDpRxVIWM4Soi3bsiPNOtuAPudPTKCwu4D4NqLMBoWkXNzxUOh9rT5CI3GEIQ6mZ6lEK8Zomuqmx68V1JGOmi7P4SVDE7O1epjOQgwP3tZA0mUQh6JsNSZlEmarpQ3KUqX7JvIQmkP583JBlpOGt73m46jbswgw4bCX bartosz@bartosz-pankowski
+  sszwed:
+    comment: Sebastian Szwed
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC4TEafJR4s5v0MhG6ES5/JLTC16BHNjHxJEKJ0Hcr5CGzsHZ1XMu9AyTxOISGNnkCkmz6zvzU/f88nG0IsLldxJOJckdDbTbshqrgucHKgKAwT4snDFhP1grKti9hQVgFnoHwn6O0qZz+Y20frMoALLio2anNhvR0CFFBvplyw1DgWmmIvegZ9pTkCrosYUtd8NCAh0Ecq/Bc0TDdzmwwr4Us3rthdT44eesnROdOspNJeZyvS7t0vegKETZhyPUPHg3EMs8LJgZsTBRpsc7zugV3bn51872ac7x2pH8023EDdd2H3akNJj2i6iRk8O0insXztY+rO1wvz28Sy2gcemCvbjYT+BxyLSkWY9aNg92TTtEW4GurDwDgwkxwR12JVffpjutni1NaI1wpSClJzJIXpBECQPTP9QdHpGcFj7JBohKOPlYrulAfbx8dxIxcpOoRCjjpPTgruf/Uib+N1hc3dGVVU2Rawd8TOBo+CvmH4ECMbYlRaSJWnzTcGRuXKFP7BJtZsVLYwFhzOPhj88bHyajZB/e7mKvCjfa//3n15xsmhQaai0i36lC3w2tLu7nHDJNaQBVrkvUT5Si/7/SgUXZ77w1P73qmFpipFy9tl2q428wemBcmKJFLhX43gUX1+HIBrzjalDDBVhTw34OeZmKIxyugqnr49HvsRYw== sebastian.szwed@codilime.com
+  kubit:
+    comment: Jakub Bielecki
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRk5cWveMNIP8aDBXPjS7hvPyR0nGjfqR3kmVleNrqQAcnq1Z7mUa7EDaRPHJO6C/+VpRhkr0Zre3hJiZj+iBIzWr7OAMR2FlUv+FYIqK9564CbypAmBg6QAh3JBIvke01d+L/Kf0nNeLHxY5nWeNlXOZKSkxMeIJnISHGlfSVXYszm3GhyLjXC3zLVqOSfTZKNhIdrF4qWTfPJt3t9Mw5LnLS47jDsF2jjCD+sjpScNGewYgNAImibpULIIl0bWbzaGt7jmQFRvM5dDWpp5hAbm3wDECegSPDGfyq0E6jMRSHL1eHiJZqpY9WjyE4uFuqhwFIFCpPWShgD5i13zjN kubit@kubit.codilime.com
+  mstencel:
+    comment: Mateusz Stencel
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEpwFry6QS4ZG/67tjpuA6sRciKExXpRiZziGs5BqjpIyQjD+hSYq8GnVfXQlUsFHajb2PFWawtwKm7Psj9gAPOYj3zb3DNgOiPYXuSsyeXCZ2mbiRasRUBqJXvvZczpoDUaogZFXKhbWeBQcPj8YKa4JojIk+rsA5F0UVYLIXrot4DeO8OUhTgotz9lv3q0TtUcoS1rSzr9JXLeI4T6jn80Tn5lePJXs1ntX/qU3DD2r4Tgsrxrji7IkKCW2N/Mm1pMPmHYd0BHYv+LATFCZ9i4T155L9JVsqYq4WwZbv10lyRsnIl7LsP7HVNRg4G2zNUGPtt7NzxvvhsErxa4kglSk+lu5BV4opcKX+JykggaAoljmnST6MWVQKc9xv9Ke0RmCGvP3fUFj75YV5y+NM5bEwe+JqasUlbJIE/+QoexKDFLavssTRtKcHNR0/71/8Tdd7pctFAa3BBgOT+JdwLTHkP80/z42EgsTA/oE2J7HzPB1Tb8Q1iTq5I5lVmiMwKHIeVsxwUQu7mIrIjF2O833xntA9pXDaWCIoVjbNuNKOEmzGF9AZ6JPas69XOmdJYnhSbsaAvDATPgxMTzsunWf/evAeIUCHKB+gUasYUgRKkhBzpPMAiNm0JQ6ObEwyXqkHtSSDgMbn+bMTDM2EY//QEnjYbA7P4aJox2794w== mateusz.stencel@codilime.com
+  kklimonda:
+    comment: Krzysztof Klimonda
+    ensure: absent
+  lukasz.lukasiewicz:
+    comment: Lukasz Lukasiewicz
+    ensure: absent
+  wurbanski:
+    comment: Wojciech Urbanski
+    ensure: absent
   bil:
     comment: Michal Bilski
     ensure: absent
