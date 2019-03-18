@@ -83,6 +83,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDEpwFry6QS4ZG/67tjpuA6sRciKExXpRiZziGs5BqjpIyQjD+hSYq8GnVfXQlUsFHajb2PFWawtwKm7Psj9gAPOYj3zb3DNgOiPYXuSsyeXCZ2mbiRasRUBqJXvvZczpoDUaogZFXKhbWeBQcPj8YKa4JojIk+rsA5F0UVYLIXrot4DeO8OUhTgotz9lv3q0TtUcoS1rSzr9JXLeI4T6jn80Tn5lePJXs1ntX/qU3DD2r4Tgsrxrji7IkKCW2N/Mm1pMPmHYd0BHYv+LATFCZ9i4T155L9JVsqYq4WwZbv10lyRsnIl7LsP7HVNRg4G2zNUGPtt7NzxvvhsErxa4kglSk+lu5BV4opcKX+JykggaAoljmnST6MWVQKc9xv9Ke0RmCGvP3fUFj75YV5y+NM5bEwe+JqasUlbJIE/+QoexKDFLavssTRtKcHNR0/71/8Tdd7pctFAa3BBgOT+JdwLTHkP80/z42EgsTA/oE2J7HzPB1Tb8Q1iTq5I5lVmiMwKHIeVsxwUQu7mIrIjF2O833xntA9pXDaWCIoVjbNuNKOEmzGF9AZ6JPas69XOmdJYnhSbsaAvDATPgxMTzsunWf/evAeIUCHKB+gUasYUgRKkhBzpPMAiNm0JQ6ObEwyXqkHtSSDgMbn+bMTDM2EY//QEnjYbA7P4aJox2794w== mateusz.stencel@codilime.com
+  mczuba:
+    comment: Michal Czuba
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrpiomr3EZI6SAZ60N48bte+icSA9C5te/gP+rXy8P7aywquwachkkp9Vd8zuVgSDmI1NLsLfkkO3T7WQrbNxqlf7xy4M5nGS7gH8LGjGxugGraxSPksF2Bo/p/jmErLgrHhq3CjP0h9AesNJrus+2bjfr/CPQwePvv3QteotJOC4XhQagiChPb8bNSPU8UoTw6iCshC7PMZITvuNmBaNSyIXQkvge5aR39dMK+3Q+fKbST6K3ULM1BrJV1/pp0xPIPx9qoKymjEYQW06A3flpQ42f83KOCtYhi015Eydsa7u4ePmehmYpwM1oVu5MeXrqv/5AP/7iSVhlR0r72SjL michal.czuba@codilime.com
   apavlov:
     comment: Andrey Pavlov
     purge_sshkeys: true
