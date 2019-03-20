@@ -105,6 +105,11 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpc1rb+F2+RnLxM/TrK7vozE5xhoATTand4Go9UmwEbuGfY35kfhNTndtg4dJgONAKgDCu9K/7VLqy3SnjnTuo7mXexXPBG9mTZsITOoP21FdYiyTH0gLmFe/mL9y5fiXwS0Lv3rHPnaNwwz2uRCPFQgiiCyYq43ZRJ3QkoWREeyhbDs3dOuED7oYm9J//OODJqOJyWp6wSJ7bH+Eg4jIAgIaiAKLHvOo5YWYisnnIPkPlnoKYrt/unw7qrQR7NcTtyAH04c13+2U+zoz9K97Fwy8xVcN5VxYMEGW0uOU9zZTM4m7mZoJ3pdk9BIYP52HXchwhUmCBVIjaT/2Lw3UH alexm@Apple-keys-MacBook-Pro.local
+  aakimov:
+    comment: Andrey Akimov
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClv2svBI8MNIMprw9gpZ3Dk7HnAAiT8sIHrj4ed0280OgehNhVojg6ddR6gPL205RSueboo3B2kXRuQhEOMDA7c7mYYdsYgOdbKQ18KLeGzZIP0ZzY9dBGUkzqS9LtZIME3Y/XLt3rmyNK9qc6xRuuT285r46IlLgmySEUXCMVhcacuHsnqEcVG/JiCLVCUuORWs/W2X5YqUzyPQZP1FasStRUGWWqbroPtNT/qXDbXYJDUgRPzxzKR/6cme1O91wkZRarvDnZ+3LSQk0GlLxdPwWvdFgYMm0ZvYpwWctXQDXv4aYWRIZHVl428WXrX48RSW6wE9pMCPwSpYrGTJRn aakimov@aakimov-mbp
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
