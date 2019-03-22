@@ -58,6 +58,11 @@ node /repo.opencontrail.org/ {
   class { '::opencontrail_ci::pulp_public_repo': }
 }
 
+node /stats.opencontrail.org/ {
+  class { '::opencontrail_ci::server': }
+  class { '::opencontrail_ci::stats': }
+}
+
 node /mirrors.englab.juniper.net/ {
   class {'::opencontrail_ci::server': }
   class {'::opencontrail_ci::mirror':
