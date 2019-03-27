@@ -60,4 +60,28 @@ class opencontrail_ci::nexus_repository(
     dport  => $registry_ports,
     action => accept,
   }
+
+  # Java settings
+  # Nexus restart is required after updating these
+
+  file_line { 'Java Xms parameter':
+    require => Package['nexus3'],
+    path    => hiera('nexus::vmoptions_filepath'),
+    line    => "-Xms${hiera('opencontrail_ci::nexus::memory_xms')}",
+    match   => '^-Xms.*'
+  }
+
+  file_line { 'Java Xmx parameter':
+    require => Package['nexus3'],
+    path    => hiera('nexus::vmoptions_filepath'),
+    line    => "-Xmx${hiera('nexus::memory_xmx')}",
+    match   => '^-Xmx.*'
+  }
+
+  file_line { 'Java MDMS parameter':
+    require => Package['nexus3'],
+    path    => hiera('nexus::vmoptions_filepath'),
+    line    => "-XX:MaxDirectMemorySize=${hiera('nexus::memory_mdms')}",
+    match   => '^-XX:MaxDirectMemorySize=.*'
+  }
 }

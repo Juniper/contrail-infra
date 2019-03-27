@@ -1,0 +1,8 @@
+---
+## Nexus configuration
+# Memory settings
+# Read before changing: https://help.sonatype.com/repomanager3/system-requirements#SystemRequirements-Memory
+opencontrail_ci::nexus::vmoptions_filepath: '/usr/share/nexus3/bin/nexus.vmoptions'
+opencontrail_ci::nexus::memory_xms: '4G'
+opencontrail_ci::nexus::memory_xmx: '4G'
+opencontrail_ci::nexus::memory_mdms: '17530M'
