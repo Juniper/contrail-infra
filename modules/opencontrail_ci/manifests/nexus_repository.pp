@@ -60,4 +60,24 @@ class opencontrail_ci::nexus_repository(
     dport  => $registry_ports,
     action => accept,
   }
+
+  # Java settings
+
+  file_line { 'Java Xms parameter':
+    path   => hiera('nexus::vmoptions_filepath'),
+    line   => "-Xms${hiera('nexus::memory_xms')}",
+    match  => "^-Xms.*"
+  }
+
+  file_line { 'Java Xmx parameter':
+    path   => hiera('nexus::vmoptions_filepath'),
+    line   => "-Xmx${hiera('nexus::memory_xmx')}",
+    match  => "^-Xmx.*"
+  }
+
+  file_line { 'Java MDMS parameter':
+    path   => hiera('nexus::vmoptions_filepath'),
+    line   => "-XX:MaxDirectMemorySize=${hiera('nexus::memory_mdms')}",
+    match  => "^-XX:MaxDirectMemorySize=.*"
+  }
 }
