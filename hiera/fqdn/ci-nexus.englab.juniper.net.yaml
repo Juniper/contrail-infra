@@ -1,0 +1,8 @@
+---
+## Nexus configuration
+# Memory settings
+# Read before changing: https://help.sonatype.com/repomanager3/system-requirements#SystemRequirements-Memory
+nexus::vmoptions_filepath: '/usr/share/nexus3/bin/nexus.vmoptions'
+nexus::memory_xms: '4G'
+nexus::memory_xmx: '4G'
+nexus::memory_mdms: '17530M'
