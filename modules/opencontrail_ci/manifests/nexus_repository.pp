@@ -1,5 +1,9 @@
 class opencontrail_ci::nexus_repository(
   $registry_ports = [5000],
+  $vmoptions_filepath = '/usr/share/nexus3/bin/nexus.vmoptions',
+  $memory_xms = '4G',
+  $memory_xmx = '4G',
+  $memory_mdms = '17530M'
 ) {
   include '::gnupg'
 
@@ -59,5 +63,29 @@ class opencontrail_ci::nexus_repository(
     proto  => tcp,
     dport  => $registry_ports,
     action => accept,
+  }
+
+  # Java settings
+  # Nexus restart is required after updating these
+
+  file_line { 'Java Xms parameter':
+    require => Package['nexus3'],
+    path    => $vmoptions_filepath,
+    line    => "-Xms${memory_xms}",
+    match   => '^-Xms.*'
+  }
+
+  file_line { 'Java Xmx parameter':
+    require => Package['nexus3'],
+    path    => $vmoptions_filepath,
+    line    => "-Xmx${memory_xmx}",
+    match   => '^-Xmx.*'
+  }
+
+  file_line { 'Java MDMS parameter':
+    require => Package['nexus3'],
+    path    => $vmoptions_filepath,
+    line    => "-XX:MaxDirectMemorySize=${memory_mdms}",
+    match   => '^-XX:MaxDirectMemorySize=.*'
   }
 }
