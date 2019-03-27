@@ -111,3 +111,11 @@ opencontrail_ci::nodepool_builder::rhel_reg_method:          "portal"
 # Override the port zookeeper is listening on to work around
 # access issue in the Juniper lab.
 zookeeper::client_port: 3389
+
+## Nexus configuration
+# Memory settings
+# Read before changing: https://help.sonatype.com/repomanager3/system-requirements#SystemRequirements-Memory
+nexus::vmoptions_filepath: '/usr/share/nexus3/bin/nexus.vmoptions'
+nexus::memory_xms: '4G'
+nexus::memory_xmx: '4G'
+nexus::memory_mdms: '17530M'
