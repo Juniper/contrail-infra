@@ -1,0 +1,4 @@
+---
+
+user: '{{ ansible_env.USER }}'
+new_user_password: '' # this should be passed using -e ansible run argument e.g. -e new_user_password='1234qwer'
