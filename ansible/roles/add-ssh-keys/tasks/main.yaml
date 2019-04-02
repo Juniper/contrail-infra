@@ -1,0 +1,9 @@
+---
+
+- name: add ssh keys to current user
+  authorized_key:
+    key: "{{ item.value.ssh_keys | join('\n') | string }}"
+    state: 'present'
+    user: '{{ user }}'
+  with_dict: '{{ ssh_keys }}'
+
