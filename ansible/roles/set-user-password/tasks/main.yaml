@@ -1,0 +1,12 @@
+---
+
+- name: generate password hash
+  command: 'mkpasswd --method=sha-512 {{ new_user_password }}'
+  delegate_to: localhost
+  register: password_hash
+
+- name: set password for user
+  become: true
+  user:
+    name: '{{ user }}'
+    password: '{{ password_hash.stdout }}'
