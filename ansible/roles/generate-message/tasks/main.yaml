@@ -1,0 +1,11 @@
+---
+
+- name: generate message
+  run_once: true
+  debug:
+    msg: >
+      {% for host in groups['all'] %}
+      ssh {{ hostvars[host].ansible_env.USER }}@{{ host }}
+
+      {% endfor %}
+      The password is '{{ new_user_password }}' should you be prompted for one.

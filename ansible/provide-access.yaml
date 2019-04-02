@@ -1,0 +1,10 @@
+---
+
+- hosts: all
+  roles:
+    - role: add-ssh-keys
+      vars:
+        keys: ssh_keys
+    - set-user-password
+    - configure-sshd
+    - generate-message

@@ -1,0 +1,12 @@
+---
+
+# this is not perfect, assumes 'PasswordAuthentication no'
+# line is present. Sufficient for CI nodes
+
+- name: permit password authentication
+  become: true
+  lineinfile:
+    path: '/etc/ssh/sshd_config'
+    line: 'PasswordAuthentication yes'
+    regexp: '^PasswordAuthentication (no|yes)'
+  notify: 'restart sshd'

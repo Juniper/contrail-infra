@@ -1,0 +1,24 @@
+# just provide the IPs of the VMs in the appropriate group
+[ci-nodes:children]
+centos
+ubuntu
+rhel
+
+[centos]
+
+[ubuntu]
+10.84.34.51
+
+[rhel]
+10.84.34.186
+10.84.34.185
+10.84.34.5
+
+[centos:vars]
+ansible_user=centos
+
+[ubuntu:vars]
+ansible_user=ubuntu
+
+[rhel:vars]
+ansible_user=cloud-user
