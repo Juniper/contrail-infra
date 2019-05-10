@@ -42,3 +42,25 @@ Update: ubuntu-security
 Log: <%= @logdir %>/ubuntu-<%= release %>-security.log
 
 <% end -%>
+
+# contrail static repos
+# TODO: Add R5.1. Not adding here because hard to determine if it wont brake anything
+# See: https://contrail-jws.atlassian.net/browse/JD-688
+
+Origin: Ubuntu
+Codename: contrail-trusty
+Description: Contrail Ubuntu Trusty mirror
+Architectures: amd64 source
+Components: master R5.0
+UDebComponents: master R5.0
+Contents: .gz
+Log: /var/log/reprepro/contrail-trusty.log
+
+Origin: Ubuntu
+Codename: contrail-xenial
+Description: Contrail Ubuntu Xenial mirror
+Architectures: amd64 source
+Components: master R5.0
+UDebComponents: master R5.0
+Contents: .gz
+Log: /var/log/reprepro/contrail-xenial.log
