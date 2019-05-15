@@ -1,4 +1,18 @@
 opencontrail_ci::users::accounts:
+  vgavini:
+    comment: Vijay Gavini
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAgEA7B9KhVx6WECfsmT8ZzIif7wH6m0XVElv8z5QzfUnC10offclpEFro4cCYnZQqHfiQoKHdV+6Zr1eKOXOV5ib60DVG14GroQvRMYLkJE1dqsOwYGneHL83xqK2I1ut61Nfqh4ulIpIz+Ubeu+uv1G8k4J8K94L4Rr2H95/NcUBCuJlCu+k9Oy5VgmRp0E6efNXb7jHe7QS09MhS3aIKHfaaBgCeOEaCHELf780ZTp34v/P//CS7mUyYoHHWUEn/mONZ/zK0ny0jiZbvxO6+ziJRmwrvMdQsFEd0srJqsQVBL1TYya2IX/zcbDVV1/ECZ0thMQm84g8XufQVPt/7OhzA6OK1K4qzBf93vT9UelZ00WjHx91gxxFCZdrM54ySNJ7ao+NUA1pblVo+9QznrDfwcBQXxv0ye9ypMqDGfcGTKpIwWONbEx81HuvXzP6F2hHd6tSuu9J8QLi+AY1nFBXpETJjaBJ4TUC/B64N5hNhmD8muFbhqiM9QSgGdOxm2F4G/iV7fyVOpVB51zwybSQSq6yNihjiTBKDs6tEP6hNhD/RfGZA+rsS6WUqB33XtByBgXJj+eqlqLq6GfdGHJfgcIWox5XhNeJeSophc4XyNTpFG2QOhQXT+yQiPj2Cpu2kC2i0BdAcYDhnwzeRTiFMKDFgVp7o80jcnyURw325k= vgavini@juniper.net
+  senthilgk:
+    comment: Senthil GK
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCt5+womJVZlGhbSANZ2XYeoD52CWXPSML5KyW6/lj3c5DEmPkPaQbeog+BgJFNbnY8ivVx0rd5I97Zo7bUSgFxmuZzWa7N6AWxJQDYwaruSoe7GpQo2ciu/nTuMRfnjOwzzfJpa/oNz+hEN5TsDq+lOcyf3IStERumovAjjAN4BA+M7rFz/bKujseBjX5ZmI8oykba+t6IN+0YxzIZJhctedr4CFNSBIWSnl/TsEN7powopEmUacv1ODUAuvsL+5wupsHoINEinTM+Q0ZpKjseltMMR/OLQTWry4DJy2C1vMOMZcI+2u8HS5ryDqtRyGDqfHQBrHNn/rrLTnjgQduF senthilgk@senthilgk-mbp
   jluk:
     comment: Jaroslaw Lukow
     groups:
