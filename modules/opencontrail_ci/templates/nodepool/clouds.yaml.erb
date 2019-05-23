@@ -34,3 +34,14 @@ clouds:
     networks:
       - name: ci-zuulv3-internal
         nat_destination: True
+  jnpr-cluster-c-isolated:
+    auth:
+      auth_url:     '<%= @cloud_credentials['jnpr-cluster-c-isolated']['auth']['auth_url'] %>'
+      username:     '<%= @cloud_credentials['jnpr-cluster-c-isolated']['auth']['username'] %>'
+      password:     '<%= @cloud_credentials['jnpr-cluster-c-isolated']['auth']['password'] %>'
+      project_name: '<%= @cloud_credentials['jnpr-cluster-c-isolated']['auth']['project'] %>'
+    interface: public
+    identity_api_version: '3'
+    networks:
+      - name: isolated_nodepool_network
+        nat_destination: True
