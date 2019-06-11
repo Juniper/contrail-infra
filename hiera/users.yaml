@@ -126,6 +126,8 @@ opencontrail_ci::users::accounts:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClv2svBI8MNIMprw9gpZ3Dk7HnAAiT8sIHrj4ed0280OgehNhVojg6ddR6gPL205RSueboo3B2kXRuQhEOMDA7c7mYYdsYgOdbKQ18KLeGzZIP0ZzY9dBGUkzqS9LtZIME3Y/XLt3rmyNK9qc6xRuuT285r46IlLgmySEUXCMVhcacuHsnqEcVG/JiCLVCUuORWs/W2X5YqUzyPQZP1FasStRUGWWqbroPtNT/qXDbXYJDUgRPzxzKR/6cme1O91wkZRarvDnZ+3LSQk0GlLxdPwWvdFgYMm0ZvYpwWctXQDXv4aYWRIZHVl428WXrX48RSW6wE9pMCPwSpYrGTJRn aakimov@aakimov-mbp
   ozhyhalo:
     comment: Oleksandr Zhyhalo
+    groups:
+      - sudo
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiMb5McSZKKCpq6Xsy00TRBDEMSFsV/i2HubA7vI0lpIztBeRJlekJFcb74gzEEimyocUVliFYPGOAudmt3Sc94gjcyEA3DiO5XjtSs+pXh3TkKqM9eV0AoPpQkYua/EkJCLck+DqsPV4AE9L9YzUxE8SDCy5j++lcXBnejqGPIaXwQ0n0Y7DtcZ2kYX0TBtO5+eKoawML2owkd9ZyOSN6KI0y1C/Dbuak3GAD1G8E0r+8Twpswl5cKcHFKEvCIbaYhX97B4Q6X+YrmW88m3haVETbw2vcc72yGW4aeWYzlI97ii8vvsNLsk77hELc2ryCuuheLz1seNjtx5GXVWBP oleksandr.zhyhalo@codilime.com
