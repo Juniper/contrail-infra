@@ -2,7 +2,7 @@
     name: Juniper/contrail-infra
     check:
       jobs:
-        - puppet-lint
+        - zuul-jobs-linters
     gate:
       jobs:
-        - puppet-lint
+        - zuul-jobs-linters
