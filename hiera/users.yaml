@@ -149,3 +149,11 @@ opencontrail_ci::users::accounts:
   mstencel:
     comment: Mateusz Stencel
     ensure: absent
+  amosurenko:
+    comment: Andrii Moshurenko
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0EyeOW+OzNaFBCRWERk3Fy1w7DAm5+J76yZ+SMzp69jfVFngsDlaYTCeercrJTbjAP9WsDGh8rqivancQ9/R0tf7Uiw3jQT2CRJg6mO2WZ4NtKYxRlK64kHyksBzOeMB1Wh1ep5AvEfnVhRoSJWQsvKuj9ZbhJoUeNjNjfz1XE7yNLJM4M2pnSs1xOrHwUuddlCVVTwyWUAicqo7QGN5tZrORBv0UD+ieaDle9gvP3iBoe55/Ay4+lVpP82YKNNI0v2qVwTJmPr2F1tiSXCmxBcxzTv6RUvrCPzf/CEag3e21xIsM7VZkJWI7hs2NG0KknRpugacLreiukIKvqgMr andrii.moshurenko@codilime.com
+  
