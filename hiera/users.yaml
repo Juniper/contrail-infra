@@ -131,6 +131,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiMb5McSZKKCpq6Xsy00TRBDEMSFsV/i2HubA7vI0lpIztBeRJlekJFcb74gzEEimyocUVliFYPGOAudmt3Sc94gjcyEA3DiO5XjtSs+pXh3TkKqM9eV0AoPpQkYua/EkJCLck+DqsPV4AE9L9YzUxE8SDCy5j++lcXBnejqGPIaXwQ0n0Y7DtcZ2kYX0TBtO5+eKoawML2owkd9ZyOSN6KI0y1C/Dbuak3GAD1G8E0r+8Twpswl5cKcHFKEvCIbaYhX97B4Q6X+YrmW88m3haVETbw2vcc72yGW4aeWYzlI97ii8vvsNLsk77hELc2ryCuuheLz1seNjtx5GXVWBP oleksandr.zhyhalo@codilime.com
+  amoshurenko:
+    comment: Andrii Moshurenko
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0EyeOW+OzNaFBCRWERk3Fy1w7DAm5+J76yZ+SMzp69jfVFngsDlaYTCeercrJTbjAP9WsDGh8rqivancQ9/R0tf7Uiw3jQT2CRJg6mO2WZ4NtKYxRlK64kHyksBzOeMB1Wh1ep5AvEfnVhRoSJWQsvKuj9ZbhJoUeNjNjfz1XE7yNLJM4M2pnSs1xOrHwUuddlCVVTwyWUAicqo7QGN5tZrORBv0UD+ieaDle9gvP3iBoe55/Ay4+lVpP82YKNNI0v2qVwTJmPr2F1tiSXCmxBcxzTv6RUvrCPzf/CEag3e21xIsM7VZkJWI7hs2NG0KknRpugacLreiukIKvqgMr andrii.moshurenko@codilime.com
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
@@ -148,4 +155,4 @@ opencontrail_ci::users::accounts:
     ensure: absent
   mstencel:
     comment: Mateusz Stencel
-    ensure: absent
+    ensure: absent  
