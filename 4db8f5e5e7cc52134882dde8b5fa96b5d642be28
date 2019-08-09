@@ -1,0 +1,78 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "fa022f39_57aef028",
+        "filename": "/COMMIT_MSG",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-08-09T12:13:54Z",
+      "side": 1,
+      "message": "Description too short - whose key?",
+      "revId": "4db8f5e5e7cc52134882dde8b5fa96b5d642be28",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "0563f043_bc41e7e5",
+        "filename": "hiera/users.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 134,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-08-09T12:13:54Z",
+      "side": 1,
+      "message": "Amend yourself to be above this line. Below there are only `absent` old accounts, yes?",
+      "revId": "4db8f5e5e7cc52134882dde8b5fa96b5d642be28",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "91030f2d_23a51e07",
+        "filename": "hiera/users.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 152,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-08-09T12:13:54Z",
+      "side": 1,
+      "message": "amosurenko or amoshurenko?",
+      "range": {
+        "startLine": 152,
+        "startChar": 2,
+        "endLine": 152,
+        "endChar": 12
+      },
+      "revId": "4db8f5e5e7cc52134882dde8b5fa96b5d642be28",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "b2d98346_cf7c6087",
+        "filename": "hiera/users.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 159,
+      "author": {
+        "id": 760
+      },
+      "writtenOn": "2019-08-09T12:13:54Z",
+      "side": 1,
+      "message": "EOL",
+      "revId": "4db8f5e5e7cc52134882dde8b5fa96b5d642be28",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": true
+    }
+  ]
+}
