@@ -1,0 +1,38 @@
+---
+default:
+  pipename: 'periodic-nightly'
+  users_file: 'users.yml'
+  secret_key: ''
+  openid_provider: 'https://login.launchpad.net/+openid'
+database:
+  provider: 'mysql'
+  host: <%= @acid_db_host %>
+  user: <%= @acid_db_user %>
+  password:  <%= @acid_db_pass %>
+  port: <%= @acid_db_port %>
+  name: <%= @acid_db_name %>
+buildset:
+  per_page: 20
+  page_links: 4
+  log_url: <%= @acid_log_url %>
+zuul:
+  url: <%= @acid_zuul_url %>
+  status_endpoint: 'status.json'
+  pipelines:
+    - check
+    - gate
+    - periodic-nightly
+  build_enqueue:
+    pipelines:
+      - periodic-nightly:
+          - master
+          - R5.0
+  manager:
+    host: <%= @acid_manager_host %>
+    username: <%= @acid_manager_user %>
+    user_key_file: '<%= @path %>/.ssh/id_rsa'
+    host_key_file: '<%= @path %>/.ssh/zuul_host_key.pub'
+    tenant: <%= @acid_manager_tenant %>
+    trigger: 'timer'
+    project: <%= @acid_managerproject %>
+    policy: 'RejectPolicy'
