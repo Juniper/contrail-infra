@@ -45,3 +45,16 @@ clouds:
     networks:
       - name: isolated_nodepool_network
         nat_destination: True
+  jnpr-saturn:
+    auth:
+      auth_url:     '<%= @cloud_credentials['jnpr-saturn']['auth']['auth_url'] %>'
+      username:     '<%= @cloud_credentials['jnpr-saturn']['auth']['username'] %>'
+      password:     '<%= @cloud_credentials['jnpr-saturn']['auth']['password'] %>'
+      project_name: '<%= @cloud_credentials['jnpr-saturn']['auth']['project'] %>'
+      user_domain_name:    Default
+      project_domain_name: Default
+    interface: public
+    identity_api_version: '3'
+    networks:
+      - name: ci-zuulv3-internal
+        nat_destination: True
