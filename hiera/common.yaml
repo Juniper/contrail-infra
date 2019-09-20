@@ -5,9 +5,9 @@ opencontrail_ci::graphite_host: 148.251.5.91
 opencontrail_ci::graphite_port: 7999
 opencontrail_ci::project_config_repo: https://github.com/Juniper/contrail-project-config
 opencontrail_ci::zookeeper::allowed_clients:
-  - 66.129.239.0/24  # Juniper Networks
+  - 66.129.224.0/19  # Juniper Networks
 opencontrail_ci::zuul_scheduler::gearman_allowed_clients:
-  - 66.129.239.0/24  # Juniper Networks
+  - 66.129.224.0/19  # Juniper Networks
 
 opencontrail_ci::pulp_server::pulp_version: 2
 
