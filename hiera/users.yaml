@@ -138,6 +138,13 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQC0EyeOW+OzNaFBCRWERk3Fy1w7DAm5+J76yZ+SMzp69jfVFngsDlaYTCeercrJTbjAP9WsDGh8rqivancQ9/R0tf7Uiw3jQT2CRJg6mO2WZ4NtKYxRlK64kHyksBzOeMB1Wh1ep5AvEfnVhRoSJWQsvKuj9ZbhJoUeNjNjfz1XE7yNLJM4M2pnSs1xOrHwUuddlCVVTwyWUAicqo7QGN5tZrORBv0UD+ieaDle9gvP3iBoe55/Ay4+lVpP82YKNNI0v2qVwTJmPr2F1tiSXCmxBcxzTv6RUvrCPzf/CEag3e21xIsM7VZkJWI7hs2NG0KknRpugacLreiukIKvqgMr andrii.moshurenko@codilime.com
+  dfedeczko:
+    comment: Damian Fedeczko
+    groups:
+      - sudo
+    purge_sshkeys: true
+    sshkeys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCwcDavzLZKYGOBilw0wFL19tALdPuHRgSPPdZeCoDAKr0rhB7skY1C7oMaYt0Mh6y+69/tRY7WohOBT06uWL/x1QmszMyTVrLv2Q/sm2KwIz+p4CwYgZT6oKL/9Xtn1Jk0v6WgTLovmyi1y4ziouXwsmO7DRLg3BkpsK3gglH7CJrIVEHhXBpzuAItmue/sflWo9szTeKWEWIhIwBYnAB8Q61dXOO2vJpiW5G6AMaXlPJIGe0WI+i/88zPdDTIUbU13tDUAfFl5JF0nY45JgFfEn/tPP3yeYVf0Eg2L/D05hs2sZy/x37T6fmAJ/VEfzopP9kbocoZ1YRbD+4f/Psp damian.fedeczko@codilime.com
   kklimonda:
     comment: Krzysztof Klimonda
     ensure: absent
