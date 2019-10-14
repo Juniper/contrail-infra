@@ -22,6 +22,30 @@
       "revId": "26cff6080c798009169c7eeacdbf65722685ae29",
       "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
       "unresolved": true
+    },
+    {
+      "key": {
+        "uuid": "88b80f8e_339035f9",
+        "filename": "hiera/users.yaml",
+        "patchSetId": 1
+      },
+      "lineNbr": 164,
+      "author": {
+        "id": 679
+      },
+      "writtenOn": "2019-10-14T13:12:01Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9059b9b6_05a7650f",
+      "range": {
+        "startLine": 164,
+        "startChar": 12,
+        "endLine": 164,
+        "endChar": 13
+      },
+      "revId": "26cff6080c798009169c7eeacdbf65722685ae29",
+      "serverId": "c72cd27d-1743-4a55-84a4-cd13b8400c52",
+      "unresolved": false
     }
   ]
 }
