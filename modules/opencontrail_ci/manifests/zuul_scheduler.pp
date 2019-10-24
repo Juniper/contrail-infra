@@ -37,13 +37,4 @@ class opencontrail_ci::zuul_scheduler(
     ],
   }
   opencontrail_ci::gearman_allow_client { $gearman_allowed_clients: }
-
-  file { '/etc/zuul/gearman-logging.conf':
-    ensure  => present,
-    owner   => 'root',
-    group   => 'root',
-    mode    => '0644',
-    content => template('opencontrail_ci/gearman-logging.conf.erb'),
-  }
-
 }
