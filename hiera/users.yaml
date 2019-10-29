@@ -13,13 +13,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCt5+womJVZlGhbSANZ2XYeoD52CWXPSML5KyW6/lj3c5DEmPkPaQbeog+BgJFNbnY8ivVx0rd5I97Zo7bUSgFxmuZzWa7N6AWxJQDYwaruSoe7GpQo2ciu/nTuMRfnjOwzzfJpa/oNz+hEN5TsDq+lOcyf3IStERumovAjjAN4BA+M7rFz/bKujseBjX5ZmI8oykba+t6IN+0YxzIZJhctedr4CFNSBIWSnl/TsEN7powopEmUacv1ODUAuvsL+5wupsHoINEinTM+Q0ZpKjseltMMR/OLQTWry4DJy2C1vMOMZcI+2u8HS5ryDqtRyGDqfHQBrHNn/rrLTnjgQduF senthilgk@senthilgk-mbp
-  jluk:
-    comment: Jaroslaw Lukow
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQCvHlOvM6E0vBQHEhBsBsULqtaySmpvi50c4zp8zpWqnl4Br1jc4aABpnmM3EmBAfSlKjbk3LK1N1PHdh7m+ADwpumWX1MnVh1BZqL9Cm5r0pBEfZEpslqWbwsD+ym6RkJ8OdQB7uHjvbQ6xYma4ptEaXaq4UGcWUiLICt4tTEy9P2YZBZfGXv4XWJfBWUr2UhK3MbGOmquk3grB9OmesBZYG88UXcFy15NWEFIXQZsBIEU7jFtAEVpDhVN7aNYH+CvOU7AQ/pgqlRv1+ZTrDehAlp93eONAs9sxxyL2QF7O8v+O2doPiIW2QO3ila852c0qo3udM0DAfWYhbJPYC4PAVuTYdLx18RkLBXlfE8JPFf+UOJ63lQGqTn8vyhUfjpW+3OAY0/xGzZncDvGqbBEQ/N6zQAxAlKOmAb0b5oaUyFLnJ3KrYS3yDAHXl8E98PPDkoIyHQ+pNo3EBLNe91MJ5kMEiL/zU7gc4stNFT6HZQJNObQu200yKBFdjAgYM/BqbUk5YkrQMo3qpTZk1fP2TuLLmJADwEQ7yLZq88J6vqDsQqReQtGn/espwwjTi7uVfoYovdVkmrXw8BpKk9ti5R2+K/eFDCO85MxVpp+2/45noH8+mtDj+FGOx1P+Y0sqVP0ePYbASKngcm0HDVWdg2ZFA7GuE7CtS3EPzgAKw== jaroslaw@jaroslaw-lukow',
   pjrusak:
     comment: Pawel Rusak
     groups:
@@ -55,13 +48,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDVR1LISJh+dGUN4v/Gf6wYI7XlOdDv6lDtG5N3QoCETpW3oto3YRfxMw+XfaVW0FP/baBFixEUV1Uraw44npV3RKuV9eDTv9VU+rUWZ+axcnllbmR1Uk7kPQIyEinN7X3+RGOr7LMtfmDV+1oOG66h77KNoK6iy0eo7ancQ3Wfc+1JgCe2/nbFYNClZCeYZJW9rEuWnC+adwxmiKI1e8V5KBGT2iNSJ41RPqJYegAi4WE6LjBjw2OOXIkfiKhkY0QufVII3fcSNjZ8ARt+BS1C1U808iFLyrvOYkcQCRhKdDC/drZgNlVlAQmkWzBz7ObxUnlbeU6k2k6aQaqkOGpqyu+RJJOwjqbupo6G6bDKkIsijt7d6QoQiM7BP/ATsrE9PGEQMXMWVLw/POr4CwXF2rWbIAKiB+STdEGGEjsLZX0K445tW+qXIg/lopZPB2ITAJin8+k7L6TgRvWoRY/lvOws1Xx7fsWd9wO0BJdzgptUe2/HqVAh7fJuyLlJ0LwO022AJ/llmtqBnY8O8GwxPmWjs43pZYypHEg3mthbCZaWb1XeeMBE28rustlNdAlxp+MY4I2h8ZOr2Dryr2S3UaVRCL3IwA3aaH9jSF+CaoyvKYBfbKm1ubCVv9hdgCqOcQj9VPdneaZDd5ox2TciatKqO6ORae8mCPQW36tU5w== abhayj@juniper.net
-  kravvcu:
-    comment: Michal Krawczyk
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDtAu6vDs3DI6sAX48HZfUVAgX9xG21H0XPVK749UOJJhWLURS+OyD6LtwUtUYBAuzKNEp1Tx0TX8mHEfPAw+nCt54a5S3BdIvw1255gv4zhuhzCcgK/D7vkjzvMIrsrp6EvF4EFDeJKfADaYwL5cT/VgIMqvjDnQFb+ODSKgpPkxru/pZ8aVHfYUrQh+Gk9hdOI9ILia68TV/sqWipZd0ZgpTBgzmzaJ8HGaVEHoufn+Ou9QBioO84ueWR4oVfVlUNOFu8GKM6oXud2AWFdQ1UJihpaEjImq76IRVlgq60zNswMVhZhj1mAj/i+j1VH8WvYv3UtPVBIevJUTtK/CTV kravvcu@kravvcu
   pmarcinkiewicz:
     comment: Przemyslaw Marcinkiewicz
     groups:
@@ -162,4 +148,10 @@ opencontrail_ci::users::accounts:
     ensure: absent
   mstencel:
     comment: Mateusz Stencel
+    ensure: absent
+  jluk:
+    comment: Jaroslaw Lukow
+    ensure: absent
+  kravvcu:
+    comment: Michal Krawczyk
     ensure: absent
