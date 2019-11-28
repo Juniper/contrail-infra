@@ -76,13 +76,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDRk5cWveMNIP8aDBXPjS7hvPyR0nGjfqR3kmVleNrqQAcnq1Z7mUa7EDaRPHJO6C/+VpRhkr0Zre3hJiZj+iBIzWr7OAMR2FlUv+FYIqK9564CbypAmBg6QAh3JBIvke01d+L/Kf0nNeLHxY5nWeNlXOZKSkxMeIJnISHGlfSVXYszm3GhyLjXC3zLVqOSfTZKNhIdrF4qWTfPJt3t9Mw5LnLS47jDsF2jjCD+sjpScNGewYgNAImibpULIIl0bWbzaGt7jmQFRvM5dDWpp5hAbm3wDECegSPDGfyq0E6jMRSHL1eHiJZqpY9WjyE4uFuqhwFIFCpPWShgD5i13zjN kubit@kubit.codilime.com
-  mczuba:
-    comment: Michal Czuba
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrpiomr3EZI6SAZ60N48bte+icSA9C5te/gP+rXy8P7aywquwachkkp9Vd8zuVgSDmI1NLsLfkkO3T7WQrbNxqlf7xy4M5nGS7gH8LGjGxugGraxSPksF2Bo/p/jmErLgrHhq3CjP0h9AesNJrus+2bjfr/CPQwePvv3QteotJOC4XhQagiChPb8bNSPU8UoTw6iCshC7PMZITvuNmBaNSyIXQkvge5aR39dMK+3Q+fKbST6K3ULM1BrJV1/pp0xPIPx9qoKymjEYQW06A3flpQ42f83KOCtYhi015Eydsa7u4ePmehmYpwM1oVu5MeXrqv/5AP/7iSVhlR0r72SjL michal.czuba@codilime.com
   kwrobel:
     comment: Krzysztof Wrobel
     groups:
@@ -110,13 +103,6 @@ opencontrail_ci::users::accounts:
     purge_sshkeys: true
     sshkeys:
       - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClv2svBI8MNIMprw9gpZ3Dk7HnAAiT8sIHrj4ed0280OgehNhVojg6ddR6gPL205RSueboo3B2kXRuQhEOMDA7c7mYYdsYgOdbKQ18KLeGzZIP0ZzY9dBGUkzqS9LtZIME3Y/XLt3rmyNK9qc6xRuuT285r46IlLgmySEUXCMVhcacuHsnqEcVG/JiCLVCUuORWs/W2X5YqUzyPQZP1FasStRUGWWqbroPtNT/qXDbXYJDUgRPzxzKR/6cme1O91wkZRarvDnZ+3LSQk0GlLxdPwWvdFgYMm0ZvYpwWctXQDXv4aYWRIZHVl428WXrX48RSW6wE9pMCPwSpYrGTJRn aakimov@aakimov-mbp
-  ozhyhalo:
-    comment: Oleksandr Zhyhalo
-    groups:
-      - sudo
-    purge_sshkeys: true
-    sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiMb5McSZKKCpq6Xsy00TRBDEMSFsV/i2HubA7vI0lpIztBeRJlekJFcb74gzEEimyocUVliFYPGOAudmt3Sc94gjcyEA3DiO5XjtSs+pXh3TkKqM9eV0AoPpQkYua/EkJCLck+DqsPV4AE9L9YzUxE8SDCy5j++lcXBnejqGPIaXwQ0n0Y7DtcZ2kYX0TBtO5+eKoawML2owkd9ZyOSN6KI0y1C/Dbuak3GAD1G8E0r+8Twpswl5cKcHFKEvCIbaYhX97B4Q6X+YrmW88m3haVETbw2vcc72yGW4aeWYzlI97ii8vvsNLsk77hELc2ryCuuheLz1seNjtx5GXVWBP oleksandr.zhyhalo@codilime.com
   amoshurenko:
     comment: Andrii Moshurenko
     groups:
@@ -154,4 +140,10 @@ opencontrail_ci::users::accounts:
     ensure: absent
   kravvcu:
     comment: Michal Krawczyk
+    ensure: absent
+  mczuba:
+    comment: Michal Czuba
+    ensure: absent
+  ozhyhalo:
+    comment: Oleksandr Zhyhalo
     ensure: absent
