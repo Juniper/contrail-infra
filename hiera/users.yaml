@@ -82,7 +82,7 @@ opencontrail_ci::users::accounts:
       - sudo
     purge_sshkeys: true
     sshkeys:
-      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCrpiomr3EZI6SAZ60N48bte+icSA9C5te/gP+rXy8P7aywquwachkkp9Vd8zuVgSDmI1NLsLfkkO3T7WQrbNxqlf7xy4M5nGS7gH8LGjGxugGraxSPksF2Bo/p/jmErLgrHhq3CjP0h9AesNJrus+2bjfr/CPQwePvv3QteotJOC4XhQagiChPb8bNSPU8UoTw6iCshC7PMZITvuNmBaNSyIXQkvge5aR39dMK+3Q+fKbST6K3ULM1BrJV1/pp0xPIPx9qoKymjEYQW06A3flpQ42f83KOCtYhi015Eydsa7u4ePmehmYpwM1oVu5MeXrqv/5AP/7iSVhlR0r72SjL michal.czuba@codilime.com
+      - ssh-rsa AAAAA invalid key
   kwrobel:
     comment: Krzysztof Wrobel
     groups:
