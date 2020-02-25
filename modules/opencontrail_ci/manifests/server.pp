@@ -54,6 +54,7 @@ class opencontrail_ci::server inherits opencontrail_ci::params {
   }->
   firewall { '003 accept inbound ssh':
     dport  => 22,
+    source => '66.129.239.0/19'
     proto  => 'tcp',
     action => 'accept',
   }->
